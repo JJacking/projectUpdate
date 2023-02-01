@@ -91,20 +91,20 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping("/selectOne")
+	@RequestMapping("product/selectOne")
 	public String selectOne(@RequestParam int num, Model model) {
 		productService.readCount(num);
 		ProductVO dto = productService.selectOne(num);
 		model.addAttribute("list",productService.selectAllNumAuction());
 		model.addAttribute("product",dto);
 		if(System.currentTimeMillis()-dto.getRegdate().getTime()>0) {
-			return "endPage";  
+			return "product/endPage";  
 		}
-		return "product/productDetail";  
+		return "product/productDetail";
 	}
 	
 
-	@RequestMapping("/newAuction")
+	@GetMapping("/newAuction")
 	public String newAuction() {
 		return "product/newAuction"; 
 	}
@@ -114,7 +114,7 @@ public class ProductController {
 			@RequestParam String memberId,
 			@RequestParam String content,@RequestParam String regdate, @RequestParam String category,
 		    @RequestParam MultipartFile[] productPic) throws IllegalStateException, IOException {
-		
+		System.out.println(title+"**title");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		
 		ProductVO dto = new ProductVO();
@@ -129,14 +129,17 @@ public class ProductController {
 			Calendar dateTime = Calendar.getInstance();
 			String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
 			String fileName = uniqueId+"_"+productPic[i].getOriginalFilename();
-			str += fileName+",";
+			str += fileName;
+			if(i<productPic.length-1) {
+				str += ",";
+			}
 			File file = new File("C:\\UploadImage\\AuctionList",fileName);
 			productPic[i].transferTo(file);
 		}
 		dto.setProductPic(str);
 		productService.insertProduct(dto);
 		
-		return "redirect:/";
+		return "redirect:/product";
 	}
 	
 	@GetMapping("/directBuy")
@@ -145,11 +148,11 @@ public class ProductController {
 		return "";
 	}
 	
-	@RequestMapping("/deleteProduct")
-	public String deleteProduct(ProductVO dto) {
-		productService.deleteProduct(dto);
+	@RequestMapping("/product/deleteProduct")
+	public String deleteProduct(int num) {
+		productService.deleteProduct(num);
 		
-		return "redirect:/";
+		return "redirect:/product";
 	}
 
 	@PostMapping("/biding")
@@ -163,13 +166,13 @@ public class ProductController {
 		return "redirect:/selectOne";
 	}
 	
-	@GetMapping("/one")
-	public String direct(@RequestParam int num, RedirectAttributes attributes) {
-		productService.direct(num);
-		attributes.addAttribute("num",num);
-		
-		return "redirect:/selectOne";
-	}
+//	@GetMapping("/one")
+//	public String direct(@RequestParam int num, RedirectAttributes attributes) {
+//		productService.direct(num);
+//		attributes.addAttribute("num",num);
+//		
+//		return "redirect:/selectOne";
+//	}	
 	
 	@GetMapping("/endPage")
 	public String endPage() {

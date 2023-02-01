@@ -44,8 +44,8 @@ public class ProductService {
 		productDAO.insertProduct(dto);
 	}
 
-	public void deleteProduct(ProductVO dto) {
-		productDAO.deleteProduct(dto);
+	public void deleteProduct(int num) {
+		productDAO.deleteProduct(num);
 	}
 
 	public void insertCustomer(CustomerVO cdto) {
