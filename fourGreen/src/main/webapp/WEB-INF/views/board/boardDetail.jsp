@@ -87,10 +87,11 @@
       		<table>
       			<c:forEach items="${lists}" var="comment">
 	      			<tr>
-	      				<td><b>${comment.userName}</b></td>
+	      				<td><b>${comment.nickName}</b></td>
 		            <td style="width: 60%;">${comment.reContent}</td>
 		            <td>${comment.reWirteDate}</td>
 		            <td class="commentBtn">
+		              <button type="button" onclick="">댓글달기</button><br>
 		              <button type="button" onclick="commentUpdate()">수정</button><br>
 		              <button type="button" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
 		            </td>
@@ -102,6 +103,8 @@
       	<div id="comment">
       	<form action="commentWrite" method="POST">
       	<input type="hidden" name="num" value="${board.num}">
+      	<input type="hidden" name="userId" value="${user.id}">
+      	<input type="hidden" name="nickName" value="${user.nickname}">
       		<table id="commentTb" class="commentWrite">
       			<tr>
       				<td>내용</td>

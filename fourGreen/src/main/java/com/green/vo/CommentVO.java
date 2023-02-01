@@ -5,16 +5,18 @@ import java.sql.Timestamp;
 public class CommentVO {
 	private int cno;
 	private int num;
+	private String userId;
 	private String nickName;
 	private String reContent;
 	private Timestamp reWirteDate;
 	
 	public CommentVO() {}
 	
-	public CommentVO(int cno, int num, String nickName, String reContent, Timestamp reWirteDate) {
+	public CommentVO(int cno, int num, String nickName, String userId, String reContent, Timestamp reWirteDate) {
 		this.cno = cno;
 		this.num = num;
 		this.nickName = nickName;
+		this.userId = userId;
 		this.reContent = reContent;
 		this.reWirteDate = reWirteDate;
 	}
@@ -57,6 +59,14 @@ public class CommentVO {
 
 	public void setReWirteDate(Timestamp reWirteDate) {
 		this.reWirteDate = reWirteDate;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	
