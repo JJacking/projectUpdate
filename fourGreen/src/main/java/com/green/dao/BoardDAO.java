@@ -96,5 +96,10 @@ public class BoardDAO {
 	public void managerDelete(int mgNum) {
 		sqlSession.delete("mybatis.mapper.board.boardDelete",mgNum);
 	}
+	
+	//페이징
+	public void paging(int num) {
+		sqlSession.selectList("mybatis.mapper.board.selectTargetBoards",num);
+	}
 }
 

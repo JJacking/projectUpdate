@@ -26,10 +26,9 @@ public class BoardController {
 	
 	//전체게시판
 	@RequestMapping("/boardList")
-	public String list(Model model) {
+	public String list(Model model,int section,int pageNum,int totalCnt) {
 		List<BoardVO> list = boardService.selectAll();
 		model.addAttribute("list", list);
-	
 		return "board/boardList";
 	}
 	
@@ -42,6 +41,7 @@ public class BoardController {
 		model.addAttribute("lists",lists);
 		return new ModelAndView("board/boardDetail","board", board);
 	}
+	
 	
 	//게시판쓰기
 	@GetMapping("/boardWrite")

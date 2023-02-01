@@ -25,6 +25,10 @@ public class BoardService {
 		boardDao.readCount(num);
 	}
 	
+	public void selectCount() {
+		boardDao.selectAll();
+	}
+	
 	//상세보기
 	public BoardVO selectByNum(int num) {
 		return boardDao.selectByNum(num);
