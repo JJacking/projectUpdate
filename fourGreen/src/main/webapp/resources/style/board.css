@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.nav{
+display: flex;
+justify-content: space-between;
+padding: 20px;
+margin-bottom: 0px;
+background-color: orange;
+}
+.nav a{
+text-decoration: none;
+color: black;
+}
+hr{
+margin-top: 0px;
+margin-bottom: 0px;
+}
+
+.nav .nav-menu ul{
+list-style: none;
+}
+.nav .nav-menu li{
+display: inline-block;
+margin-right: 20px;
+}
+
+.nav .nav-menu li ul{
+display: none;
+}
+
+.nav .nav-menu li:hover ul{
+display: block;
+width: 130px;
+height: 100px;
+}
+
+.nav .nav-menu li ul li:hover{
+background-color: darkorange;
+color: black;
+}
+.nav #sub-menu{
+position: absolute;
+z-index: 2;
+line-height: 30px;
+background-color: orange;
+}
+
+.nav #sub-menu li{
+list-style: none;
+}
+
+
+.nav #sub-menu a{
+text-decoration: none;
+padding: 10px;
+color: gray;
+}
+
+
+.footer{
+margin-bottom: 0px;
+background-color: black;
+color: white;
+height: 150px;
+}
+
+.leftList{
+  float: left;
+  margin: 20% 10% 20% 5%;
+  border: 1px solid black;
+}
+
+.leftList ul{
+  list-style: none;
+}
+.leftList li{
+  line-height: 40px;
+  border-bottom: 1px solid black;
+}
+
+.myPageMain{
+  width: 80%;
+  height: 800px;
+  margin: 10%;
+  
+}
+
+.myPageMain form{
+  margin-top: 20%;
+  margin-left: 40%;
+  font-size: 40px;
+}
+.myPageMain input{
+  height: 40px;
+  font-size: 30px;
+}
+
+#boardTb{
+	
+	margin: 10%;
+	width: 70%;
+	border-collapse: collapse;
+	font-size:15px;
+	line-height: 30px;
+}
+#boardTb table{
+  width: 100%;
+
+}
+#boardTb th,td{
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+
+}
+
+#boardTb th{
+
+border: 0px;
+background-color: lightgray;
+padding: 10px;
+}
+
+#boardTb td{
+  line-height: 60px;
+}
+
+#boardTb a{
+  color: black;
+  text-decoration: none;
+}
+
+#boardTb a:hover{
+  text-decoration: underline;
+  color: lightgreen;
+}
+

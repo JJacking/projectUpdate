@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.manager">
+<!--데이터베이스 -->
+	<sql id="selectAllMgboard">
+		SELECT * FROM managerBoard
+	</sql>
+	
+	<!-- 전체조회 -->
+	<select id="selectAllmanager" resultType="managerVo"> 
+		<include refid="selectAllMgboard"/>
+		 ORDER BY mgNum DESC
+	</select>
+	
+	<!-- 게시글 상세정보 -->
+	<select id="selectByMgNum" resultType="managerVo" parameterType="int">
+		<include refid="selectAllMgboard"/>
+		WHERE mgNum=#{mgNum}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<select id="readCountMgBoard" parameterType="int">
+		UPDATE managerBoard 
+		SET readCount = readCount+1
+		 WHERE mgNum=#{mgNum}
+	</select>
+	
+	<!-- 전체게시물 갯수 조회 -->
+	 <select id="selectCountMg" resultType="int"> 
+		SELECT count(*) FROM managerBoard
+	</select> 
+	
+	<!-- 게시글 등록 -->
+	<insert id="managerWrite" parameterType="managerVo">
+		INSERT INTO managerBoard(mgNum, mgName, title, content)
+		VALUES(managerTbl_seq.nextval,#{mgName},#{title},#{content})
+	</insert>
+	
+	<!-- 게시글수정 -->
+	<update id="managerUpdate" parameterType="managerVo">
+		UPDATE managerBoard 
+		SET nickName=#{mgName}, title=#{title}, content=#{content}
+		WHERE mgNum=#{mgNum}
+	</update>
+	
+	<!-- 게시글삭제 -->
+	<delete id="managerDelete" parameterType="managerVo">
+		DELETE FROM managerBoard 
+		WHERE mgNum=#{mgNum}
+	</delete>
+</mapper>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내정보</title>
+  <link type="text/css" rel="stylesheet" href="../board/style/board.css">
+  <style>
+    
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.nav{
+display: flex;
+justify-content: space-between;
+padding: 20px;
+margin-bottom: 0px;
+background-color: orange;
+}
+.nav a{
+text-decoration: none;
+color: black;
+}
+hr{
+margin-top: 0px;
+margin-bottom: 0px;
+}
+
+.nav .nav-menu ul{
+list-style: none;
+}
+.nav .nav-menu li{
+display: inline-block;
+margin-right: 20px;
+}
+
+.nav .nav-menu li ul{
+display: none;
+}
+
+.nav .nav-menu li:hover ul{
+display: block;
+width: 130px;
+height: 100px;
+}
+
+.nav .nav-menu li ul li:hover{
+background-color: darkorange;
+color: black;
+}
+.nav #sub-menu{
+position: absolute;
+z-index: 2;
+line-height: 30px;
+background-color: orange;
+}
+
+.nav #sub-menu li{
+list-style: none;
+}
+
+
+.nav #sub-menu a{
+text-decoration: none;
+padding: 10px;
+color: gray;
+}
+
+
+.footer{
+margin-bottom: 0px;
+background-color: black;
+color: white;
+height: 150px;
+}
+
+
+
+
+#boardTb{
+	
+	margin: 10%;
+	width: 70%;
+	border-collapse: collapse;
+	font-size:15px;
+	line-height: 30px;
+}
+#boardTb table{
+  width: 100%;
+
+}
+#boardTb th,td{
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+
+}
+
+#boardTb th{
+
+border: 0px;
+background-color: lightgray;
+padding: 10px;
+}
+
+#boardTb td{
+  line-height: 60px;
+}
+
+#boardTb a{
+  color: black;
+  text-decoration: none;
+}
+
+#boardTb a:hover{
+  text-decoration: underline;
+  color: lightgreen;
+}
+
+.mypage{
+  margin: 5% 10% 5% 10%;
+}
+
+#main{
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  margin-bottom: 0px;
+  margin: 0 10% 10% 10%;
+  line-height: 30px;
+}
+#main .pageTop{
+  width: 50%;
+  
+}
+
+
+
+#main h3{
+  color: gray;
+}
+
+#main ul{
+  list-style: none;
+}
+
+.pageTop{
+  border: 1px solid black;
+
+}
+
+
+.rightPage a{
+  color: black;
+  text-decoration: none;
+}
+
+.rightPage{
+  width: 60%;
+  text-align: left;
+  border: 1px solid black;
+}
+.cart table{
+  width: 100%;
+  margin-bottom: 5%;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+.cart th,td{
+  border: 1px solid black;
+}
+
+.pageBtn{
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 5%;
+
+  
+}
+
+
+  </style>
+</head>
+<body>
+<div class="nav">
+    <div><h2><a href="#">logo</a></h2></div>
+       <ul class="nav-menu">
+        <li><a href="#">물품보기</a></li>
+        <li><a href="#">물품등록</a></li>
+        <li>
+          <a href="#">게시판</a>
+            <ul id="sub-menu">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="/board/boardList">자유게시판</a></li>
+            </ul>
+        </li>
+        <li><a href="#">고객센터</a></li>
+       </ul>
+  
+      <div class="">
+        <p><a href="#">내정보</a> <a href="#">로그아웃</a></p>
+      </div>
+  </div>
+  <div class="mypage">
+    <h2>마이페이지</h2>
+    <br>
+    <p>${user.id}님의 정보 페이지 입니다.</p>
+    <div id="main">
+    <div class="rightPage">
+        <ul>
+          <li><a href="#" onclick="window.open()">정보 변경하기</a></li>
+          <li><a href="#">탈퇴하기</a></li>
+        </ul>
+    </div>
+  
+    <div class="pageTop">
+      
+      <ul>
+        <li>포인트 : ${}원</li>
+        <li><button type="#">충전</button>
+            <button type="#">출금</button></li>
+      </ul>  
+    </div>
+
+  </div>
+    <div class="cart">
+        <h3>구매 현황</h3>
+        <table>
+          <tr>
+            <th colspan="5">주문 / 배송조회</th>
+            <th colspan="5">취소 / 반품 / 미수령</th>
+          </tr>
+          <tr>
+            <td>입금요청</td>
+            <td>입금확인중</td>
+            <td>결제완료/배송준비중</td>
+            <td>배송중</td>
+            <td>구매확인</td>
+            <td>취소</td>
+            <td>반품</td>
+            <td>미수령</td>
+            <td>미입금</td>
+            <td>판매거부</td>
+          </tr>
+          <tr>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="cart">
+        <h3>판매현황</h3>
+        <table>
+          <tr>
+            <th colspan="5">주문 / 배송조회</th>
+            <th colspan="5">취소 / 반품 / 미수령</th>
+          </tr>
+          <tr>
+            <td>입금요청</td>
+            <td>입금확인중</td>
+            <td>배송요청</td>
+            <td>배송중</td>
+            <td>구매확인</td>
+            <td>취소</td>
+            <td>반품</td>
+            <td>미수령</td>
+            <td>미입금</td>
+            <td>판매거부</td>
+          </tr>
+          <tr>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+            <td>${}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="pageBtn">
+    <button type="button">커뮤니티게시판</button> <button type="button">공지사항</button> <button type="button">고객센터</button>
+  </div>
+  <footer>
+  <div class="footer">
+    <a href="https://github.com/JJacking/lastPj.git" style="text-decoration: none; list-style: none; color: white;" >@github 저장소 바로가기</a>
+  </div>
+  </footer>
+</body>
+</html>

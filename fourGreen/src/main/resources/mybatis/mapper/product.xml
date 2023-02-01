@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mybatis.mapper.product">
+<select id="selectAllAuction" resultType="productVO">
+	select * from product order by num desc
+</select>
+
+<select id="selectOne" parameterType="int" resultType="productVO">
+	select * from product where num=#{num}
+</select>
+
+<delete id="deleteProduct" parameterType="int">
+	DELETE FROM product WHERE num=#{num}
+</delete>
+
+<insert id="insertProduct" parameterType="productVO">
+	INSERT INTO product VALUES(product_seq.nextval, #{title}, #{productPic}, #{strPrice}, #{memberId}, #{content}, #{regdate}, 0, 0, sysdate, #{category}, 1)
+</insert>
+
+<update id="readCount" parameterType="int">
+	UPDATE product SET readCount = readCount+1 WHERE num=#{num}
+</update>
+
+<update id="direct" parameterType="int">
+	UPDATE product SET endSale = 0 WHERE num=#{num} 
+</update>
+
+<update id="biding" parameterType="java.util.Arrays">
+	UPDATE product SET strPrice=${array[0]}, bidCount = bidCount+1 WHERE num=${array[1]}
+</update>
+
+<insert id="insertCustomer" parameterType="customerVO">
+	insert into customer values(customer_seq.nextval,#{num},#{memberId},#{bidMoney},sysdate)
+</insert>
+
+<select id="selectAllNumAuction" resultType="int">
+	select count(*) from product
+</select>
+
+<select id="selectAllNumAuctionByCategory" parameterType="String" resultType="int">
+	select count(*) from product where category = #{category}
+</select>
+
+<select id="selectTargetAuctionByPaging" parameterType="java.util.Arrays" resultType="productVO">
+SELECT * FROM 
+	(SELECT ROWNUM as nick, num, title, productPic, strPrice, memberId, content, regdate, bidCount, readcount, writedate, category, endSale
+	FROM (SELECT * FROM product 
+		<if test="array[0] != null or array[4] != null">
+			where
+		</if>
+		<if test="array[0] != null">
+			 category = #{array[0]} 
+		</if>
+		<if test="array[0] != null and array[4] != null">
+			and
+		</if>
+		<if test="array[4] != null">
+			regdate ${array[4]} #{array[5]}
+		</if> 	
+		<if test="array[1] != null">
+			ORDER BY ${array[1]} ${array[2]}
+		</if>
+	)) 
+	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +9
+</select>
+
+<select id="search" parameterType="java.util.Arrays" resultType="productVO">
+	 SELECT * FROM product WHERE 
+	 <if test="array[0] != null || array[0] != ''">
+	  ${array[0]} 
+	 </if>
+	  LIKE #{array[1]} 
+</select>
+
+</mapper>

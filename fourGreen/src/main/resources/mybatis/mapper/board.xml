@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.board">
+
+	<!-- <resultMap type="board" id="boardVo">
+		<result column="num" property="num"/>
+		<result column="nickName" property="nickName" />
+		<result column="email" property="email" />
+		<result column="pass" property="pass" />
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="readCount" property="readCount"/>
+		<result column="wirteDate" property="wirteDate" />
+	</resultMap> -->
+	
+	<!--데이터베이스 -->
+	<sql id="selectAllboard">
+		SELECT * FROM boardTbl
+	</sql>
+	
+	<!-- 전체조회 -->
+	<select id="selectAll" resultType="boardVO"> 
+		<include refid="selectAllboard"/>
+		 ORDER BY num DESC
+	</select>
+	
+	<!-- 게시글 상세정보 -->
+	<select id="selectByNum" resultType="boardVO" parameterType="int">
+		<include refid="selectAllboard"/>
+		WHERE num=#{num}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<select id="readCount" parameterType="int">
+		UPDATE boardTbl 
+		SET readCount = readCount+1
+		 WHERE num=#{num}
+	</select>
+	
+	<!-- 전체게시물 갯수 조회 -->
+	 <select id="selectCount" resultType="int"> 
+		SELECT count(*) FROM boardTbl
+	</select> 
+
+	<!-- 게시글 등록 -->
+	<insert id="boardWrite" parameterType="boardVO">
+		INSERT INTO boardTbl(num, nickname, email, pass, title, content)
+		VALUES(boardTbl_seq.nextval,#{nickName},#{email},#{pass},#{title},#{content})
+	</insert>
+	
+	<!-- 게시글수정 -->
+	<update id="boardUpdate" parameterType="boardVO">
+		UPDATE boardTbl 
+		SET nickName=#{nickName}, email=#{email}, pass=#{pass}, title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 게시글삭제 -->
+	<delete id="boardDelete" parameterType="boardVO">
+		DELETE FROM boardTbl 
+		WHERE num=#{num}
+	</delete>
+	
+	<!-- 현재 글 페이지 목록 -->
+	<select id="selectTargetBoards" resultType="boardVO">
+		SELECT * FROM
+		SELECT ROWNUM AS nick, num, nickName, email, pass, title, content, readCount, wirteDate
+		FROM (SELECT * FROM boardTbl ORDER BY num DESC))
+		WHERE nick BETWEEN (#{num}-1)*100+(#{num}-1)*10+1 AND (#{num}-1)*100+(#{num}*10)
+	</select>
+</mapper>

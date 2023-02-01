@@ -1,0 +1,90 @@
+drop table boardTbl;
+drop sequence boardTbl_seq;
+drop table boardComment;
+drop sequence boardComment_seq;
+drop table reBoardComment;
+drop SEQUENCE reBoardComment_seq;
+ 
+CREATE table boardTbl(
+    num number(20) PRIMARY KEY,
+    nickName VARCHAR2(30),
+    email VARCHAR2(40),
+    pass VARCHAR2(40),
+    title VARCHAR2(30),
+    content VARCHAR2(1000),
+    readCount number(20) default 0,
+    wirteDate DATE default sysdate
+);
+
+create SEQUENCE boardTbl_seq
+NOCACHE;
+
+
+insert into boardTbl(num, nickName, email, pass, title, content)
+VALUES(boardTbl_seq.NEXTVAL,'황티모','timo@naver.com', 1234, '부쉬속','티모는 은신');
+insert into boardTbl(num, nickName, email, pass, title, content)
+VALUES(boardTbl_seq.NEXTVAL,'워윅','top@naver.com', 1234, '개','조심');
+
+
+SELECT * FROM boardTbl ORDER BY num DESC;
+
+commit;
+
+
+--SELECT * FROM
+--    (SELECT ROWNUM AS NICK, NUM, NICKNAME, EMAIL, PASS, TITLE, CONTENT, READCOUNT, wirteDate
+--    FROM (SELECT * FROM BOARDTBL ORDER BY NUM DESC))
+--WHERE nick BETWEEN (3-1)*100+(8-1)*10+1 AND (3-1)*100+(8*10);
+
+CREATE TABLE boardComment(
+    cno number PRIMARY KEY,
+    num number REFERENCES boardTbl(num) on DELETE CASCADE,  
+    userName varchar2(20) not null,
+    userPass varchar2(20) not null,
+    reContent varchar2(500) not null,
+    reWirteDate DATE default sysdate
+    );
+
+SELECT * FROM boardComment bc INNER JOIN boardTbl btl ON bc.num = btl.num;
+
+create SEQUENCE boardComment_seq;
+
+INSERT INTO boardComment(cno, num, userName, userPass, reContent)
+VALUES(boardComment_seq.NEXTVAL, 2,'딸기',1234,'딸기셋');
+
+    select * from boardComment;
+    
+    
+    select * FROM boardComment WHERE cno=1;
+    
+commit;
+ 
+
+ 
+select * from boardComment bc INNER JOIN boardtbl btl on bc.num = btl.num;
+ 
+ 
+ 
+CREATE TABLE reBoardComment(
+    replyCno number PRIMARY KEY,
+    num NumBER REFERENCES boardComment(cno) on DELETE CASCADE,  
+    replyUserName varchar2(20) not null,
+    replyUserPass varchar2(20) not null,
+    replyReContent varchar2(500) not null,
+    replyWirteDate DATE default sysdate
+    );
+
+create SEQUENCE reBoardComment_seq;
+
+INSERT INTO reBoardComment(replyCno, num, replyUserName, replyUserPass, replyReContent)
+VALUES(reBoardComment_seq.NEXTVAL, 1,'딸기',1234,'딸기셋');
+
+select * from reBoardComment;
+ 
+
+ 
+ select * from reBoardComment rbc INNER JOIN boardComment bc on rbc.num = bc.num;
+ 
+ 
+ delete from boardcomment where cno=1;
+ commit;

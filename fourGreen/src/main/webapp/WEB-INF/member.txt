@@ -1,0 +1,43 @@
+drop table chargeTbl;
+drop table member;
+drop sequence charge_seq;
+
+create table member(
+    id varchar2(100) primary key,
+    password varchar2(100) not null,
+    nickname varchar2(100) not null,
+    point number default 0,
+    phone varchar2(20),
+    address varchar2(300),
+    grade number(1) not null,
+    type varchar2(10) not null 
+);
+
+create table chargeTbl(
+    idx number primary key,
+    id varchar2(100) not null,
+    point number not null,
+    regdate date not null,
+    result number(1) not null
+);
+
+create table searchPassAuth(
+    id varchar2(200) not null,
+    key varchar2(200) not null,
+    auth char not null
+);
+
+create table emailCertification(
+    id varchar2(200) not null,
+    key varchar2(200) not null,
+    auth char(1) not null
+);
+
+create sequence charge_seq nocache;
+
+insert into member values('root@rr.rr','1234','관리자',100000,'010','rootroot',0,'auction');
+insert into member values('asd@asd.asd','1234','asd',0,'010','aaaaa',1,'google');
+
+insert into chargeTbl values(charge_seq.nextval,'asd@asd.asd',1000,sysdate,0);
+
+commit;
