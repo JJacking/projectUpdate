@@ -47,7 +47,7 @@ width: 10%;
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
-            <button type="button" onclick="location.href='signInForm'">로그인</button>
+            <button type="button" onclick="location.href='signIn'">로그인</button>
             <button type="button" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>

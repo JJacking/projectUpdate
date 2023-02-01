@@ -6,8 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>signUp</title>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+	.mainSession{
+		margin:5% 10%;
+		width: 70%;
+		line-height: 40px;
+	}
+	.mainSession table{
+		width:100%
+	}
+	.mainSession input{
+		width: 80%;
+		height: 30px;
+	}
+	
+</style>
 </head>
 <body>
 <div class="nav">
@@ -26,7 +42,7 @@
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
-            <button type="button" onclick="location.href='signInForm'">로그인</button>
+            <button type="button" onclick="location.href='signIn'">로그인</button>
             <button type="button" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>
@@ -37,9 +53,10 @@
         <p><a href="charge">포인트충전/조회</a></p>
     </c:if>
 </div>
+<div class="mainSession">
 	<h2>회원가입</h2>
 	<form action="signUpCheck" method="post" onsubmit="return checkList()">
-		<table border="1">
+		<table >
 			<tr>
 				<td>
 					아이디(이메일)
@@ -116,6 +133,7 @@
 			</tr>
 		</table>
 	</form>
+</div>
 	 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
     
@@ -261,5 +279,10 @@
     	}
     
     </script>
+ <footer>
+  <div class="footer">
+  	<a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
+  </div>
+</footer>
 </body>
 </html>
