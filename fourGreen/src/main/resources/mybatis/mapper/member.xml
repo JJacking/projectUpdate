@@ -81,6 +81,10 @@
 		update member set point=point + #{array[0]} where id=#{array[1]}
 	</update>
 	
+	<update id="updatePointByUserId" parameterType="java.util.Arrays">
+		update member set point=point - #{array[0]} where id=#{array[1]}
+	</update>
+	
 	<update id="chargeSuccess" parameterType="int">
 		update chargeTbl set result=1 where idx=#{idx}
 	</update>
@@ -104,16 +108,6 @@
 	
 	<select id="getDibsOnById" parameterType="String" resultType="com.green.vo.DibsOnVO">
 		select * from dibsOn where id=#{id}
-	</select>
-	
-	<select id="json" parameterType="java.util.Arrays" resultType="chargeVO">
-		select * from chargeTbl order by idx  
-		<if test='array[0] =="ASC"'>
-		ASC
- 		</if>
- 		<if test='array[0] == "DESC"'>
-		DESC
- 		</if>
 	</select>
 	
 </mapper>

@@ -41,6 +41,11 @@
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
+<c:if test="${not empty newAuctionMsg }">
+	<script type="text/javascript">
+		alert('${newAuctionMsg}');
+	</script>
+</c:if>
 <form action="" method="GET">
 	<div class="link">
 		<h6><a href="auction/">홈</a> > <a href="product"><b>메뉴 1</b></a></h6>

@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.green.service.ChargePointService;
 import com.green.service.ProductService;
+import com.green.service.SignInService;
 import com.green.vo.CustomerVO;
+import com.green.vo.MemberVO;
 import com.green.vo.ProductVO;
 
 @Controller
@@ -26,6 +31,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ChargePointService chargePointService;
 	
 	@RequestMapping("/product")
 	public String main(Model model, @RequestParam(required = false) String category, @RequestParam(required = false) String filter, @RequestParam(required = false) String sort,
@@ -105,51 +112,57 @@ public class ProductController {
 	
 
 	@RequestMapping("/newAuction")
-	public String newAuction() {
-		return "product/newAuction"; 
+	public String newAuction(HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			return "product/newAuction"; 
+		}
+		return "redirect:/signInForm";
 	}
 	
 	@PostMapping("/newAuction")
-	public String newProduct(@RequestParam String title,@RequestParam int strPrice,
+	public String newProduct(HttpSession session, RedirectAttributes attribute, @RequestParam String title,@RequestParam int strPrice,
 			@RequestParam String memberId,
 			@RequestParam String content,@RequestParam String regdate, @RequestParam String category,
 		    @RequestParam MultipartFile[] productPic) throws IllegalStateException, IOException {
-		
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		
-		ProductVO dto = new ProductVO();
-		dto.setTitle(title);
-		dto.setStrPrice(strPrice);
-		dto.setMemberId(memberId);
-		dto.setContent(content);
-		dto.setRegdate(regdate);
-		dto.setCategory(category);
-		String str = "";
-		for(int i =0; i<productPic.length;i++) {
-			Calendar dateTime = Calendar.getInstance();
-			String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
-			String fileName = uniqueId+"_"+productPic[i].getOriginalFilename();
-			str += fileName+",";
-			File file = new File("C:\\UploadImage\\AuctionList",fileName);
-			productPic[i].transferTo(file);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user != null && user.getPoint() >= 1000) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+			
+			ProductVO dto = new ProductVO();
+			dto.setTitle(title);
+			dto.setStrPrice(strPrice);
+			dto.setMemberId(memberId);
+			dto.setContent(content);
+			dto.setRegdate(regdate);
+			dto.setCategory(category);
+			String str = "";
+			for(int i =0; i<productPic.length;i++) {
+				Calendar dateTime = Calendar.getInstance();
+				String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
+				String fileName = uniqueId+"_"+productPic[i].getOriginalFilename();
+				str += fileName+",";
+				File file = new File("C:\\UploadImage\\AuctionList",fileName);
+				productPic[i].transferTo(file);
+			}
+			dto.setProductPic(str);
+			
+			productService.insertProduct(dto);
+			chargePointService.updatePointByUserId(user.getId(), 1000);
+			
+			return "redirect:/product";
+		}else {
+			attribute.addAttribute("newAuctionMsg","잔액이 부족합니다.");
+			return "redirect:/product";
 		}
-		dto.setProductPic(str);
-		productService.insertProduct(dto);
-		
-		return "redirect:/";
-	}
-	
-	@GetMapping("/directBuy")
-	public String directBuy() {
-		
-		return "";
+        
 	}
 	
 	@RequestMapping("/deleteProduct")
 	public String deleteProduct(int num) {
 		productService.deleteProduct(num);
 		
-		return "redirect:/";
+		return "redirect:/product";
 	}
 
 	@PostMapping("/biding")
