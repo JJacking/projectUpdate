@@ -172,7 +172,7 @@ height: 600px;
 text-align: center;
 }
 
-.userBoard table{
+.userBoard > table{
 	width: 100%;
 	border-collapse: collapse;
 	font-size:12px;

@@ -38,9 +38,9 @@
      </table>
   
       <div class="writeBtn">
-        <button type="submit">글작성</button>
-        <button type="reset">다시 작성</button>
-        <button type="button" onclick="location.href='managerBoardList'">목록으로</button>
+        <button type="submit" class="w-btn w-btn-blue">글작성</button>
+        <button type="reset" class="w-btn w-btn-blue">다시 작성</button>
+        <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록으로</button>
       </div>
     </div>
   </form>

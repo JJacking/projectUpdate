@@ -70,11 +70,11 @@
         </tr>
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
-		          <button type="button" onclick="location.href='boardUpdate?num=${board.num}'">
+		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
-		          <button type="button" onclick="removeCheck(cno)">
+		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
 		         	게시글 삭제</button>
-		          <button type="button" onclick="location.href='boardList'">목록 보기</button>
+		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록 보기</button>
         	</td>
         </tr>
       </table>
@@ -91,8 +91,8 @@
 	            <td style="width: 60%;">${comment.reContent}</td>
 	            <td>${comment.reWirteDate}</td>
 	            <td class="commentBtn">
-	              <button type="button" onclick="commentUpdate()">수정</button><br>
-	              <button type="button" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
+	              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
+	              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
 	            </td>
       			</tr>
       			</c:forEach>
@@ -109,7 +109,7 @@
       				<td>내용</td>
       				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
       				<td rowspan="2" class="commentBtn">
-                		<button type="submit">댓글달기</button>
+                		<button class="w-btn w-btn-blue" type="submit">댓글달기</button>
             		</td>
       			</tr>
       		</table>

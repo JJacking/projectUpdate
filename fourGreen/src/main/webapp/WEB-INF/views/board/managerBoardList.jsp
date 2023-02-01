@@ -27,6 +27,12 @@ width: 10%;
 .col5{
   width: 10%;
 }
+#boardTb th{
+
+border: 0px;
+background-color: #4F86C6;
+padding: 10px;
+}
 </style>
 </head>
 <body>

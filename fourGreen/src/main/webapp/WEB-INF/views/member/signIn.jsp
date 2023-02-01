@@ -19,23 +19,25 @@
 
     #head{
       text-align: left;
-      width: 60%;
+      width: 40%;
       margin-top: 5%;
       margin-left: 10%;
-      color: lightskyblue;
+      color: black;
     }
     
     .loginForm{
-      width: 60%;
-      height: 200px;
+      width: 40%;
+      height: 250px;
       background-color: rgb(209, 231, 209);
       border-radius: 10px;
       margin: 10% 30% 10% 10%;
-      padding: 0px;
+      padding: 10px;
       line-height: 50px;
       text-align: center;
     }
-
+	.loginForm td,th{
+	border:0px;
+	}
    
     .loginForm input{
       height: 20px;
@@ -48,7 +50,7 @@
       text-align: center;
     }
     
-	.logbtn{
+	.w-btn{
 	  padding: 20px;
 	  margin-left: 10px;
 	}
@@ -66,7 +68,7 @@
 	<table>  
 	 	<tr> 
 	 		<td>아이디 : <input type="email" name="id" required="required"></td>
-       		<td rowspan="2"><button type="submit" class="logbtn">로그인</button></td>
+       		<td rowspan="2"><button type="submit" class="w-btn w-btn-blue">로그인</button></td>
 	 	</tr>
 	 	<tr> 
 	 		<td>비밀번호 : <input type="password" name="password" required="required"></td>

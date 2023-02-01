@@ -104,8 +104,8 @@
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
-            <button type="button" onclick="location.href='signInForm'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signInForm'">로그인</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>
    <c:if test="${not empty user }">

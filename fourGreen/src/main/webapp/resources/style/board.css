@@ -1,5 +1,60 @@
 @charset "UTF-8";
+   @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 
+
+button {
+  text-align: center;
+  background: whitesmoke;
+  display: table-cell;
+  padding: 20px;
+  margin: 20px;
+}
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-outline {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+
+.w-btn-blue {
+    background-color: #6aafe6;
+    color: #d4dfe6;
+}
+
+.w-btn-blue-outline {
+    border: 3px solid #6aafe6;
+    color: #6e6e6e;
+}
+
+
+
+.w-btn-blue-outline:hover {
+    background-color: #6aafe6;
+    color: #d4dfe6;
+}
 *{
   margin: 0px;
   padding: 0px;
@@ -45,7 +100,6 @@ height: 150px;
 }
 
 #boardTb{
-	
 	margin: 10%;
 	width: 70%;
 	border-collapse: collapse;
@@ -54,18 +108,19 @@ height: 150px;
 }
 #boardTb table{
   width: 100%;
-
+  border-collapse: collapse;
 }
 #boardTb th,td{
   text-align: left;
-  border-bottom: 1px solid lightgray;
+  border: 1px solid #CE6D39;
+  padding: 5px;
 
 }
 
 #boardTb th{
 
 border: 0px;
-background-color: #FBFFB9;
+background-color: #FFEEE4;
 padding: 10px;
 }
 

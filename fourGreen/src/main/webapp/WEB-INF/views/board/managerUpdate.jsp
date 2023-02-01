@@ -30,8 +30,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button type="submit">수정하기</button>
-					<button type="button" onclick="location.href='managerDetail'">취소하기</button>
+					<button class="w-btn w-btn-blue" type="submit">수정하기</button>
+					<button class="w-btn w-btn-blue" type="button" onclick="location.href='managerDetail'">취소하기</button>
 				</td>
 			</tr>
 		</table>

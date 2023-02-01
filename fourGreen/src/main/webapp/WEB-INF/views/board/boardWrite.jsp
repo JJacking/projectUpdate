@@ -27,14 +27,6 @@
         <td><input type="text" name="nickName" placeholder="필수" required></td>
       </tr>
       <tr>
-        <th>이메일</th>
-        <td><input type="email" name="email" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>비밀번호</th>
-        <td><input type="password" name="pass" placeholder="필수" required></td>
-      </tr>
-      <tr>
         <th>글제목</th>
         <td><input type="text" name="title" placeholder="필수" required></td>
       </tr>
