@@ -158,8 +158,6 @@
 			
 				<h4><a href="selectOne?num=${product.num }">${product.title }</a></h4>
 		
-		
-				<span>${product.productPic}</span> <br>
 				<span>${product.title }</span><br>
 			
 				<span>

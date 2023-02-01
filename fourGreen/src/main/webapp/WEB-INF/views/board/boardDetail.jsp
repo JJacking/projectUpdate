@@ -70,10 +70,10 @@
         </tr>
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
-		          <button type="button" onclick="location.href='boardUpdate?num=${board.num}'">
-		         	 게시글 수정</button>
-		          <button type="button" onclick="removeCheck(cno)">
-		         	게시글 삭제</button>
+          	<c:if test="${user.id eq board.id }">
+          	  <button type="button" onclick="location.href='boardUpdate?num=${board.num}'">게시글 수정</button>
+	          <button type="button" onclick="removeCheck(cno)">게시글 삭제</button>
+          	</c:if>
 		          <button type="button" onclick="location.href='boardList'">목록 보기</button>
         	</td>
         </tr>

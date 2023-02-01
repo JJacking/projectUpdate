@@ -17,12 +17,11 @@
 			<h6> > </h6>
 			<h6><a href="${pageContext.request.contextPath }/product">메뉴 1</a></h6>
 			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }/product/?category=${product.category}">${product.category}</a></h6>
+			<h6><a href="${pageContext.request.contextPath }/product?category=${product.category}">${product.category}</a></h6>
 		</div>
 		<h4>${product.title }</h4>
 	</div>
 	<hr>
-	<div>
 	
 	<div id="image">
 		<!-- 대표사진  -->

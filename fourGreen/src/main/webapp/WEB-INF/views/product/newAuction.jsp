@@ -76,7 +76,7 @@
 		
 		let flag = confirm('한번 등록한 상품은 수정/삭제가 불가능 합니다. 정말 등록하시겠습니까?');
 		if(flag) {
-			
+			alert('1000포인트가 차감됩니다.');
 			return true;
 		}
 		return false;

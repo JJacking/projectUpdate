@@ -2,6 +2,8 @@ package com.green.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import com.green.service.BoardService;
 import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
 import com.green.vo.ManagerVO;
+import com.green.vo.MemberVO;
 
 @Controller
 public class BoardController {
@@ -67,8 +70,11 @@ public class BoardController {
 	
 	//게시판수정
 	@PostMapping("/boardUpdate")
-	public String boardUpdate(@ModelAttribute BoardVO bVo,@RequestParam int num,Model model) {
-		boardService.boardUpdate(bVo);
+	public String boardUpdate(@ModelAttribute BoardVO bVo, @RequestParam int num, Model model, HttpSession session, String userId) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user.getId().equals(userId)) {
+			boardService.boardUpdate(bVo);
+		}
 		model.addAttribute("num",num);
 		return "redirect:/boardDetail";
 	}
