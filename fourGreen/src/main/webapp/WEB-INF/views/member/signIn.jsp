@@ -152,11 +152,7 @@
 			alert('${msg}');
 		</script>
 	</c:if>
-<footer>
-  <div class="footer">
-    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
+<jsp:include page="../bottomBar.jsp"/>
 
 </body>
 

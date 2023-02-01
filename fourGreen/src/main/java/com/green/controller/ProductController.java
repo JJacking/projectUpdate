@@ -78,7 +78,7 @@ public class ProductController {
 		int totalPage = (totalCnt-1)/9+1;                                                                   
 		int startPage = ((pageNum2-1)/9)*10+1;                                                               
 		int endPage = totalPage <  startPage+9 ? totalPage: startPage+9;                                     
-		System.out.println(pageNum2+" / "+startNum+ " / "+totalPage+" / "+startPage+" / "+endPage);
+		System.out.println(totalCnt+"* / "+pageNum2+" / "+startNum+ " / "+totalPage+" / "+startPage+" / "+endPage);
 		
 		model.addAttribute("category", category);
 		model.addAttribute("totalCnt", totalCnt);

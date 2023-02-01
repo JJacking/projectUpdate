@@ -77,6 +77,7 @@ td, th{
 		</td>
 	</tr>
 </table>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function chargePoint(num){
 		alert(num);

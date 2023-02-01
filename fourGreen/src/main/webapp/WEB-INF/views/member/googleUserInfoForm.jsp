@@ -50,5 +50,6 @@
 		</tr>
 	</table>
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

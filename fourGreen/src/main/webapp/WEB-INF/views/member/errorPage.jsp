@@ -12,5 +12,6 @@
 		alert('유효하지 않은 주소입니다. 다시 진행해주세요.');
 		history.back();
 	</script>
+<jsp:include page="../bottomBar.jsp"/>	
 </body>
 </html>

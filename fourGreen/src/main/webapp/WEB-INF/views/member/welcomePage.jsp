@@ -11,5 +11,6 @@
 	<h1>회원가입을 환영합니다.</h1>
 	<h2>로그인을 해주세요.</h2>
 	<a href="signIn">로그인</a>
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

@@ -64,6 +64,7 @@
 	<button type="button" onclick="location.href='/auction/product'">목록보기</button>
 
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	if('${product.bidCount}' == 0) {
 		document.getElementById('endAuction').setAttribute('style','display:none;');

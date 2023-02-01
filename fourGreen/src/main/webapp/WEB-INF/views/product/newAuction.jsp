@@ -70,6 +70,7 @@
 	<button type="reset">취소하기</button>
 	<button type="button" onclick="location.href='/auction'">목록으로</button>
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function submit2() {
 		

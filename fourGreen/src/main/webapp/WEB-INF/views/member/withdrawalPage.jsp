@@ -25,5 +25,6 @@
 			<button type="submit">탈퇴하기</button>
 		</c:if>
 	</form>
+	<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

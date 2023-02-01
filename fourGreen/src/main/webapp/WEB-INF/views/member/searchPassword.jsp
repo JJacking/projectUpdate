@@ -23,7 +23,7 @@
 			</td>
 		</tr>
 	</table>
-	
+	<jsp:include page="../bottomBar.jsp"/>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 	<script type="text/javascript">
 		function sendEmail(){

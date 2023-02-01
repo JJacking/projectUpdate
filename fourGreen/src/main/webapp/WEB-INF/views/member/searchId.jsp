@@ -65,5 +65,6 @@
 		}
 	}
 </script>
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

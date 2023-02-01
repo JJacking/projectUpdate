@@ -35,6 +35,7 @@
 	</table>
 	
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function check(){
 		let newPass = document.getElementById('newPass').value;

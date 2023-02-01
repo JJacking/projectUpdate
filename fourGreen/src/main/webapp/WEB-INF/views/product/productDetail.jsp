@@ -149,6 +149,7 @@
 	<button type="button" onclick="location.href='/auction/product'">목록보기</button>
 
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	let strPrice = parseInt(document.getElementById('strPrice').value);
 	let bidUnit = document.getElementById('bidUnit');
