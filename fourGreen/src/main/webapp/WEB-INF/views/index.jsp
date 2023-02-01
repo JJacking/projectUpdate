@@ -317,10 +317,10 @@ text-align: center;
 		</tr>
 		<c:forEach items="${manager}" var="manager">
 			<tr>
-				<td>${manager.num}</td>
-				<td><a href="managerDetail?MgNum=${manager.MgNum}">${manager.title}</a></td>
-				<td>${manager.MgName}</td>
-				<td>${manager.readCount}</td>
+				<td>${manager.mgNum}</td>
+				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
+				<td>${manager.mgName}</td>
+				<td>${manager.wirteDate}</td>
 			</tr>
 		</c:forEach>
 	</table>

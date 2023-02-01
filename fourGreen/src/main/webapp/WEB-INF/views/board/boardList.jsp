@@ -87,11 +87,10 @@ width: 10%;
 			</tr>
 		</c:forEach>
 		</table>
-		</div>
 			<p><a href="boardWrite">게시글 등록</a><p>
+		</div>
 			
-	
-	<%-- 
+			
 	<!-- 페이징 -->
 	<div class="cls2"> 
 		<c:if test="${totalCnt != null}"> 
@@ -132,20 +131,20 @@ width: 10%;
 				</c:when>
 				<c:when test="${totalCnt == 100}"> <!-- 전체 개수가 100개 인가? -->
 					<c:forEach var="page" begin="1" end="10" step="1">
-						<a href="BS?command=board_list&section=${section}&pageNum=${page}"> ${page} </a>
+						<a href="boardList&section=${section}&pageNum=${page}"> ${page} </a>
 									<!-- 번호를 눌렀을때 해당 섹션과 해당 페이지번호를 서버에 전달 > 페이지출력 -->
 					</c:forEach>
 				</c:when>
 				<c:when test="${totalCnt < 100}"> <!-- 전체 개수가 100개보다 적은가? -->
 					<c:forEach var="page" begin="1" end="${(totalCnt+9)/10}" step="1">
-						<a href="BS?command=board_list&section=${section}&pageNum=${page}"> ${page} </a>
+						<a href="boardList&section=${section}&pageNum=${page}"> ${page} </a>
 									<!-- 번호를 눌렀을때 해당 섹션과 해당 페이지번호를 서버에 전달 > 페이지출력 -->
 					</c:forEach>
 				</c:when>
 			</c:choose>
 		</c:if>
 	</div>
-</div> --%>
+</div> 
 <hr>
 <footer>
   <div class="footer">
