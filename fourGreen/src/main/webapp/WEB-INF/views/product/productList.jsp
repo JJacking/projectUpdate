@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>경매품목 리스트</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
 	.link{
 		margin-left: 5%;

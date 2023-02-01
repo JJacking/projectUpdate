@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 </head>
 <body>
 	<div class="nav">
