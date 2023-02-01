@@ -11,7 +11,7 @@ import com.green.service.SignUpService;
 
 @Controller
 public class AuthCheckController {
-	
+	//<Context docBase="C:\UploadImage\AuctionList" path="/img" reloadable="false"/>
 	@Autowired
 	private SignUpService signUpService;
 
