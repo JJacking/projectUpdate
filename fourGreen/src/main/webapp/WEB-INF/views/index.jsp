@@ -14,6 +14,10 @@
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
+h2{
+	text-align: left;
+}
+
 .slider{
   width: 100%;
   height: 500px;

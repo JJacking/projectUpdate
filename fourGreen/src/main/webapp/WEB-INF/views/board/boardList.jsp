@@ -64,9 +64,9 @@ width: 10%;
 			<p><a href="boardWrite">게시글 등록</a><p>
 		</div>
 			
-			
+
 	<!-- 페이징 -->
-	<div class="cls2"> 
+	<%-- <div class="cls2"> 
 		<c:if test="${totalCnt != null}"> 
 			<c:choose>
 				<c:when test="${totalCnt > 100}">
@@ -117,8 +117,8 @@ width: 10%;
 				</c:when>
 			</c:choose>
 		</c:if>
-	</div>
-</div> 
+	</div>  
+</div> --%>
 <hr>
 <jsp:include page="../bottomBar.jsp"/>
 </body>

@@ -26,7 +26,7 @@ public class BoardController {
 	
 	//전체게시판
 	@RequestMapping("/boardList")
-	public String list(Model model,int section,int pageNum,int totalCnt) {
+	public String list(Model model) {
 		List<BoardVO> list = boardService.selectAll();
 		model.addAttribute("list", list);
 		return "board/boardList";
