@@ -34,8 +34,7 @@
 
 <!-- 댓글삭제 -->
 	<delete id="commentDelete" parameterType="int">
-		DELETE FROM boardComment 
-		WHERE cno=#{cno}
+		DELETE FROM boardComment WHERE cno=#{cno}
 	</delete>
 
 </mapper>

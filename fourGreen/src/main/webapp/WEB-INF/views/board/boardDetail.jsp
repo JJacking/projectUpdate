@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<script  src="./resources/js/board.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
@@ -88,13 +89,12 @@
       			<c:forEach items="${lists}" var="comment">
 	      			<tr>
 	      				<td><b>${comment.nickName}</b></td>
-		            <td style="width: 60%;">${comment.reContent}</td>
-		            <td>${comment.reWirteDate}</td>
-		            <td class="commentBtn">
-		              <button type="button" onclick="">댓글달기</button><br>
-		              <button type="button" onclick="commentUpdate()">수정</button><br>
-		              <button type="button" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
-		            </td>
+			            <td style="width: 60%;">${comment.reContent}</td>
+			            <td>${comment.reWirteDate}</td>
+			            <td class="commentBtn">
+			              <button type="button" onclick="commentUpdate()">수정</button> 
+			              <button type="button" id ="commentDelete" onclick="removeComment('${comment.cno}', '${comment.num}')">삭제</button>
+			            </td>
 	      			</tr>
       			</c:forEach>
       		</table>
@@ -118,10 +118,6 @@
 	</form>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
-<script type="text/javascript">
-
-
-</script>
 
 </body>
 </html>
