@@ -12,19 +12,10 @@
   <form action="boardUpdate" method="post">
   <input type="hidden" name="comment" value="boardUpdate">
   <input type="hidden" name="num" value="${board.num}">
+  <input type="hidden" name="nickName" value="${board.nickName}">
+  <input type="hidden" name="email" value="${board.email}">
+  <input type="hidden" name="pass" value="${board.pass}">
     <table id="boardTb">
-      <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="nickName" value="${board.nickName}" required>*필수</td>
-      </tr>
-      <tr>
-        <th>이메일</th>
-        <td><input type="email" name="email" value="${board.email}" required>*필수</td>
-      </tr>
-      <tr>
-        <th>비밀번호</th>
-        <td><input type="password" name="pass" value="${board.pass}" required>*필수</td>
-      </tr>
       <tr>
         <th>글제목</th>
         <td><input type="text" name="title" value="${board.title}" required>*필수</td>

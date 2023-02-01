@@ -18,39 +18,29 @@
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-  <form action="boardWrite" method="post">
-  <input type="hidden" name="command" value="boardWrite">
-  <div id="boardTb">
-    <table>
-      <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="nickName" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>이메일</th>
-        <td><input type="email" name="email" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>비밀번호</th>
-        <td><input type="password" name="pass" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>글제목</th>
-        <td><input type="text" name="title" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>본문</th>
-        <td><textarea rows="15" style="width: 100%;" name="content"></textarea></td>
-      </tr>
-    </table>  
-      <div class="writeBtn">
-          <button type="submit">글작성</button>
-          <button type="reset">다시 작성</button>
-          <button type="button" onclick="location.href='boardList'">목록으로</button>
-      </div>    
-    </div>
-  </form>
-  <hr>
+<form action="boardWrite" method="post">
+	<input type="hidden" name="command" value="boardWrite">
+	<div id="boardTb">
+ 		<input type="hidden" name="id" value="${user.id}">
+		<input type="hidden" name="nickName" value="${user.nickname}">
+		<table>
+			<tr>
+				<th>글제목</th>
+				<td><input type="text" name="title" placeholder="필수" required></td>
+			</tr>
+			<tr>
+				<th>본문</th>
+				<td><textarea rows="15" style="width: 100%;" name="content"></textarea></td>
+			</tr>
+		</table>
+		<div class="writeBtn">
+			<button type="submit">글작성</button>
+			<button type="reset">다시 작성</button>
+			<button type="button" onclick="location.href='boardList'">목록으로</button>
+		</div>    
+	</div>
+</form>
+<hr>
 <jsp:include page="../bottomBar.jsp"/>
   </body>
   </html>

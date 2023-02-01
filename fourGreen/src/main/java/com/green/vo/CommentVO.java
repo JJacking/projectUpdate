@@ -5,49 +5,61 @@ import java.sql.Timestamp;
 public class CommentVO {
 	private int cno;
 	private int num;
-	private String userName;
-	private String userPass;
+	private String nickName;
 	private String reContent;
 	private Timestamp reWirteDate;
 	
 	public CommentVO() {}
 	
+	public CommentVO(int cno, int num, String nickName, String reContent, Timestamp reWirteDate) {
+		this.cno = cno;
+		this.num = num;
+		this.nickName = nickName;
+		this.reContent = reContent;
+		this.reWirteDate = reWirteDate;
+	}
+
 	public int getCno() {
 		return cno;
 	}
+
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
+
 	public int getNum() {
 		return num;
 	}
+
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getNickName() {
+		return nickName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
-	public String getUserPass() {
-		return userPass;
-	}
-	public void setUserPass(String userPass) {
-		this.userPass = userPass;
-	}
+
 	public String getReContent() {
 		return reContent;
 	}
+
 	public void setReContent(String reContent) {
 		this.reContent = reContent;
 	}
+
 	public Timestamp getReWirteDate() {
 		return reWirteDate;
 	}
+
 	public void setReWirteDate(Timestamp reWirteDate) {
 		this.reWirteDate = reWirteDate;
 	}
+	
+	
 	
 	
 }

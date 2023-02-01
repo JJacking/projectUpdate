@@ -60,9 +60,11 @@ width: 10%;
 				<td>${board.readCount}</td>
 			</tr>
 		</c:forEach>
-		</table>
-		</div>
-			<p><a href="boardWrite">게시글 등록</a><p>
+	</table>
+</div>
+<c:if test="${not empty user}">
+	<button type="button" id="boardWrite" name="boardWrite" onclick="location.href='boardWrite'">게시글 등록</button>
+</c:if>
 			
 	
 	<%-- 
@@ -122,5 +124,10 @@ width: 10%;
 </div> --%>
 <hr>
 <jsp:include page="../bottomBar.jsp"/>
+
+<script type="text/javascript">
+
+</script>
+
 </body>
 </html>
