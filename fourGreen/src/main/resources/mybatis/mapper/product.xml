@@ -64,7 +64,7 @@ SELECT * FROM
 			ORDER BY ${array[1]} ${array[2]}
 		</if>
 	)) 
-	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +9
+	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +8
 </select>
 
 <select id="search" parameterType="java.util.Arrays" resultType="productVO">

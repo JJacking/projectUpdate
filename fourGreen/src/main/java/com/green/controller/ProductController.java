@@ -54,8 +54,7 @@ public class ProductController {
 		
 		int totalCnt = 0;
 		int pageNum2 = pageNum == null? 1 : Integer.parseInt(pageNum);
-		int startNum = (pageNum2-1)*10+1;
-		
+		int startNum = (pageNum2-1)*9+1;
 		List<ProductVO> list = null;
 		
 		totalCnt = productService.selectAllNumAuction();
@@ -76,9 +75,10 @@ public class ProductController {
 			totalCnt = list.size();
 		}
 		
-		int totalPage = (totalCnt-1)/10+1;                                                                   
-		int startPage = ((pageNum2-1)/10)*10+1;                                                               
+		int totalPage = (totalCnt-1)/9+1;                                                                   
+		int startPage = ((pageNum2-1)/9)*10+1;                                                               
 		int endPage = totalPage <  startPage+9 ? totalPage: startPage+9;                                     
+		System.out.println(pageNum2+" / "+startNum+ " / "+totalPage+" / "+startPage+" / "+endPage);
 		
 		model.addAttribute("category", category);
 		model.addAttribute("totalCnt", totalCnt);
@@ -91,20 +91,20 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping("product/selectOne")
+	@RequestMapping("/selectOne")
 	public String selectOne(@RequestParam int num, Model model) {
 		productService.readCount(num);
 		ProductVO dto = productService.selectOne(num);
 		model.addAttribute("list",productService.selectAllNumAuction());
 		model.addAttribute("product",dto);
 		if(System.currentTimeMillis()-dto.getRegdate().getTime()>0) {
-			return "product/endPage";  
+			return "endPage";  
 		}
-		return "product/productDetail";
+		return "product/productDetail";  
 	}
 	
 
-	@GetMapping("/newAuction")
+	@RequestMapping("/newAuction")
 	public String newAuction() {
 		return "product/newAuction"; 
 	}
@@ -114,7 +114,7 @@ public class ProductController {
 			@RequestParam String memberId,
 			@RequestParam String content,@RequestParam String regdate, @RequestParam String category,
 		    @RequestParam MultipartFile[] productPic) throws IllegalStateException, IOException {
-		System.out.println(title+"**title");
+		
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		
 		ProductVO dto = new ProductVO();
@@ -129,17 +129,14 @@ public class ProductController {
 			Calendar dateTime = Calendar.getInstance();
 			String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
 			String fileName = uniqueId+"_"+productPic[i].getOriginalFilename();
-			str += fileName;
-			if(i<productPic.length-1) {
-				str += ",";
-			}
+			str += fileName+",";
 			File file = new File("C:\\UploadImage\\AuctionList",fileName);
 			productPic[i].transferTo(file);
 		}
 		dto.setProductPic(str);
 		productService.insertProduct(dto);
 		
-		return "redirect:/product";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/directBuy")
@@ -148,11 +145,11 @@ public class ProductController {
 		return "";
 	}
 	
-	@RequestMapping("/product/deleteProduct")
+	@RequestMapping("/deleteProduct")
 	public String deleteProduct(int num) {
 		productService.deleteProduct(num);
 		
-		return "redirect:/product";
+		return "redirect:/";
 	}
 
 	@PostMapping("/biding")
@@ -166,13 +163,13 @@ public class ProductController {
 		return "redirect:/selectOne";
 	}
 	
-//	@GetMapping("/one")
-//	public String direct(@RequestParam int num, RedirectAttributes attributes) {
-//		productService.direct(num);
-//		attributes.addAttribute("num",num);
-//		
-//		return "redirect:/selectOne";
-//	}	
+	@GetMapping("/one")
+	public String direct(@RequestParam int num, RedirectAttributes attributes) {
+		productService.direct(num);
+		attributes.addAttribute("num",num);
+		
+		return "redirect:/selectOne";
+	}
 	
 	@GetMapping("/endPage")
 	public String endPage() {
