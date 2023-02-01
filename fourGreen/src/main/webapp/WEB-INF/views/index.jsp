@@ -280,8 +280,8 @@ text-align: center;
       <ul>
         <li>
           <img src="resources/img/ex04.jpg">
-          <h4>${상품명}</h4>
-          <p>${가격}</p>
+          <h4>상품명</h4>
+          <p>가격</p>
         </li>
         <li>
           <img src="resources/img/ex04.jpg">
