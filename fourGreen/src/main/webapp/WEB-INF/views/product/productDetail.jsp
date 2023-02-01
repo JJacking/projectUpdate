@@ -6,39 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기 - ${product.title}</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
-<style>
-	
-</style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-    <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
+<jsp:include page="../topBar.jsp" />
 <!-- 남은시간 표시 -->
 	<script type="text/javascript">
 		function getTime() {
@@ -50,7 +20,7 @@
 		 	let m = Math.floor((gap / (1000 * 60)) % 60); // 분
 		  	let s = Math.floor((gap / 1000) % 60); // 초
 		  	if (gap <= 0) {
-			    location.href='endPage';
+			    location.href='views/product/endPage';
 			    title.innerText = "경매가 마감되었습니다.";
 			    timer.innerText = "";
 			    document.getElementsByClassName('btn')[0].setAttribute('style','display:none');
@@ -83,11 +53,10 @@
 <input type="hidden" name="num" value="${product.num }">
 	<div>
 		<div>
-			<h6><a href="/index.html">홈</a></h6>
 			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }">메뉴 1</a></h6>
+			<h6><a href="${pageContext.request.contextPath }/product">메뉴 1</a></h6>
 			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }/?category=${product.category}">${product.category}</a></h6>
+			<h6><a href="${pageContext.request.contextPath }/product/?category=${product.category}">${product.category}</a></h6>
 		</div>
 		<h4>${product.title }</h4>
 	</div>
@@ -98,7 +67,7 @@
 		<!-- 대표사진  -->
 		 <c:choose>
 			<c:when test="${empty product.productPic}">
-				<img src="/auction/noimage.jpg">
+				<img src="/img/noimage.jpg">
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript">
@@ -108,7 +77,7 @@
 					for(let s = 0 ;s< arr.length;s++){
 						if(arr[s] != ''){
 							let img = (document.createElement('img'));
-							img.setAttribute('src','/auction/'+arr[s]);
+							img.setAttribute('src','/img/'+arr[s]);
 							img.setAttribute('style','width:100px; height:100px;');
 							image.appendChild(img);
 						}
@@ -177,9 +146,10 @@
 	<input type="image">
 	
 	<p><a href="deleteProduct?num=${product.num}">경매 삭제하기</a></p>
-	<button type="button" onclick="location.href='/TeamProject'">목록보기</button>
+	<button type="button" onclick="location.href='/auction/product'">목록보기</button>
 
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	let strPrice = parseInt(document.getElementById('strPrice').value);
 	let bidUnit = document.getElementById('bidUnit');
@@ -217,12 +187,6 @@
 		}
 		return false;
 	}
-	<footer>
-	  <div class="footer">
-	    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-	  </div>
-	</footer>
-	<script type="text/javascript">
 	
 </script>
 

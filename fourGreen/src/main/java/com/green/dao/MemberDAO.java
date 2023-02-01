@@ -110,6 +110,10 @@ public class MemberDAO {
 		return sqlSession.update("mybatis.mapper.member.chargePointByUserId",new Object[]{point, id});
 	}
 	
+	public int updatePointByUserId(String id, long point) {
+		return sqlSession.update("mybatis.mapper.member.updatePointByUserId",new Object[]{point, id});
+	}
+	
 	public int chargeSuccess(int idx) {
 		return sqlSession.update("mybatis.mapper.member.chargeSuccess",idx);
 	}

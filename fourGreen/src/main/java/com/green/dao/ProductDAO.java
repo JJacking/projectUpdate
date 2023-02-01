@@ -39,8 +39,8 @@ public class ProductDAO {
 		sqlSession.insert("mybatis.mapper.product.insertProduct",dto);
 	}
 	
-	public void deleteProduct(ProductVO dto) {
-		sqlSession.delete("mybatis.mapper.product.deleteProduct", dto);
+	public void deleteProduct(int num) {
+		sqlSession.delete("mybatis.mapper.product.deleteProduct", num);
 	}
 	
 	

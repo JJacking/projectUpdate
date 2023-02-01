@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>경매품목 리스트</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
 	.link{
 		margin-left: 5%;
@@ -39,35 +38,14 @@
     text-align: center;
   	}
 </style>
-</head>	
+</head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product"><b>물품보기</b></a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-    <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
+<jsp:include page="../topBar.jsp" />
+<c:if test="${not empty newAuctionMsg }">
+	<script type="text/javascript">
+		alert('${newAuctionMsg}');
+	</script>
+</c:if>
 <form action="" method="GET">
 	<div class="link">
 		<h6><a href="auction/">홈</a> > <a href="product"><b>메뉴 1</b></a></h6>
@@ -161,14 +139,20 @@
 		<div id="imgSession">
 			<div class="imgCard">
 				<!-- 대표사진  -->
-				<a href="selectOne?num=${product.num }">
+				<a href="/auction/product/selectOne?num=${product.num}">
 		 		<c:choose>
-				<c:when test="${empty product.productPic}">
-						<img src="/auction/noimage.jpg">
+					<c:when test="${empty product.productPic}">
+							<img src="/img/noimage.jpg" onclick="/auction/product/selectOne?num=${product.num}">
 					</c:when>
-				<c:otherwise>
-					<img src="/auction/${product.productPic}">
-				</c:otherwise>
+					<c:otherwise>
+						<img id="${product.num}">
+					
+						<script type="text/javascript">
+							arr = '${product.productPic}'.split(',');
+							titlePic = document.getElementById('${product.num}');
+							titlePic.setAttribute('src','/img/'+arr[0]);
+						</script>
+					</c:otherwise>
 				</c:choose>
 				</a>
 			
@@ -218,11 +202,7 @@
 </div>
 </form>
 
-<footer>
-  <div class="footer">
-    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function searchCate() {
 		location.href="productList.jsp";
