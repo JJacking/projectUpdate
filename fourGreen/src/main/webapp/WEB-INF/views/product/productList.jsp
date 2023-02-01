@@ -6,16 +6,48 @@
 <head>
 <meta charset="UTF-8">
 <title>경매품목 리스트</title>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style>
+	.link{
+		margin-left: 5%;
+		font-size:25px;
+	}
+	.link a{
+		text-decoration: none;
+    	color: skyblue;
+	}
+	#main{
+		width: 1500px;
+		margin-left: 8%;
+	}
+	.search{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		text-align: right;
+	}
+	.imgCard{
+		border:1px solid black;
+		margin: 30px;		
+		width: 400px;
+    	height: 20%;
+  		line-height: 30px;
+    	display: inline-block;
+    	float: left;
+	}
+	 .newProduct{
+    clear: both;
+    text-align: center;
+  	}
+</style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
 <form action="" method="GET">
-	<div>
-		<h6> > </h6>
-		<h6><a href="${pageContext.request.contextPath }/product">메뉴 1</a></h6>
+	<div class="link">
+		<h6><a href="auction/">홈</a> > <a href="product"><b>메뉴 1</b></a></h6>
 	</div>
 	<hr>
-	<div>
+	<div id="main">
 		<table>
 			<tr>
 				<th>
@@ -86,69 +118,69 @@
 				</th>
 			</tr>
 		</table>
-	</div>
-	<hr>
-	<select name="searchCate" id="searchCate">
-		<option value="title">제목</option>
-		<option value="content">내용</option>
-		<option value="writer">작성자</option>
-	</select>
-	<input type="text" name="searchText" id="searchText">
-	<input type="submit" value="검색하기">
-	<script type="text/javascript">
-		let arr;
-		let titlePic;
-	</script>
-	<c:forEach var="product" items="${list}">
-	<hr>
-		<!-- 대표사진  -->
-		<a href="/auction/product/selectOne?num=${product.num}">
- 		<c:choose>
-			<c:when test="${empty product.productPic}">
-					<img src="/img/noimage.jpg" onclick="/auction/product/selectOne?num=${product.num}">
-			</c:when>
-			<c:otherwise>
-				<img id="${product.num}">
+	
+		<hr>
+		<div class="search">
+			<select name="searchCate" id="searchCate">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+				<option value="writer">작성자</option>
+			</select>
+	
+			<input type="text" name="searchText" id="searchText">
+			<input type="submit" value="검색하기">
+		</div>
+		<c:forEach var="product" items="${list}">
+
+		<div id="imgSession">
+			<div class="imgCard">
+				<!-- 대표사진  -->
+				<a href="selectOne?num=${product.num }">
+		 		<c:choose>
+				<c:when test="${empty product.productPic}">
+						<img src="/auction/noimage.jpg">
+					</c:when>
+				<c:otherwise>
+					<img src="/auction/${product.productPic}">
+				</c:otherwise>
+				</c:choose>
+				</a>
 			
-				<script type="text/javascript">
-					arr = '${product.productPic}'.split(',');
-					titlePic = document.getElementById('${product.num}');
-					titlePic.setAttribute('src','/img/'+arr[0]);
-				</script>
-			</c:otherwise>
-		</c:choose>
-		</a>
+				<h4><a href="selectOne?num=${product.num }">${product.title }</a></h4>
 		
-		<h4><a href="/auction/product/selectOne?num=${product.num}">${product.title }</a></h4>
-	
-	<div>
-		<span>
-			입찰가 : ${product.strPrice}
-		</span><br>
-		<span>
-			입찰 수 : ${product.bidCount}
-		</span><br>
-		<span>
-			판매자 ID : ${product.memberId}
-		</span><br>
-		<span>
-			조회 수 : ${product.readCount}
-		</span><br>
-		<span>
-			판매자
-			<%-- <p>${user.id}</p> --%>
-		</span>
+		
+				<span>${product.productPic}</span> <br>
+				<span>${product.title }</span><br>
+			
+				<span>
+				입찰가 : ${product.strPrice}
+				</span><br>
+				<span>
+				입찰 수 : ${product.bidCount}
+				</span><br>
+				<span>
+				판매자 ID : ${product.memberId}
+				</span><br>
+				<span>
+				조회 수 : ${product.readCount}
+				</span><br>
+				<span>
+				판매자
+				<%-- <p>${??.id }</p> --%>
+				</span>
+			</div>
+		</div>
+		</c:forEach>
+		
 	</div>
-	</c:forEach>
 	
+	<div class="newProduct">
 	<p><a href="newAuction">새 상품 등록</a></p>
-	
-	<div class="cls2">
 		<c:if test="${totalCnt!=null}">
 			<c:if test="${startPage != 1 }">
 				<a href="pageNum=${startPage-10 }"><</a>
 			</c:if>
-			<c:forEach begin="${startPage}" end="${endPage}" varStatus="cnt">
+			<c:forEach begin="${startPage }" end="${endPage }" varStatus="cnt">
 				<a href="?${url }pageNum=${cnt.index }">${cnt.index }</a>
 			</c:forEach>
 			<c:if test="${endPage < totalPage }">
@@ -156,9 +188,15 @@
 			</c:if>
 		</c:if>
 	</div>
-
+	</div>
+</div>
 </form>
 
+<footer>
+  <div class="footer">
+    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
+  </div>
+</footer>
 <script type="text/javascript">
 	function searchCate() {
 		location.href="productList.jsp";
