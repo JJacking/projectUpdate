@@ -14,11 +14,10 @@
 <input type="hidden" name="num" value="${product.num }">
 	<div>
 		<div>
-			<h6><a href="/index.html">홈</a></h6>
 			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }">메뉴 1</a></h6>
+			<h6><a href="${pageContext.request.contextPath }/product">메뉴 1</a></h6>
 			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }/?category=${product.category}">${product.category}</a></h6>
+			<h6><a href="${pageContext.request.contextPath }/product/?category=${product.category}">${product.category}</a></h6>
 		</div>
 		<h4>${product.title }</h4>
 	</div>
@@ -27,24 +26,17 @@
 	
 	<div id="image">
 		<!-- 대표사진  -->
-		 <c:choose>
-			<c:when test="${empty product.productPic}">
-				<img src="/auction/noimage.jpg">
+		 		<c:choose>
+		<c:when test="${empty product.productPic}">
+				<img src="/img/noimage.jpg" onclick="/auction/product/selectOne?num=${product.num}">
 			</c:when>
 			<c:otherwise>
+				<img id="${product.num}">
+			
 				<script type="text/javascript">
-					let image = document.getElementById('image');
-					//01_python.jpg,02_android.jpg,03_nodejs.jpg,,
-					let arr = '${product.productPic}'.split(',');
-					
-					for(let s = 0 ;s< arr.length;s++){
-						if(arr[s] != ''){
-							let img = (document.createElement('img'));
-							img.setAttribute('src','/auction/'+arr[s]);
-							img.setAttribute('style','width:100px; height:100px;');
-							image.appendChild(img);
-						}
-					}
+					arr = '${product.productPic}'.split(',');
+					titlePic = document.getElementById('${product.num}');
+					titlePic.setAttribute('src','/img/'+arr[0]);
 				</script>
 			</c:otherwise>
 		</c:choose>
@@ -69,7 +61,7 @@
 		</table>
 	</div>
 	
-	<button type="button" onclick="location.href='/TeamProject'">목록보기</button>
+	<button type="button" onclick="location.href='/auction/product'">목록보기</button>
 
 </form>
 <script type="text/javascript">
