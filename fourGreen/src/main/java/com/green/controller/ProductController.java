@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.ChargePointService;
 import com.green.service.ProductService;
-import com.green.service.SignInService;
 import com.green.vo.CustomerVO;
 import com.green.vo.MemberVO;
 import com.green.vo.ProductVO;
@@ -105,7 +104,7 @@ public class ProductController {
 		model.addAttribute("list",productService.selectAllNumAuction());
 		model.addAttribute("product",dto);
 		if(System.currentTimeMillis()-dto.getRegdate().getTime()>0) {
-			return "endPage";  
+			return "product/endPage";  
 		}
 		return "product/productDetail";  
 	}
