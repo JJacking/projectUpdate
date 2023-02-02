@@ -85,6 +85,17 @@
 		width: 60px;
 		height: 50px;
 	}
+	
+	.mypage{
+		float: right;
+	}
+	
+	.mypage li{
+		
+		list-style: none;
+		display: inline-block;
+	}
+
 </style>
 </head>
 <body>
@@ -109,10 +120,13 @@
         </div>
     </c:if>
    <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
+        <div class="mypage">
+      	<ul>
+      		<li><a href="signOut">로그아웃</a></li>
+	        <li><a href="myPage">내정보</a></li>
+	        <li><a href="charge">포인트충전/조회</a></li>
+        </ul>
+        </div>
     </c:if>
 </div>
 </body>
