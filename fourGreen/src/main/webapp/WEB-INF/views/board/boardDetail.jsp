@@ -101,10 +101,10 @@
       	</form>
       	</div>
       	<div id="comment">
-      	<form action="commentWrite" method="POST">
-      	<input type="hidden" name="num" value="${board.num}">
-      	<input type="hidden" name="userId" value="${user.id}">
-      	<input type="hidden" name="nickName" value="${user.nickname}">
+      	<form action="commentWrite" method="POST" onsubmit="return check()">
+	      	<input type="hidden" name="num" value="${board.num}">
+	      	<input type="hidden" name="userId" value="${user.id}">
+	      	<input type="hidden" name="nickName" value="${user.nickname}">
       		<table id="commentTb" class="commentWrite">
       			<tr>
       				<td>내용</td>
@@ -118,6 +118,16 @@
 	</form>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
+<script type="text/javascript">
+	function check() {
+		if('${user.id}' == "") {
+			alert('로그인 후 이용해주세요');
+			location.href="signInForm";
+			return false;
+		}
+	}
+</script>
+
 
 </body>
 </html>
