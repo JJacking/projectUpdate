@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<script src="./resources/js/board.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
@@ -91,10 +92,12 @@
       				<td><b>${comment.nickName}</b></td>
 	            <td style="width: 60%;">${comment.reContent}</td>
 	            <td>${comment.reWirteDate}</td>
-	            <td class="commentBtn">
-	              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
-	              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
-	            </td>
+		            <c:if test="${not empty user }">
+			            <td class="commentBtn">
+			              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
+			              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
+			            </td>
+		            </c:if>
       			</tr>
       			</c:forEach>
       		</table>

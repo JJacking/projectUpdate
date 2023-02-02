@@ -7,6 +7,8 @@
 	<!-- <resultMap type="board" id="boardVo">
 		<result column="num" property="num"/>
 		<result column="nickName" property="nickName" />
+		<result column="email" property="email" />
+		<result column="pass" property="pass" />
 		<result column="title" property="title"/>
 		<result column="content" property="content"/>
 		<result column="readCount" property="readCount"/>
@@ -60,7 +62,7 @@
 	<!-- 현재 글 페이지 목록 -->
 	<select id="selectTargetBoards" resultType="boardVO">
 		SELECT * FROM
-		SELECT ROWNUM AS nick, num, nickName, title, content, readCount, wirteDate
+		SELECT ROWNUM AS nick, num, nickName, email, pass, title, content, readCount, wirteDate
 		FROM (SELECT * FROM boardTbl ORDER BY num DESC))
 		WHERE nick BETWEEN (#{num}-1)*100+(#{num}-1)*10+1 AND (#{num}-1)*100+(#{num}*10)
 	</select>

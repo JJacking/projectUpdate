@@ -21,8 +21,8 @@
 		
 <!-- 댓글등록 -->
 	<insert id="commentWrite" parameterType="commentVO">
-		INSERT INTO boardComment(cno, num, userName, reContent) 
-		VALUES(boardComment_seq.nextval,#{num},#{userName},#{reContent})
+		INSERT INTO boardComment(cno, num, nickName, userId, reContent) 
+		VALUES(boardComment_seq.nextval,#{num},#{nickName}, #{userId}, #{reContent})
 	</insert>
 
 <!-- 댓글수정 -->
