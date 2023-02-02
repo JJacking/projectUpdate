@@ -137,7 +137,7 @@
 		<c:forEach var="product" items="${list}">
 
 		<div id="imgSession">
-			<div class="imgCard">
+			<div class="imgCard" style="text-align: center;">
 				<!-- 대표사진  -->
 				<a href="/auction/product/selectOne?num=${product.num}">
 		 		<c:choose>
@@ -145,7 +145,7 @@
 							<img src="/img/noimage.jpg" onclick="/auction/product/selectOne?num=${product.num}">
 					</c:when>
 					<c:otherwise>
-						<img id="${product.num}">
+						<img id="${product.num}" style="width: 200px; height: 250px;">
 					
 						<script type="text/javascript">
 							arr = '${product.productPic}'.split(',');
