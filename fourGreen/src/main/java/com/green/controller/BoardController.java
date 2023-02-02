@@ -82,6 +82,7 @@ public class BoardController {
 	//게시판삭제
 	@RequestMapping("/boardDelete")
 	public String boardDelete(@RequestParam int num) {
+		boardService.commentDeleteByNum(num);
 		boardService.boardDelete(num);
 		return "redirect:/boardList";
 	}
@@ -104,8 +105,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/commentUpdate")
-	@ResponseBody
-	public String commentUpdate(@RequestParam String nickname,@ModelAttribute CommentVO cVo,@RequestParam int num,Model model) {
+	public String commentUpdate(@ModelAttribute CommentVO cVo,@RequestParam int num,Model model) {
+		System.out.println(cVo.getCno()+" / "+cVo.getReContent());
 		boardService.commentUpdate(cVo);
 		model.addAttribute("num",num);
 		return "redirect:/boardDetail";

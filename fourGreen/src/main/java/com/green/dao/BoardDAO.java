@@ -41,6 +41,16 @@ public class BoardDAO {
 		sqlSession.update("mybatis.mapper.board.boardUpdate",bVo);
 	}
 	
+	//게시글 삭제시 댓글삭제
+	public void commentDeleteByNum(int num) {
+		sqlSession.delete("mybatis.mapper.comment.commentDeleteByNum",num);
+	}
+	
+	//댓글삭제
+	public void commentDelete(int cno) {
+		sqlSession.delete("mybatis.mapper.comment.commentDelete",cno);
+	}
+	
 	//게시판 삭제
 	public void boardDelete(int num) {
 		sqlSession.delete("mybatis.mapper.board.boardDelete",num);
@@ -60,11 +70,6 @@ public class BoardDAO {
 	//댓글수정
 	public void commentUpdate(CommentVO cVo) {
 		sqlSession.update("mybatis.mapper.comment.commentUpdate",cVo);
-	}
-	
-	//댓글삭제
-	public void commentDelete(int cno) {
-		sqlSession.delete("mybatis.mapper.comment.commentDelete",cno);
 	}
 	
 	//공지사항읽어오기(관리자페이지)

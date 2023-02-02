@@ -60,6 +60,11 @@ public class BoardService {
 		boardDao.commentUpdate(cVo);
 	}
 	
+	//글 삭제시 댓글삭제
+	public void commentDeleteByNum(int num) {
+		boardDao.commentDelete(num);
+	}
+	
 	//댓글삭제
 	public void commentDelete(int cno) {
 		boardDao.commentDelete(cno);
