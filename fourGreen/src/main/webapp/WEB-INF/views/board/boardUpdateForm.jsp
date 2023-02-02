@@ -10,8 +10,8 @@
 <body>
 <jsp:include page="../topBar.jsp" />
   <form action="boardUpdate" method="post">
-  <input type="hidden" name="comment" value="boardUpdate">
-  <input type="hidden" name="num" value="${board.num}">
+    <input type="hidden" name="num" value="${board.num }">
+	<input type="hidden" name="id" value="${user.id}">
     <table id="boardTb">
       <tr>
         <th>닉네임</th>
