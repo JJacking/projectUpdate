@@ -25,11 +25,11 @@ public class MainController {
 	
 	
 	@RequestMapping("/")
-	public String main(HttpSession session, Model model, Model model1) {
+	public String main(HttpSession session, Model model) {
 		MemberVO member = (MemberVO)session.getAttribute("user");
 		List<BoardVO> list = boardService.selectAll();
 		List<ManagerVO> manager = boardService.selectAllmanager();
-		model1.addAttribute("manager", manager);
+		model.addAttribute("manager", manager);
 		model.addAttribute("list",list);
 		if(member != null) {
 			session.setAttribute("user", signInService.getMember(member.getId()));

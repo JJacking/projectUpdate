@@ -33,8 +33,7 @@
 	<!-- 조회수 증가 -->
 	<select id="readCount" parameterType="int">
 		UPDATE boardTbl 
-		SET readCount = readCount+1
-		 WHERE num=#{num}
+		SET readCount = readCount+1 WHERE num=#{num}
 	</select>
 	
 	<!-- 전체게시물 갯수 조회 -->
@@ -44,21 +43,18 @@
 
 	<!-- 게시글 등록 -->
 	<insert id="boardWrite" parameterType="boardVO">
-		INSERT INTO boardTbl(num, nickname, title, content)
-		VALUES(boardTbl_seq.nextval,#{nickName},#{title},#{content})
+		INSERT INTO boardTbl(num, id, nickName, title, content)
+		VALUES(boardTbl_seq.nextval,#{id}, #{nickName}, #{title},#{content})
 	</insert>
 	
 	<!-- 게시글수정 -->
 	<update id="boardUpdate" parameterType="boardVO">
-		UPDATE boardTbl 
-		SET nickName=#{nickName}, title=#{title}, content=#{content}
-		WHERE num=#{num}
+		UPDATE boardTbl SET title=#{title}, content=#{content} WHERE num=#{num}
 	</update>
 	
 	<!-- 게시글삭제 -->
 	<delete id="boardDelete" parameterType="boardVO">
-		DELETE FROM boardTbl 
-		WHERE num=#{num}
+		DELETE FROM boardTbl WHERE num=#{num}
 	</delete>
 	
 	<!-- 현재 글 페이지 목록 -->

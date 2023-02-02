@@ -141,7 +141,10 @@ public class ProductController {
 				Calendar dateTime = Calendar.getInstance();
 				String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
 				String fileName = uniqueId+"_"+productPic[i].getOriginalFilename();
-				str += fileName+",";
+				str += fileName;
+				if(i<productPic.length-1) {
+					str += ",";
+				}
 				File file = new File("C:\\UploadImage\\AuctionList",fileName);
 				productPic[i].transferTo(file);
 			}
