@@ -10,11 +10,18 @@
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
 	.infoTb{
-	  	width: 100%;
+	  	width: 500px;
 	  	margin: 10% 30% 10% 30%;
 	  	font-size: 20px;
 	  	border-collapse: collapse;
+	  	line-height: 50px;
 	}
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
+	  text-alin:center;
+	}
+	
 	
 </style>
 </head>
@@ -23,7 +30,7 @@
 
 <div class="infoTb">
 <form action="updateMember" method="post">
-	<table border="1" style="width: 200px;">
+	<table border="1" style="width: 400px;">
 		<tr>
 			<td>
 				아이디				
@@ -36,7 +43,7 @@
 		<c:if test="${user.type == 'auction' }">
 			<tr>
 				<td colspan="2" style="text-align: center;">
-					<button type="button" onclick="location.href='changePassword'">비밀번호 변경</button>			
+					<button type="button" class="w-btn w-btn-blue" onclick="location.href='changePassword'">비밀번호 변경</button>			
 				</td>
 			</tr>
 		</c:if>
@@ -66,13 +73,13 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button type="submit">변경</button>
-				<button type="button" onclick="history.back()">돌아가기</button>
+				<button type="submit" class="w-btn w-btn-blue">변경</button>
+				<button type="button" class="w-btn w-btn-blue" onclick="history.back()">돌아가기</button>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button type="button" onclick="withdraw()">탈퇴하기</button>
+				<button type="button" class="w-btn w-btn-blue" onclick="withdraw()">탈퇴하기</button>
 			</td>
 		</tr>
 	</table>

@@ -27,9 +27,9 @@
       </tr>
       <tr>
         <td colspan="2">
-          <button type="submit">수정하기</button>
-          <button type="reset">다시 작성</button>
-          <button type="button" onclick="location.href='boardList'">목록으로</button>
+          <button type="submit" class="w-btn w-btn-blue">수정하기</button>
+          <button type="reset" class="w-btn w-btn-blue">다시 작성</button>
+          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록으로</button>
         </td>
       </tr>
       

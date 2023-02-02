@@ -7,9 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+
+<style>
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
+	}
+	.board{
+	  top: 50%;
+	  left: 50%;
+      margin: 10% 30%;
+	  width: 40%;
+	  background-color: white;
+	  border: 1px solid #CE6D39;
+	  border-radius: 10px;
+	  padding-left: 50px;
+	  padding-right: 50px;
+	  line-height: 80px;
+	  }
+	  
+	  .board input{
+	  	  width: 80%;
+		  padding: 0 5px;
+		  height: 30px;
+		  font-size: 16px;
+	  }
+	  
+	  .board td{
+		border: 1px solid white;
+	}
+	  
+</style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
+<div class="board">
 <form action="newAuction" method="post" onsubmit="return submit2()" enctype="multipart/form-data">
 <input type="hidden" name="memberId" value="teste">
 	<h2>물품 정보</h2>
@@ -34,8 +67,8 @@
 		<tr id="addTr">
 			<th>이미지 등록</th>
 			<td>
-				<button type="button" onclick="add()">추가</button>
-				<input type="file" name="productPic" multiple="multiple" required><br>
+				<button type="button" class="w-btn w-btn-blue" onclick="add()">추가</button>
+				<input type="file" name="productPic" multiple="multiple"  required><br>
 			</td>
 		</tr>
 		<tr>
@@ -66,10 +99,11 @@
 		<td>  </td>
 	</tr>
 	</table>
-	<button type="submit">경매 신청하기</button>
-	<button type="reset">취소하기</button>
-	<button type="button" onclick="location.href='/auction'">목록으로</button>
+	<button type="submit" class="w-btn w-btn-blue">경매 신청하기</button>
+	<button type="reset" class="w-btn w-btn-blue">취소하기</button>
+	<button type="button" class="w-btn w-btn-blue" onclick="location.href='/auction'">목록으로</button>
 </form>
+</div>
 <jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function submit2() {

@@ -15,6 +15,11 @@
 	.point input{
 		height: 20px;
 	}
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
+	  text-alin:center;
+	}
 </style>
 </head>
 <body>
@@ -30,7 +35,7 @@
 		<h2>포인트충전 페이지입니다</h2>	
 		<input type="hidden" id="id" name="id" value="${user.id }">
 		<input type="number" id="charge" name="charge">
-		<button type="submit">충전하기</button>
+		<button type="submit" class="w-btn w-btn-blue">충전하기</button>
 	</form>
 </c:if>
 </div>
