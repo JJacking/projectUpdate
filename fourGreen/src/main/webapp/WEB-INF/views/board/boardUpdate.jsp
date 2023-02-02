@@ -12,14 +12,10 @@
 <div id="boardTb" align="center">
 	<h2>게시글 수정</h2>
 	<form action="boardUpdate" method="post">
-		<input type="hidden" name="command" value="boardUpdate">
+		<input type="hidden" name="id" value="${user.id}">
 		<input type="hidden" name="num" value="${board.num }">
 		
 		<table>
-			<tr>
-				<th>닉네임</th>
-				<td><input type="text" name="nickName" value="${board.nickName}"  readonly></td>
-			</tr>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" value="${board.title}" required>*필수</td>
@@ -37,6 +33,7 @@
 		</table>
 	</form>
 	<hr>
+</div>
 <jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>
