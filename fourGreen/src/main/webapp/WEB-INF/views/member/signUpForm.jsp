@@ -10,99 +10,123 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
-	.mainSession{
-		margin:5% 10%;
-		width: 70%;
-		line-height: 40px;
+	
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
 	}
+	
+	.head{
+		text-align: left;
+	    width: 80%;
+	    margin-top: 5%;
+	    margin-left: 10%;
+	    color: black;
+	}
+	
+	
+	.mainSession{
+	  top: 50%;
+	  left: 50%;
+      margin: 5% 20%;
+	  width: 60%;
+	  background-color: white;
+	  border: 1px solid #CE6D39;
+	  border-radius: 10px;
+	  padding-left: 50px;
+	  padding-right: 0;
+	  line-height: 80px;
+	}
+	
 	.mainSession table{
 		width:100%
 	}
+	
+	
 	.mainSession input{
-		width: 80%;
-		height: 30px;
+	  width: 80%;
+	  padding-top: 0px;
+	  padding-left: 15px;
+	  height: 40px;
+	  font-size: 16px;
+	  border: none;
+	}
+	.mainSession th{
+	  position: relative;
+	  border-bottom: 2px solid lightgray;
+	  width: 80%;
+	  font-weight: nomal;
+	}
+	.mainSession td{
+		border: 1px solid white;
+	}
+	.mainSession a{
+	  text-decoration: none;
+	  color: black;
+	}
+	#overCheckBtn{
+		width: 150px;
 	}
 	
 </style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-<div class="mainSession">
+<div class="head">
 	<h2>회원가입</h2>
+	<hr>
+</div>
+<div class="mainSession">
 	<form action="signUpCheck" method="post" onsubmit="return checkList()">
 		<table >
 			<tr>
-				<td>
-					아이디(이메일)
-				</td>
-				<td>
+				<th>
 					<input type="email" id="userId" name="id" placeholder="이메일 형식으로 입력해주세요" required="required">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align: center;">
+				</th>
+			
+				<td >
 					<input type="hidden" id="message">
 					<input type="hidden" id="hiddenId">
 					<input type="hidden" id="sendChk">
-					<input type="button" id="overCheckBtn" onclick="overlappingCheck()" value="아이디 중복 체크"/>
+					<input type="button" class="w-btn w-btn-blue" id="overCheckBtn" onclick="overlappingCheck()" value="아이디 중복 체크"/>
 					<input type="hidden" id="sendEmailBtn" onclick="sendEmail()" value="이메일 다시 보내기"/>
 					<input type="hidden" id="emailCheckBtn" onclick="emailChk()" value="인증 확인"/>
 					<p id="emailCheckForm" style="color:red; display: none;">이메일 인증이 완료되었습니다.</p>
 				</td>
+		
+			<tr>
+				<th>
+					<input type="text" id="nickname" name="nickname" placeholder="닉네임" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					닉네임
-				</td>
-				<td>
-					<input type="text" id="nickname" name="nickname" required="required">
-				</td>
+				<th>
+					<input type="password" name="password" placeholder="비밀번호" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					비밀번호 
-				</td>
-				<td>
-					<input type="password" name="password" required="required">
-				</td>
+				<th>
+					<input type="password" name="password_chk" placeholder="비밀번호 재확인" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					비밀번호 확인 
-				</td>
-				<td>
-					<input type="password" name="password_chk" required="required">
-				</td>
+				<th>
+					<input type="text" name="phone" placeholder="핸드폰" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					휴대폰 
-				</td>
-				<td>
-					<input type="text" name="phone" required="required">
-				</td>
+				<th>
+					<input type="text" onclick="addressPop()" id="address1" name="address" placeholder="주소 검색" readonly="readonly" style="border : none;">
+				</th>
 			</tr>
 			<tr>
-				<td rowspan="3">
-					주소 
-				</td>
-				<td>
-					<a href="#" onclick="addressPop()">주소 검색</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="text" id="address1" name="address" readonly="readonly" style="border : none;">
-				</td>
-			</tr>
-			<tr>
-				<td>
+				<th>
 					<input type="text" id="address2" name="address" required="required" placeholder="상세주소" style="width: 98%">
-				</td>
+				</th>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: center;">
-					<button type="submit">회원가입</button>
+					<button type="submit" class="w-btn w-btn-blue">회원가입</button>
 				</td>
 			</tr>
 		</table>

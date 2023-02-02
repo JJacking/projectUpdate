@@ -28,21 +28,26 @@
 	.w-btn{
 	  padding: 20px;
 	  margin-left: 10px;
+	  width: 150px;
 	}
 	.loginForm{
 	  top: 50%;
 	  left: 50%;
       margin: 10% 30%;
-	  width: 300px;
+	  width: 40%;
 	  background-color: white;
 	  border: 1px solid #CE6D39;
 	  border-radius: 10px;
-	  padding: 30px;
 	  padding-left: 50px;
+	  padding-right: 50px;
+	  line-height: 80px;
+	}
+	.loginForm table{
+		width:100%;
 	}
 	
 	.loginForm input{
-	  width: 100%;
+	  width: 80%;
 	  padding: 0 5px;
 	  height: 40px;
 	  font-size: 16px;
@@ -50,8 +55,9 @@
 	}
 	.loginForm th{
 	  position: relative;
-	  border-bottom: 2px solid gray;
-	  margin: 30px;
+	  border-bottom: 2px solid lightgray;
+	  width: 80%;
+	  font-weight: nomal;
 	}
 	.loginForm td{
 		border: 1px solid white;
@@ -59,7 +65,9 @@
 	.loginForm a{
 	  text-decoration: none;
 	  color: black;
-}
+	}
+	.loginForm a:hover{
+		color: #CE6D39;
 	}
   </style>
 </head>
@@ -80,7 +88,8 @@
 	 		<th><input type="password" name="password" placeholder="비밀번호" required="required"></td>
 	 	</tr>
 	 	<tr>
-	 		<td><button type="submit" class="w-btn w-btn-blue" style="width: 100%;">로그인</button></td>
+	 		<td><button type="submit" class="w-btn w-btn-blue" >로그인</button>&nbsp;&nbsp;&nbsp;
+	 		<button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button></td>
 	 	</tr>
 	 	<tr>
 	 		<td>
@@ -148,7 +157,7 @@
 	 	</tr>
 	 	<tr>
 	      	<td>
-	          <a href="searchId">아이디 찾기</a>
+	          <a href="searchId">아이디 찾기</a>&nbsp; &nbsp; &nbsp;
 	          <a href="searchPassword">비밀번호 찾기</a>
 	        </td>
     	</tr>
