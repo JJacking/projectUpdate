@@ -71,7 +71,7 @@
         </tr>
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
-     			<c:if test="${not empty user}">
+     			<c:if test="${not empty user and user.id eq board.id}">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
 		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
@@ -86,19 +86,22 @@
      <div id="comment" class="commentRead">
      	<form action="commentUpdate" method="post">
 	     	<input type="hidden" name="cno" value="${board.num}">
-      		<table>
+      		<table style="border-collapse: collapse;">
       			<c:forEach items="${lists}" var="comment">
-      			<tr>
-      				<td><b>${comment.nickName}</b></td>
-	            <td style="width: 60%;">${comment.reContent}</td>
-	            <td>${comment.reWirteDate}</td>
-		            <c:if test="${not empty user }">
-			            <td class="commentBtn">
-			              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
-			              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
-			            </td>
-		            </c:if>
-      			</tr>
+	      			<tr style="border: 1px dotted black; height: 50px;">
+	      				<td><b>${comment.nickName}</b></td>
+		            	<td>${comment.reWirteDate}</td>
+	      			</tr>
+	      			<tr style="border-bottom: 2px solid black; height: 100px;" >
+		            	<td style="width: 60%;">${comment.reContent}</td>
+			            <c:if test="${not empty user and user.id eq comment.userId }">
+				            <td class="commentBtn">
+				              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
+				              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
+				            </td>
+			            </c:if>
+	      			</tr>
+      			
       			</c:forEach>
       		</table>
       	</form>
