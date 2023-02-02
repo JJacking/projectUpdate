@@ -11,7 +11,7 @@ import com.green.service.SignUpService;
 
 @Controller
 public class AuthCheckController {
-	
+	//..
 	@Autowired
 	private SignUpService signUpService;
 
