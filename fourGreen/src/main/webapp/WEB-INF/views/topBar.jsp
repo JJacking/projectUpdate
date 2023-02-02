@@ -111,7 +111,7 @@
 		            <li><a href="boardList">자유게시판</a></li>
 		      </ul>
 	      </li>
-	      <li><a href="#">고객센터</a></li>
+	      <li><a href="customerBoard">고객센터</a></li>
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">

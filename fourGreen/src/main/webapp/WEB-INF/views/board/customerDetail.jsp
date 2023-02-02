@@ -17,19 +17,17 @@
       <table>
         <tr>
           <th>제목</th>
-          <td colspan="5">${mVo.title}</td>
+          <td colspan="5">${cVo.title}</td>
         </tr>
         <tr>
           <th>닉네임</th>
-          <td>${mVo.mgName}</td>
+          <td>${cVo.name}</td>
           <th>작성일</th>
-          <td>${mVo.wirteDate}</td>
-          <th>조회수</th>
-          <td>${mVo.readCount}</td>
+          <td>${cVo.wirteDate}</td>
         </tr>
         <tr>
           <th>내용</th>
-          <td colspan="5">${mVo.content}</td>
+          <td colspan="5">${cVo.content}</td>
         </tr>
         <c:if test="${empty user}"> 
         <tr>

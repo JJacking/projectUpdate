@@ -12,22 +12,22 @@
 <jsp:include page="../topBar.jsp" />
 <div id="boardTb" align="center">
 	<h2>공지글 수정</h2>
-	<form action="managerUpdate" method="post">
+	<form action="customerUpdate" method="post">
 		<input type="hidden" name="command" value="managerUpdate">
-		<input type="hidden" name="MgNum" value="${mVo.mgNum }">
+		<input type="hidden" name="num" value="${cVo.num }">
 		
 		<table>
 			<tr>
 				<th>닉네임</th>
-				<td><input type="text" name="MgName" value="${mVo.mgName}"  readonly></td>
+				<td><input type="text" name="name" value="${cVo.name}"  readonly></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" value="${mVo.title}" required>*필수</td>
+				<td><input type="text" name="title" value="${cVo.title}" required>*필수</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="70" name="content" value="${mVo.content}"></textarea></td>
+				<td><textarea rows="15" cols="70" name="content" value="${cVo.content}"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">

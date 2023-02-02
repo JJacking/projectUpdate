@@ -66,7 +66,12 @@ padding: 10px;
 		</tr>
 		</c:forEach>
 		</table>
+		<c:if test="${empty user}"> 
 			<p><a href="managerWrite">게시글 등록</a></p>
+		</c:if>
+		<c:if test="${!empty user}"> 
+			
+		</c:if>
 	<hr>
 </div>
 <jsp:include page="../bottomBar.jsp"/>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.green.service.BoardService;
 import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
+import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
 
 @Controller
@@ -165,6 +166,47 @@ public class BoardController {
 		return "redirect:/managerBoardList";
 	}
 	
+	//고객센터
+	@RequestMapping("/customerBoard")
+	public String customer(Model model) {
+		List<CustomerBoardVO> customer = boardService.selectAllcustomer();
+		model.addAttribute("customer", customer);
+		return "board/customerBoard";
+	}
 	
-	//페이징 삭제시
+	//관리자상세게시판(상세글)
+	@RequestMapping("/customerDetail")
+	public String customerDetail(@RequestParam int num) {
+		CustomerBoardVO cVo = boardService.selectByNumber(num);
+		return "board/customerDetail";
+	}
+	
+	//공지사항쓰기
+	@GetMapping("/customerWrite")
+	public String customerWrite() {
+		return "board/customerWrite";
+	}
+	
+	//공지사항쓰기
+	@PostMapping("/customerWrite")
+	public String customerWrite2(@ModelAttribute CustomerBoardVO cVo) {
+		boardService.customerWrite(cVo);
+		return "redirect:/customerboard";
+	}
+	
+	//게시판수정
+	@GetMapping("/customerUpdate")
+	public String customerUpdate(Model model,@RequestParam int num) {
+		CustomerBoardVO cVo = boardService.selectByNumber(num);
+		model.addAttribute("cVo",cVo);
+		return "board/customerUpdateForm";
+	}
+	
+	//게시판수정
+	@PostMapping("/customerUpdate")
+	public String customerUpdate(@ModelAttribute CustomerBoardVO cVo,@RequestParam int num,Model model) {
+		boardService.customerUpdate(cVo);
+		model.addAttribute("num",num);
+		return "redirect:/customerDetail";
+	}
 }

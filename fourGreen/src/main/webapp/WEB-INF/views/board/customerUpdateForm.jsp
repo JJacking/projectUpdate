@@ -10,21 +10,21 @@
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-  <form action="managerUpdate" method="post">
-  <input type="hidden" name="comment" value="managerUpdate">
-  <input type="hidden" name="MgNum" value="${mVo.mgNum}">
+  <form action="customerUpdate" method="post">
+  <input type="hidden" name="comment" value="customerUpdate">
+  <input type="hidden" name="num" value="${cVo.num}">
     <table class="boardTb">
       <tr>
         <th>닉네임</th>
-        <td><input type="text" name="MgName" value="${mVo.mgName}" required>*필수</td>
+        <td><input type="text" name="name" value="${cVo.name}" required>*필수</td>
       </tr>
       <tr>
         <th>글제목</th>
-        <td><input type="text" name="title" value="${mVo.title}" required>*필수</td>
+        <td><input type="text" name="title" value="${cVo.title}" required>*필수</td>
       </tr>
       <tr>
         <th>본문</th>
-        <td><textarea rows="15" cols="70" name="content">${mVo.content}</textarea></td>
+        <td><textarea rows="15" cols="70" name="content">${cVo.content}</textarea></td>
       </tr>
       <tr>
         <td colspan="2">

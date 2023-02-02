@@ -19,13 +19,13 @@
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-  <form action="managerWrite" method="post">
-  <input type="hidden" name="command" value="managerWrite">
+  <form action="customerWrite" method="post">
+  <input type="hidden" name="command" value="customerWrite">
     <div id="boardTb">
     <table>
       <tr>
         <th>닉네임</th>
-        <td><input type="text" name="MgName" placeholder="필수" required></td>
+        <td><input type="text" name="name" placeholder="필수" required></td>
       </tr>
       <tr>
         <th>글제목</th>
