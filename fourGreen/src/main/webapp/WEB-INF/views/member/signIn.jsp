@@ -19,42 +19,48 @@
 
     #head{
       text-align: left;
-      width: 40%;
+      width: 80%;
       margin-top: 5%;
       margin-left: 10%;
       color: black;
     }
-    
-    .loginForm{
-      width: 40%;
-      height: 250px;
-      background-color: rgb(209, 231, 209);
-      border-radius: 10px;
-      margin: 10% 30% 10% 10%;
-      padding: 10px;
-      line-height: 50px;
-      text-align: center;
-    }
-	.loginForm td,th{
-	border:0px;
-	}
-   
-    .loginForm input{
-      height: 20px;
-      font-size: 15px;
-    }
-
-    .loginForm a{
-      text-decoration: none;
-      color: black;
-      text-align: center;
-    }
-    
+ 
 	.w-btn{
 	  padding: 20px;
 	  margin-left: 10px;
 	}
-
+	.loginForm{
+	  top: 50%;
+	  left: 50%;
+      margin: 10% 30%;
+	  width: 300px;
+	  background-color: white;
+	  border: 1px solid #CE6D39;
+	  border-radius: 10px;
+	  padding: 30px;
+	  padding-left: 50px;
+	}
+	
+	.loginForm input{
+	  width: 100%;
+	  padding: 0 5px;
+	  height: 40px;
+	  font-size: 16px;
+	  border: none;
+	}
+	.loginForm th{
+	  position: relative;
+	  border-bottom: 2px solid gray;
+	  margin: 30px;
+	}
+	.loginForm td{
+		border: 1px solid white;
+	}
+	.loginForm a{
+	  text-decoration: none;
+	  color: black;
+}
+	}
   </style>
 </head>
 <body>
@@ -67,13 +73,15 @@
  <form action="signInCheck" method="post">
 	<table>  
 	 	<tr> 
-	 		<td>아이디 : <input type="email" name="id" required="required"></td>
-       		<td rowspan="2"><button type="submit" class="w-btn w-btn-blue">로그인</button></td>
+	        <th> <input type="email" name="id" placeholder="아이디(이메일형식)" required="required"></td>
+       		
 	 	</tr>
 	 	<tr> 
-	 		<td>비밀번호 : <input type="password" name="password" required="required"></td>
+	 		<th><input type="password" name="password" placeholder="비밀번호" required="required"></td>
 	 	</tr>
-	 	
+	 	<tr>
+	 		<td><button type="submit" class="w-btn w-btn-blue" style="width: 100%;">로그인</button></td>
+	 	</tr>
 	 	<tr>
 	 		<td>
 	 			<!--  -->
@@ -86,7 +94,6 @@
 					<div class="g_id_signin" data-type="standard" data-theme="filled_blue" data-text="signin" 	data-size="medium"></div>
 					
 					<script>
-					
 						let tokenId;
 						function signOut(){
 							google.accounts.id.revoke(tokenId, done => {
@@ -138,17 +145,16 @@
 						};
 					</script>
 			</td>
-			<td>
-	 			<a href="searchId">아이디 찾기</a>
-	 		</td>
-	 		<td>
-	 			<a href="searchPassword">비밀번호 찾기</a>
-	 		</td>
 	 	</tr>
+	 	<tr>
+	      	<td>
+	          <a href="searchId">아이디 찾기</a>
+	          <a href="searchPassword">비밀번호 찾기</a>
+	        </td>
+    	</tr>
 	</table>
 </form>
- </div>
-	
+</div>
 	<c:if test="${not empty msg }">
 		<script type="text/javascript">
 			alert('${msg}');
