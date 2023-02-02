@@ -100,22 +100,31 @@
       	</form>
       	</div>
       	<div id="comment">
-      	<form action="commentWrite" method="POST">
-      	<input type="hidden" name="num" value="${board.num}">
-      		<table id="commentTb" class="commentWrite">
-      			<tr>
-      				<td>닉네임</td>
-      				<td><input type="text" name="userName"></td>
-      				<td>내용</td>
-      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
-      				<td rowspan="2" class="commentBtn">
-                		<button class="w-btn w-btn-blue" type="submit">댓글달기</button>
-            		</td>
-      			</tr>
-      		</table>
+	      	<form action="commentWrite" method="POST">
+	      	<input type="hidden" name="num" value="${board.num}">
+	      		<table id="commentTb" class="commentWrite">
+	      			<tr>
+	      				<td>닉네임</td>
+	      				<td><input type="text" name="userName"></td>
+	      				<td>내용</td>
+	      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
+	      				<td rowspan="2" class="commentBtn">
+	                		<button class="w-btn w-btn-blue" type="submit">댓글달기</button>
+	            		</td>
+	      			</tr>
+	      		</table>
+			</form>
 		</div>
-	</form>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
+<script type="text/javascript">
+	function check() {
+		if('${user.id}' == "") {
+			alert('로그인 후 이용해주세요');
+			location.href="signInForm";
+			return false;
+		}
+	}
+</script>
   </body>
   </html>
