@@ -71,8 +71,10 @@ public class ProductController {
 		}
 		if(end != null && end.equals("1")) {
 			end = "<";
+			totalCnt = productService.selectAllNumAuctionByEnd(end);
 		}else if(end != null && end.equals("2")){
 			end = ">";
+			totalCnt = productService.selectAllNumAuctionByEnd(end);
 		}
 		
 		list = productService.selectTargetAuctionByPaging(category, filter, sort, startNum, end);

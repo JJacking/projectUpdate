@@ -71,6 +71,13 @@ public class ProductDAO {
 		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuction");
 	}
 	
+	public int selectAllNumAuctionByEnd(String end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+		String date = sdf.format(new Date());
+		Object[] array = {end,date};
+		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuctionByEnd",array);
+	}
+	
 	public int selectAllNumAuctionByCategory(String category) {
 		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuctionByCategory", category);
 	}

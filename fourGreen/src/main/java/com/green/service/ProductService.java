@@ -19,6 +19,10 @@ public class ProductService {
 		return productDAO.selectAllNumAuction();
 	}
 
+	public int selectAllNumAuctionByEnd(String end) {
+		return productDAO.selectAllNumAuctionByEnd(end);
+	}
+	
 	public int selectAllNumAuctionByCategory(String category) {
 		return productDAO.selectAllNumAuctionByCategory(category);
 	}
