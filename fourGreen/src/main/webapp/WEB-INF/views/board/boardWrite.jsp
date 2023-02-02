@@ -19,22 +19,19 @@
 <body>
 <jsp:include page="../topBar.jsp" />
   <form action="boardWrite" method="post">
-  <input type="hidden" name="command" value="boardWrite">
+  <input type="hidden" name="id" value="${user.id}">
+	<input type="hidden" name="nickName" value="${user.nickname}">
   <div id="boardTb">
-    <table>
-      <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="nickName" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>글제목</th>
-        <td><input type="text" name="title" placeholder="필수" required></td>
-      </tr>
-      <tr>
-        <th>본문</th>
-        <td><textarea rows="15" style="width: 100%;" name="content"></textarea></td>
-      </tr>
-    </table>  
+   		<table>
+			<tr>
+				<th>글제목</th>
+				<td><input type="text" name="title" placeholder="필수" required></td>
+			</tr>
+			<tr>
+				<th>본문</th>
+				<td><textarea rows="15" style="width: 100%;" name="content"></textarea></td>
+			</tr>
+		</table>
       <div class="writeBtn">
           <button type="submit" class="w-btn w-btn-blue">글작성</button>
           <button type="reset" class="w-btn w-btn-blue">다시 작성</button>
