@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<script  src="./resources/js/board.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
@@ -72,7 +73,6 @@
       	<td colspan="6" style="border: white; text-align:center">
       	<c:if test="${not empty user}">
         <button type="button" onclick="location.href='boardUpdate?num=${board.num}'">게시글 수정</button>
-        <%-- <button type="button" onclick="removeCheck('${board.num }')">게시글 삭제</button> --%>
         <button type="button" onclick="removeCheck('${board.num }')">게시글 삭제</button>
       	</c:if>
         <button type="button" onclick="location.href='boardList'">목록 보기</button>
@@ -120,7 +120,6 @@
 		</div>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
-<script  src="./resources/js/board.js"></script>
 <script type="text/javascript">
 	function check() {
 		if('${user.id}' == '') {
@@ -150,7 +149,7 @@
 		
 	}
 	
-	function removeTest(num){
+	function removeCheck(num){
 		 if (confirm("정말 삭제하시겠습니까??") == true){    
 		      location.href='boardDelete?num='+num;
 		  }else{   //취소

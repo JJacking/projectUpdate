@@ -1,17 +1,17 @@
 
 
-function removeCheck(num) {
-alert(num);
-}
+function removeTest(num){
+		 if (confirm("정말 삭제하시겠습니까??") == true){    
+		      location.href='boardDelete?num='+num;
+		  }else{   //취소
+		      return false;
+		  }
+	}
 	
 
 
 function removeComment(cno,num) {
-	  if (confirm("정말 삭제하시겠습니까??") == true){    
-	      location.href='boardDelete?num='+num;
-	  }else{   //취소
-	      return false;
-	  }
+	  
   if (confirm("정말 삭제하시겠습니까??") == true){    
       location.href='commentDelete?cno='+cno+'&num='+num;
   }else{   //취소
