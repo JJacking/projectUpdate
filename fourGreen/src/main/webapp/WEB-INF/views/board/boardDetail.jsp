@@ -70,10 +70,12 @@
         </tr>
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
+     			<c:if test="${not empty user}">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
 		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
 		         	게시글 삭제</button>
+		         </c:if>
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록 보기</button>
         	</td>
         </tr>
@@ -81,13 +83,12 @@
      </div>
      <!-- 댓글 페이지 -->
      <div id="comment" class="commentRead">
-     	<form action="commentUpdate" method="post" id="commentUpdate">
-	     	<input type="hidden" name="comment" value="commentUpdate">
+     	<form action="commentUpdate" method="post">
 	     	<input type="hidden" name="cno" value="${board.num}">
       		<table>
       			<c:forEach items="${lists}" var="comment">
       			<tr>
-      				<td><b>${comment.userName}</b></td>
+      				<td><b>${comment.nickName}</b></td>
 	            <td style="width: 60%;">${comment.reContent}</td>
 	            <td>${comment.reWirteDate}</td>
 	            <td class="commentBtn">
@@ -100,12 +101,12 @@
       	</form>
       	</div>
       	<div id="comment">
-	      	<form action="commentWrite" method="POST">
-	      	<input type="hidden" name="num" value="${board.num}">
+	      	<form action="commentWrite" method="POST" onsubmit="return check()">
+	       	<input type="hidden" name="num" value="${board.num}">
+	      	<input type="hidden" name="userId" value="${user.id}">
+	      	<input type="hidden" name="nickName" value="${user.nickname}">
 	      		<table id="commentTb" class="commentWrite">
 	      			<tr>
-	      				<td>닉네임</td>
-	      				<td><input type="text" name="userName"></td>
 	      				<td>내용</td>
 	      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
 	      				<td rowspan="2" class="commentBtn">
