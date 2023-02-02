@@ -104,7 +104,6 @@ public class BoardController {
 	}
 	
 	@PostMapping("/commentUpdate")
-	@ResponseBody
 	public String commentUpdate(@RequestParam String nickname,@ModelAttribute CommentVO cVo,@RequestParam int num,Model model) {
 		boardService.commentUpdate(cVo);
 		model.addAttribute("num",num);

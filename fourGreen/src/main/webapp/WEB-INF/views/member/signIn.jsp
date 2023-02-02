@@ -98,7 +98,6 @@
 				     data-client_id="1054940879188-tbhtj7bj8gu095tll389nrp294ivhaqv.apps.googleusercontent.com"
 				     data-callback="handleCredentialResponse"
 				     data-login_uri="http://localhost:8085/auction">
-				     <!-- data-ux_mode="redirect" -->
 					</div>
 					<div class="g_id_signin" data-type="standard" data-theme="filled_blue" data-text="signin_with" data-width=400 data-size=large></div>
 					
