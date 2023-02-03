@@ -14,10 +14,6 @@
 	<input type="hidden" name="id" value="${user.id}">
     <table id="boardTb">
       <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="nickName" value="${board.nickName}" required>*필수</td>
-      </tr>
-      <tr>
         <th>글제목</th>
         <td><input type="text" name="title" value="${board.title}" required>*필수</td>
       </tr>
