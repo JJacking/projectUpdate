@@ -89,8 +89,8 @@
 					<input type="hidden" id="hiddenId">
 					<input type="hidden" id="sendChk">
 					<input type="button" class="w-btn w-btn-blue" id="overCheckBtn" onclick="overlappingCheck()" value="아이디 중복 체크"/>
-					<input type="hidden" id="sendEmailBtn" onclick="sendEmail()" value="이메일 다시 보내기"/>
-					<input type="hidden" id="emailCheckBtn" onclick="emailChk()" value="인증 확인"/>
+					<input type="hidden" class="w-btn w-btn-blue" id="sendEmailBtn" onclick="sendEmail()" value="이메일 다시 보내기"/>
+					<input type="hidden" class="w-btn w-btn-blue" id="emailCheckBtn" onclick="emailChk()" value="인증 확인"/>
 					<p id="emailCheckForm" style="color:red; display: none;">이메일 인증이 완료되었습니다.</p>
 				</td>
 		
