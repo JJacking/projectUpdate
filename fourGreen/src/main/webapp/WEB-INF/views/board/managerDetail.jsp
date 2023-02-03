@@ -53,5 +53,6 @@
      </div>
      <hr>
 <jsp:include page="../bottomBar.jsp"/>
+<script src="./resources/script/board.js"></script>
   </body>
   </html>

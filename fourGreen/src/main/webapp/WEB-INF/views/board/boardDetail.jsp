@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<script src=".resources/script/board.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
@@ -72,7 +73,7 @@
           	<td colspan="6" style="border: white; text-align:center">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
+		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(num)">
 		         	게시글 삭제</button>
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록 보기</button>
         	</td>
@@ -117,5 +118,6 @@
 	</form>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
+<script src="./resources/script/board.js"></script>
   </body>
   </html>

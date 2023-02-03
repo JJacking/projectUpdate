@@ -70,7 +70,7 @@ padding: 10px;
 			<p><a href="managerWrite">게시글 등록</a></p>
 		</c:if>
 		<c:if test="${not empty user and user.grade ne 0}"> 
-			sdfasdfsdaf
+			
 		</c:if>
 	<hr>
 </div>
