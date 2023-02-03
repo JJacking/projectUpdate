@@ -16,7 +16,7 @@
 <!-- 댓글 -->
 <!-- 댓글불러오기 -->
 	<select id="selectTargetComment" resultType="commentVO" parameterType="int">
-		SELECT * FROM boardComment WHERE num=#{num}
+		SELECT * FROM boardComment WHERE num=#{num} order by cno desc
 	</select>
 		
 <!-- 댓글등록 -->

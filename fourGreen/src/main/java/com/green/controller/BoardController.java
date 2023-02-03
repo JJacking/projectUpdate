@@ -199,8 +199,9 @@ public class BoardController {
 	public String customerBoardList(Model model, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		List<CustomerBoardVO> customer = boardService.selectByName(user.getId());
-		System.out.println(customer.size()+ " / "+ customer.get(0).getTitle());
-		model.addAttribute("customer", customer);
+		if(customer != null) {
+			model.addAttribute("customer", customer);
+		}
 		return "board/customerBoardList";
 	}
 	

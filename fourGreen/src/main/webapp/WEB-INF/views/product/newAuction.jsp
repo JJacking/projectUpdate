@@ -120,6 +120,7 @@
 	let cnt = 1;
 	function add(){
 		if(cnt < 5){
+			cnt = cnt+1;
 			let trTag = document.createElement('tr');
 			let tdTag = document.createElement('td');
 			let inputTag = document.createElement('input');

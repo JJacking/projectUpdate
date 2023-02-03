@@ -31,7 +31,7 @@
         </tr>
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
-		       <button type="button" class="w-btn w-btn-blue" onclick="location.href='customerBoard'">돌아가기</button>
+		       <button type="button" class="w-btn w-btn-blue" onclick="location.href='customerBoardList'">돌아가기</button>
         	</td>
         </tr>
         

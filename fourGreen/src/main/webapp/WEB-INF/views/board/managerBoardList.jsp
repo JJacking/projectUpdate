@@ -56,15 +56,18 @@ padding: 10px;
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
-		<c:forEach items="${manager}" var="manager">
-		<tr>
-			<td>${manager.mgNum}</td>
-			<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
-			<td>${manager.mgName}</td>
-			<td> <fmt:formatDate value="${manager.wirteDate}"/> </td>
-			<td>${manager.readCount}</td>
-		</tr>
+		<c:if test="${empty manager }">
+			<c:forEach items="${manager}" var="manager">
+			<tr>
+				<td>${manager.mgNum}</td>
+				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
+				<td>${manager.mgName}</td>
+				<td> <fmt:formatDate value="${manager.wirteDate}"/> </td>
+				<td>${manager.readCount}</td>
+			</tr>
 		</c:forEach>
+		</c:if>
+		
 		</table>
 		<c:if test="${not empty user and user.grade eq 0}"> 
 			<p><a href="managerWrite">게시글 등록</a></p>
