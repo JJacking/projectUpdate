@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.service.BoardService;
+import com.green.service.ChargePointService;
 import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
 import com.green.vo.CustomerBoardVO;
@@ -27,14 +28,21 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private ChargePointService chargePointService;
 
 	
 	//전체게시판
 	@RequestMapping("/boardList")
-	public String list(Model model) {
-		List<BoardVO> list = boardService.selectAll();
-		model.addAttribute("list", list);
-		return "board/boardList";
+	public String list(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<BoardVO> list = boardService.selectAll();
+			model.addAttribute("list", list);
+			return "board/boardList"; 
+		}
+		return "redirect:/signInForm";
 	}
 	
 	//상세게시판(상세글+댓글불러오기)
@@ -120,10 +128,15 @@ public class BoardController {
 	
 	//관리자게시판(공지사항)
 	@RequestMapping("/managerBoardList")
-	public String manager(Model model) {
-		List<ManagerVO> manager = boardService.selectAllmanager();
-		model.addAttribute("manager", manager);
-		return "board/managerBoardList";
+	public String manager(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<ManagerVO> manager = boardService.selectAllmanager();
+			model.addAttribute("manager", manager);
+			return "board/managerBoardList"; 
+		}
+		return "redirect:/signInForm";
+		
 	}
 	
 	//관리자상세게시판(상세글)
@@ -172,16 +185,22 @@ public class BoardController {
 	
 	//고객센터메인보드
 	@RequestMapping("/customerBoard")
-	public String customer(Model model) {
-		List<ManagerVO> manager = boardService.selectAllmanager();
-		model.addAttribute("manager", manager);
-		return "board/customerBoard";
+	public String customer(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<ManagerVO> manager = boardService.selectAllmanager();
+			model.addAttribute("manager", manager);
+			return "board/customerBoard"; 
+		}
+		return "redirect:/signInForm";
+		
 	}
 	
 	//고객센터 문의접수현황판
 	@RequestMapping("/customerBoardList")
-	public String customerBoardList(Model model, @RequestParam String id) {
-		List<CustomerBoardVO> customer = boardService.selectByName(id);
+	public String customerBoardList(Model model, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		List<CustomerBoardVO> customer = boardService.selectByName(user.getId());
 		System.out.println(customer.size()+ " / "+ customer.get(0).getTitle());
 		model.addAttribute("customer", customer);
 		return "board/customerBoardList";

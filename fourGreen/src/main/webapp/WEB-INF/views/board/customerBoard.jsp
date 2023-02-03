@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 		.main{
 			width: 70%;
@@ -87,23 +88,22 @@
     list-style: none;
     font-size: 20px;
   }
-	.rightCenter{
-    margin-left: 0;
-	width: 40%;
-  }
 
-  .rightCenter{
+  .Center{
+  	clear: both;
+  	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
     float: left;
-    width: 80%;
+    width: 1000px;
     text-align: center;
     box-sizing: border-box;
-   
   }
-  .rightCenter ul{
+  .Center ul{
     list-style: none;
    
   }
-  .rightCenter li{
+  .Center li{
     background-color: rgb(230, 230, 230);
     display: inline-block;
     padding:20px;
@@ -111,11 +111,14 @@
     color: rgba(108, 108, 108, 0.781);
   }
   .managerBoard{
-float: left;
-margin-left: 10px;
-width: 40%;
-height: 600px;
-}
+	float: left;
+	margin-left: 10px;
+	width: 40%;
+	height: 600px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	}
+	
 
 .managerBoard table{
 	width: 100%;
@@ -153,22 +156,24 @@ height: 600px;
 	<hr>
 	<div class="menuBar">
 		<ul>
-			<li><a href="#">자주묻는질문</a></li>
+			<li><a href="#scroll1" class="scroll_move">자주묻는질문</a></li>
 			<li><a href="customerWrite">문의하기</a></li>
 			<li><a href="managerBoardList">공지사항</a></li>
-			<li><a href="customerBoardList?id=${user.id }">내 문의사항</a><li>
+			<li><a href="customerBoardList">내 문의사항</a></li>
 		</ul>
 	</div>
 	<div class="leftCenter">
       <ul>
         <li style="float: left;"><img src="./resources/img/logo3.png"></li>
+      </ul>
+      <ul style="margin-left: 100px;">
         <li>031-000-0000</li>
         <li>평일 : 09:00 ~ 18:00</li>
         <li>점심 : 12:00 ~ 13:00</li>
         <li style="font-size: 13px;">상담직원의 보호를 위해 통화내용은 녹음됩니다.</li>
       </ul>
     </div>	
-    <div class="rightCenter">
+    <div class="Center">
       <ul>
         <li>자주 묻는 질문에서<br> 먼저 찾아주세요</li>
         <li style="background-color: white; font-size: 50px; color: rgb(230, 230, 230);" >></li>
@@ -180,7 +185,7 @@ height: 600px;
  	<div class="clear">
  		<br>
    	</div>
-	<div class="top5">
+	<div class="top5" id="scroll1">
 		<h2>자주 묻는 질문 TOP 5</h2>
 		<ul>
 			<li><a href="#">경매 수수료 안내</a></li>
@@ -213,7 +218,16 @@ height: 600px;
  <div class="clear">
  	<br>
  </div>
- 
   <jsp:include page="../bottomBar.jsp"/>
+<script type="text/javascript">
+$(document).ready(function($) {
+    $(".scroll_move").click(function(event){
+        console.log(".scroll_move");         
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+    });
+
+});
+</script>
 </body>
 </html>
