@@ -4,20 +4,19 @@ button {
   text-align: center;
   background: whitesmoke;
   display: table-cell;
-  padding: 20px;
-  margin: 20px;
 }
 .w-btn {
     position: relative;
     border: none;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 15px;
     font-family: "paybooc-Light", sans-serif;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     font-weight: 600;
     transition: 0.25s;
+    float: right;
 }
 
 .w-btn-outline {
@@ -40,6 +39,7 @@ button {
 .w-btn-blue {
     background-color: #6aafe6;
     color: #d4dfe6;
+    float: left;
 }
 
 .w-btn-blue-outline {
@@ -98,28 +98,24 @@ height: 150px;
 }
 
 #boardTb{
-	margin: 10%;
-	width: 70%;
+	margin: 10px;
 	border-collapse: collapse;
 	font-size:15px;
 	line-height: 30px;
 }
 #boardTb table{
-  width: 100%;
   border-collapse: collapse;
 }
 #boardTb th,td{
   text-align: left;
   border: 1px solid #CE6D39;
   padding: 5px;
-
 }
 
 #boardTb th{
-
-border: 0px;
-background-color: #FFEEE4;
-padding: 10px;
+	border: 0px;
+	background-color: #FFEEE4;
+	padding: 10px;
 }
 
 #boardTb td{

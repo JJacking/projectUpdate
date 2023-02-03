@@ -18,6 +18,10 @@ h2{
 	text-align: left;
 }
 
+hr{
+	margin: 10px;
+}
+
 .slider{
   width: 100%;
   height: 500px;
@@ -84,61 +88,64 @@ ul.imgs li{
 }
 
 .main{
-width: 1000px;
-height: 1500px;
-margin-left: 20%;
-margin-right: 20%;
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .img-board{
-text-align: left;
-margin-top: 30px;
-margin-left: 30px;
-
-height: 800px;
+	text-align: left;
+	margin-top: 20px;
+	height: 600px;
 }
-.img-board ul{
 
-list-style: none;
+.img-board ul{
+	list-style: none;
 }
 
 .img-board li{
-display: inline-block;
-border: 1px solid lightgray;
-margin-right: 30px;
-margin-bottom: 30px;
+	display: inline-block;
+	border: 1px solid lightgray;
+	margin-right: 30px;
+	margin-bottom: 30px;
 }
 
 .img-board li img{
-width: 150px;
-height: 200px;
-margin-bottom: 50px;
-margin-right: 20px;
-margin: auto;
-padding: auto;
+	width: 150px;
+	height: 200px;
+	margin-bottom: 50px;
+	margin-right: 20px;
+	margin: auto;
+	padding: auto;
 }
 
 .popular-board{
-float: left;
-margin-left: 10px;
-width: 40%;
-height: 600px;
+	float: left;
+	margin-left: 50px;
+	width: 500px;
+	height: 600px;
 }
 .new-board{
-float: right;
-margin-right: 20px;
-width: 40%;
-height: 600px;
+	float: right;
+	margin-left: 30px;
+	width: 400px;
+	height: 600px;
 }
+
+
+.mainBoard2{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 400px;
+}
+
 .managerBoard{
-float: left;
-margin-left: 10px;
-width: 40%;
-height: 600px;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .managerBoard table{
-	width: 100%;
+	width: 400px;
 	border-collapse: collapse;
 	font-size:12px;
 	line-height: 24px;
@@ -165,11 +172,9 @@ height: 600px;
 
 
 .userBoard{
-float: right;
-margin-right: 20px;
-width: 40%;
-height: 600px;
-text-align: center;
+	float: right;
+	width: 400px;
+	text-align: center;
 }
 
 .userBoard > table{
@@ -222,104 +227,103 @@ text-align: center;
 </header>
 <hr>
 <div class="main">
-  <div class="img-board">
-    <div class="popular-board">
-      <h2>인기</h2>
-      <hr>
-      <br>
-      <ul>
-        <li>
-          <img src="resources/img/XL.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex01.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex02.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex03.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-      </ul>
-    </div>
-    <div class="new-board">
-      <h2>NEW</h2>
-      <hr>
-      <br>
-      <ul>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-      </ul>
-    </div>
+	<div class="img-board">
+    	<div class="popular-board">
+	 		<h2>인기</h2>
+			<hr>
+			<ul class="poBoardCon">
+			  <li>
+			    <img src="resources/img/XL.jpg">
+			    <h4>상품명</h4>
+			    <p>가격</p>
+			  </li>
+			  <li>
+			    <img src="resources/img/ex01.jpg">
+			    <h4>상품명</h4>
+			    <p>가격</p>
+			  </li>
+			  <li>
+			    <img src="resources/img/ex02.jpg">
+			    <h4>상품명</h4>
+			    <p>가격</p>
+			  </li>
+			  <li>
+			    <img src="resources/img/ex03.jpg">
+			    <h4>상품명</h4>
+			    <p>가격</p>
+			  </li>
+			</ul>
+		</div>
+	    <div class="new-board">
+	      <h2>NEW</h2>
+	      <hr>
+	      <br>
+	      <ul>
+	        <li>
+	          <img src="resources/img/ex04.jpg">
+	          <h4>상품명</h4>
+	          <p>가격</p>
+	        </li>
+	        <li>
+	          <img src="resources/img/ex04.jpg">
+	          <h4>상품명</h4>
+	          <p>가격</p>
+	        </li>
+	        <li>
+	          <img src="resources/img/ex05.jpg">
+	          <h4>상품명</h4>
+	          <p>가격</p>
+	        </li>
+	        <li>
+	          <img src="resources/img/ex05.jpg">
+	          <h4>상품명</h4>
+	          <p>가격</p>
+	        </li>
+	      </ul>
+	    </div>
   </div>
   <hr>
-  <br>
-  <br>
-  <div class="managerBoard">
-    <h2>공지사항</h2>
-    <hr>
-    <br>
-    <table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
-		<c:forEach items="${manager}" var="manager">
+  <div class="mainBoard2">
+	  <div class="managerBoard">
+	    <h2>공지사항</h2>
+	    <hr>
+	    <br>
+	    <table>
 			<tr>
-				<td>${manager.mgNum}</td>
-				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
-				<td>${manager.mgName}</td>
-				<td>${manager.wirteDate}</td>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
 			</tr>
-		</c:forEach>
-	</table>
-  </div>
-  <div class="userBoard">
-    <h2>자유게시판</h2>
-    <hr>
-    <br>
-      <table class="List">
-        <tr>
-          <th>번호</th>
-          <th colspan="3">제목</th>
-          <th>작성자</th>
-        </tr>
-        <c:forEach items="${list}" var="board">
-          <tr>
-            <td>${board.num}</td>
-            <td colspan="3"><a href="boardDetail?num=${board.num}">${board.title}</a></td>
-            <td>${board.nickName}</td>
-          </tr>
-        </c:forEach>
-      </table>
+			<c:forEach items="${manager}" var="manager">
+				<tr>
+					<td>${manager.mgNum}</td>
+					<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
+					<td>${manager.mgName}</td>
+					<td>${manager.wirteDate}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	  </div>
+	  <div class="userBoard">
+	    <h2>자유게시판</h2>
+	    <hr>
+	    <br>
+	      <table class="List">
+	        <tr>
+	          <th>번호</th>
+	          <th colspan="3">제목</th>
+	          <th>작성자</th>
+	        </tr>
+	        <c:forEach items="${list}" var="board">
+	          <tr>
+	            <td>${board.num}</td>
+	            <td colspan="3"><a href="boardDetail?num=${board.num}">${board.title}</a></td>
+	            <td>${board.nickName}</td>
+	          </tr>
+	        </c:forEach>
+	      </table>
+	  </div>
   </div>
 </div>
 <hr>

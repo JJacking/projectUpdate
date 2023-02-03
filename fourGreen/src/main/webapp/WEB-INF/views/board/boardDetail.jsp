@@ -7,51 +7,116 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<!-- <link type="text/css" rel="stylesheet" href="./resources/style/board.css"> -->
 <script src="./resources/js/board.js"></script>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-	#comment{
-	  margin: 10%;
-	  width: 70%;
-	  border-collapse: collapse;
-	  font-size:15px;
-	}
-	#comment table{
-	  width: 100%;
+#boardDetail{
+	width: 1200px;
+	margin: 0px auto;
+}
 	
-	}
-	#comment th,td{
-	  text-align: left;
-	}
-	
-	#comment td{
-	  border: 0;
-      border-radius: 10px;
-	  line-height: 30px;
-	}
-  	.commentBtn{
-      border: 1px solid orange;
-      text-align: center;
-    }
-    .commentRead{
-      border: 1px solid white;
-      background-color: #FFEEE4;
-      border-radius: 10px;
-    }
-    .commentWrite{
-      margin-top: 0;
-      border: 1px solid orange;
-      text-align: center;
-    }
-  
+#boardTb{
+	margin: 10px;
+	border-collapse: collapse;
+	font-size:15px;
+	line-height: 30px;
+}
+
+#boardTb table{
+  border-collapse: collapse;
+}
+#boardTb th,td{
+  border: 1px solid #CE6D39;
+  padding: 5px;
+}
+
+#boardTb th{
+	border: 0px;
+	background-color: #FFEEE4;
+	padding: 10px;
+}
+
+#boardTb td{
+  line-height: 60px;
+}
+
+#boardTb a{
+  color: black;
+  text-decoration: none;
+}
+
+#boardTb a:hover{
+  text-decoration: underline;
+  color: #FDD692;
+}
+
+#comment{
+	margin: 0 auto;
+	border-collapse: collapse;
+	font-size:15px;
+}
+.writenBoard{
+	border: 1px dotted black; 
+	height: 50px;
+}
+
+
+#comment{
+	margin: 10px;
+}
+#commentList{
+	border-bottom: 2px black; 
+	margin: 5px
+}
+
+.commentDetail{
+	float: right;
+
+}
+
+.commentButton{
+	font-size: 10px;
+	font-weight: bold;
+	position: relative;
+    top: 5px;
+    margin: 5px;
+    float: right;
+    border: 0px;
+}
+
+
+
+#comment table{
+  width: 1200px;
+}
+
+#comment td{
+	border: 0;
+	border-radius: 10px;
+	line-height: 15px;
+}
+/* .commentBtn{
+   border: 1px solid orange;
+   text-align: center;
+} */
+.commentRead{
+	border: 1px solid white;
+	background-color: #FFEEE4;
+	border-radius: 10px;
+}
+.commentWrite{
+	margin-top: 0;
+	border: 1px solid orange;
+	text-align: center;
+}
+
 </style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
+<div id="boardDetail">
     <div id="boardTb">
-      <h2>게시글 리스트</h2>
-      <br>
       <table>
         <tr>
           <th>제목</th>
@@ -66,11 +131,10 @@
           <td>${board.readCount}</td>
         </tr>
         <tr>
-          <th>내용</th>
-          <td colspan="5" style="height: 300px;">${board.content}</td>
+          <td colspan="6"">${board.content}</td>
         </tr>
         <tr>
-          	<td colspan="6" style="border: white; text-align:center">
+          	<td colspan="6">
      			<c:if test="${not empty user and user.id eq board.id}">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
@@ -83,46 +147,43 @@
       </table>
      </div>
      <!-- 댓글 페이지 -->
-     <div id="comment" class="commentRead">
+	<div id="comment" class="commentRead">
      	<form action="commentUpdate" method="post">
 	     	<input type="hidden" name="cno" value="${board.num}">
-      		<table style="border-collapse: collapse;">
       			<c:forEach items="${lists}" var="comment">
-	      			<tr style="border: 1px dotted black; height: 50px;">
-	      				<td><b>${comment.nickName}</b></td>
-		            	<td>${comment.reWirteDate}</td>
-	      			</tr>
-	      			<tr style="border-bottom: 2px solid black; height: 100px;" >
-		            	<td style="width: 60%;">${comment.reContent}</td>
-			            <c:if test="${not empty user and user.id eq comment.userId }">
-				            <td class="commentBtn">
-				              <button type="button" class="w-btn w-btn-blue" onclick="commentUpdate()">수정</button><br>
-				              <button type="button" class="w-btn w-btn-blue" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
-				            </td>
-			            </c:if>
-	      			</tr>
-      			
+	      			<div id="commentList">
+	      				<b>${comment.nickName}</b>
+	      				${comment.reContent}
+	      				<div class="commentDetail">
+		      				<c:if test="${not empty user and user.id eq comment.userId }">
+					            <div class="commentBtn">
+					              <button type="button" class="commentButton" onclick="commentUpdate()">수정</button><br>
+					              <button type="button" class="commentButton" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
+					            </div>
+				            </c:if>
+		      				${comment.reWirteDate}
+	      				</div>
+	      			</div>
       			</c:forEach>
-      		</table>
       	</form>
-      	</div>
-      	<div id="comment">
-	      	<form action="commentWrite" method="POST" onsubmit="return check()">
-	       	<input type="hidden" name="num" value="${board.num}">
-	      	<input type="hidden" name="userId" value="${user.id}">
-	      	<input type="hidden" name="nickName" value="${user.nickname}">
-	      		<table id="commentTb" class="commentWrite">
-	      			<tr>
-	      				<td>내용</td>
-	      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
-	      				<td rowspan="2" class="commentBtn">
-	                		<button class="w-btn w-btn-blue" type="submit">댓글달기</button>
-	            		</td>
-	      			</tr>
-	      		</table>
-			</form>
-		</div>
-	<hr>
+   	</div>
+    <div id="comment">
+      	<form action="commentWrite" method="POST" onsubmit="return check()">
+       	<input type="hidden" name="num" value="${board.num}">
+      	<input type="hidden" name="userId" value="${user.id}">
+      	<input type="hidden" name="nickName" value="${user.nickname}">
+      		<table id="commentTb" class="commentWrite">
+      			<tr>
+      				<td>내용</td>
+      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
+      				<td rowspan="2" class="commentBtn">
+                		<button class="w-btn w-btn-blue" type="submit">댓글달기</button>
+            		</td>
+      			</tr>
+      		</table>
+		</form>
+	</div>
+</div>
 <jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function check() {
