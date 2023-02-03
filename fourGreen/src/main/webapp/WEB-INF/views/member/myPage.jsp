@@ -49,6 +49,14 @@
 		</c:if>
 		<tr>
 			<td>
+				관심 목록
+			</td>
+			<td>
+				<button type="button" class="w-btn w-btn-blue" onclick="location.href='dibsOnList'">관심 목록</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
 				보유 포인트
 			</td>
 			<td>
