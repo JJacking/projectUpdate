@@ -104,8 +104,8 @@ public class BoardDAO {
 	}
 	
 	//고객센터상세게시판 전체
-	public List<CustomerBoardVO> selectByName(String name){
-		return sqlSession.selectOne("mybatis.mapper.customerBoard.selectAllcustomer",name);
+	public List<CustomerBoardVO> selectByName(String id){
+		return sqlSession.selectList("mybatis.mapper.customerBoard.selectAllcustomer",id);
 	}
 	
 	//문의 상세게시판

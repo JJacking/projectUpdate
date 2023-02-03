@@ -76,7 +76,7 @@ commit;
 
  CREATE table customerBoard(
     num number(20) PRIMARY KEY,
-    name VARCHAR2(30),
+    id VARCHAR2(30),
     title VARCHAR2(30),
     content VARCHAR2(1000),
     wirteDate DATE default sysdate
@@ -85,7 +85,7 @@ commit;
 create SEQUENCE customerBoard_seq
 NOCACHE;
 
-insert into customerBoard(num, name, title, content)
-VALUES(managerTbl_seq.NEXTVAL,'홍길동','어떤글을 써야 하나요?','문의사항 게시판입니다.');
+insert into customerBoard(num, id, title, content)
+VALUES(managerTbl_seq.NEXTVAL,'관리자','어떤글을 써야 하나요?','문의사항 게시판입니다.');
 
 commit;

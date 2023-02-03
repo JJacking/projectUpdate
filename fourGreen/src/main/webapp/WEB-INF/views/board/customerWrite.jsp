@@ -21,12 +21,9 @@
 <jsp:include page="../topBar.jsp" />
   <form action="customerWrite" method="post">
   <input type="hidden" name="command" value="customerWrite">
+  <input type="hidden" name="id" value="${user.id}">
     <div id="boardTb">
     <table>
-      <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="name" placeholder="필수" required></td>
-      </tr>
       <tr>
         <th>글제목</th>
         <td><input type="text" name="title" placeholder="필수" required></td>

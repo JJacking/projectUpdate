@@ -119,7 +119,7 @@
             <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>
-   <c:if test="${not empty user }">
+   <c:if test="${not empty user}">
         <div class="mypage">
       	<ul>
       		<li><a href="signOut">로그아웃</a></li>

@@ -20,8 +20,8 @@
           <td colspan="5">${cVo.title}</td>
         </tr>
         <tr>
-          <th>닉네임</th>
-          <td>${cVo.name}</td>
+          <th>아이디</th>
+          <td>${cVo.id}</td>
           <th>작성일</th>
           <td>${cVo.wirteDate}</td>
         </tr>

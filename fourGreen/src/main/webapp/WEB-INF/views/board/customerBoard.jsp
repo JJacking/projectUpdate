@@ -156,7 +156,7 @@ height: 600px;
 			<li><a href="#">자주묻는질문</a></li>
 			<li><a href="customerWrite">문의하기</a></li>
 			<li><a href="managerBoardList">공지사항</a></li>
-			<li><a href="customerBoardList">내 문의사항</a><li>
+			<li><a href="customerBoardList?id=${user.id }">내 문의사항</a><li>
 		</ul>
 	</div>
 	<div class="leftCenter">

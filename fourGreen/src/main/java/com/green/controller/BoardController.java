@@ -2,6 +2,8 @@ package com.green.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +20,14 @@ import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
 import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
+import com.green.vo.MemberVO;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+
 	
 	//전체게시판
 	@RequestMapping("/boardList")
@@ -176,16 +180,18 @@ public class BoardController {
 	
 	//고객센터 문의접수현황판
 	@RequestMapping("/customerBoardList")
-	public String customerBoardList(Model model, @RequestParam String name) {
-		List<CustomerBoardVO> customer = boardService.selectByName(name);
+	public String customerBoardList(Model model, @RequestParam String id) {
+		List<CustomerBoardVO> customer = boardService.selectByName(id);
+		System.out.println(customer.size()+ " / "+ customer.get(0).getTitle());
 		model.addAttribute("customer", customer);
 		return "board/customerBoardList";
 	}
 	
-	//고객센터 글쓰기(상세글)
+	//고객센터 글보기(상세글)
 	@RequestMapping("/customerDetail")
-	public String customerDetail(@RequestParam int num) {
+	public String customerDetail(@RequestParam int num,Model model) {
 		CustomerBoardVO cVo = boardService.selectByNumber(num);
+		model.addAttribute("cVo",cVo);
 		return "board/customerDetail";
 	}
 	
@@ -199,7 +205,8 @@ public class BoardController {
 	@PostMapping("/customerWrite")
 	public String customerWrite2(@ModelAttribute CustomerBoardVO cVo) {
 		boardService.customerWrite(cVo);
-		return "redirect:/customerboard";
+		
+		return "redirect:/customerBoard";
 	}
 	
 	

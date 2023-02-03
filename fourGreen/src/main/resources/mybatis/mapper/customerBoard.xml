@@ -9,13 +9,13 @@
 	</sql>
 
 <!-- 전체조회 -->
-	<select id="selectAllcustomer" resultType="customerBoardVO"> 
+	<select id="selectAllcustomer" parameterType="String" resultType="customerBoardVO"> 
 		<include refid="selectAllcustboard"/>
-		 ORDER BY name DESC
+		 WHERE id=#{id} 
 	</select>
 	
 <!-- 게시글 상세정보 -->
-	<select id="selectByName" resultType="customerBoardVO" parameterType="String">
+	<select id="selectByNumber" resultType="customerBoardVO" parameterType="int">
 		<include refid="selectAllcustboard"/>
 		WHERE num=#{num}
 	</select>
@@ -27,8 +27,8 @@
 	
 <!-- 게시글 등록 -->
 	<insert id="customerWrite" parameterType="customerBoardVO">
-		INSERT INTO customerBoard(num, name, title, content)
-		VALUES(customerBoard_seq.nextval,#{name},#{title},#{content})
+		INSERT INTO customerBoard(num, id, title, content)
+		VALUES(customerBoard_seq.nextval,#{id},#{title},#{content})
 	</insert>
 	
 </mapper>

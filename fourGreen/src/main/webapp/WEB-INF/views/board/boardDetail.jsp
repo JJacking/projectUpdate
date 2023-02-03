@@ -11,8 +11,8 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
-	  margin: 10%;
-	  width: 70%;
+	  margin: 0 auto;
+	  width: 800px;
 	  border-collapse: collapse;
 	  font-size:15px;
 	}

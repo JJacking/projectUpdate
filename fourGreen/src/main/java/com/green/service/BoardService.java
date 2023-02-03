@@ -101,8 +101,8 @@ public class BoardService {
 	}
 	
 	//문의글읽어오기
-	public List<CustomerBoardVO> selectByName(String name){
-		return boardDao.selectByName(name); 
+	public List<CustomerBoardVO> selectByName(String id){
+		return boardDao.selectByName(id); 
 	}
 	
 	//문의글상세보기

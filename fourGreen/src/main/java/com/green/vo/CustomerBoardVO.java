@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class CustomerBoardVO {
 	private int num;
-    private String name;
+    private String id;
     private String title;
     private String content;
     private Timestamp wirteDate;
@@ -17,12 +17,15 @@ public class CustomerBoardVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getName() {
-		return name;
+	
+	public String getId() {
+		return id;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setId(String id) {
+		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}

@@ -55,14 +55,15 @@ padding: 10px;
 			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
-		<c:forEach items="${customer}" var="customer">
-		<tr>
-			<td>${customer.num}</td>
-			<td><a href="customerDetail?num=${customer.num}">${customer.title}</a></td>
-			<td>${customer.name}</td>
-			<td> <fmt:formatDate value="${customer.wirteDate}"/> </td>
-		</tr>
-		</c:forEach>
+			<c:forEach items="${customer}" var="customer">
+			<tr>
+				<td>${customer.num}</td>
+				<td><a href="customerDetail?num=${customer.num}">${customer.title}</a></td>
+				<td>${customer.id}</td>
+				<td> <fmt:formatDate value="${customer.wirteDate}"/> </td>
+			</tr>
+			</c:forEach>
+		
 		</table>
 			<p><a href="customerWrite">문의 쓰기</a></p>
 		
