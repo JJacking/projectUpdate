@@ -146,6 +146,9 @@ public class MemberDAO {
 		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnList",id);
 	}
 	
+	public int deleteDibsOn(int idx) {
+		return sqlSession.insert("mybatis.mapper.member.deleteDibsOn", idx);
+	}
 }
 
 

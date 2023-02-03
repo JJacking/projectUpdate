@@ -78,4 +78,7 @@ public class SignInService {
 		return memberDAO.getDibsOnList(id);
 	}
 
+	public int deleteDibsOn(int idx) {
+		return memberDAO.deleteDibsOn(idx);
+	}
 }

@@ -213,7 +213,7 @@ public class SignInController {
 	}
 	
 	@GetMapping("/insertDibsOn")
-	public String dibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title, RedirectAttributes attributes) {
+	public String insertDibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title, RedirectAttributes attributes) {
 		attributes.addAttribute("num",num);
 		int result = signInService.insertDibsOn(num,id,title);
 		if(result == 1) {
@@ -230,6 +230,19 @@ public class SignInController {
 		MemberVO member = (MemberVO)session.getAttribute("user");
 		model.addAttribute("dibsOnList",signInService.getDibsOnList(member.getId()));
 		return "member/dibsOnList";
+	}
+	
+	@PostMapping("/deleteDibsOn")
+	@ResponseBody
+	public String deleteDibsOn(@RequestParam int idx) {
+		int result = signInService.deleteDibsOn(idx);
+		String data = "";
+		if(result == 1) {
+			data = "1";
+		}else {
+			data = "0";
+		}
+		return data;
 	}
 	
 }

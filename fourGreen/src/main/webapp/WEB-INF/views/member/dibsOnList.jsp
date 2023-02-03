@@ -11,7 +11,7 @@
 <table>
 <jsp:include page="../topBar.jsp" />
 	<c:forEach var="dibsOn" items="${dibsOnList }" varStatus="d">
-		<tr>
+		<tr id="dibsOn${d.index }">
 			<td>
 				${d.count }
 				<input type="hidden" id="" value="">
@@ -20,11 +20,31 @@
 				${dibsOn.title }
 			</td>
 			<td>
-				<button type="button" onclick="delete('${d.index}','${dibsOn.idx }')">삭제</button>
+				<button type="button" onclick="deleteDibsOn('${d.index }','${dibsOn.idx }')">삭제</button>
 			</td>
 		</tr>		
 	</c:forEach>
 </table>
 <jsp:include page="../bottomBar.jsp"/>
+<script type="text/javascript">
+ function deleteDibsOn(num,idx){
+	 $.ajax({
+		 type:"post",
+		 url:"deleteDibsOn",
+		 datatype:"text",
+		 data:{
+			 idx:idx
+		 },
+		 success:function(data){
+			 if(data == '1'){
+				 document.getElementById('dibsOn'+num).remove();
+				 alert('관심목록에서 삭제되었습니다.');
+			 }else {
+				 alert('관심목록 삭제에 실패했습니다. 다시 시도해주세요.');
+			 }
+		 }
+	 });
+ }
+</script>
 </body>
 </html>

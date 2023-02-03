@@ -114,4 +114,8 @@
 		select * from dibsOn where id=#{id}
 	</select>
 	
+	<delete id="deleteDibsOn" parameterType="int">
+		delete from dibsOn where idx=#{idx}		
+	</delete>
+	
 </mapper>
