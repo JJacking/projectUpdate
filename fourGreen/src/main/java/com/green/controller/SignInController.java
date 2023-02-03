@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.SHA256;
 import com.green.service.SignInService;
@@ -209,6 +210,19 @@ public class SignInController {
 			return "redirect:/signIn";
 		}
 		return "member/errorPage";
+	}
+	
+	@GetMapping("/insertDibsOn")
+	public String dibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title, RedirectAttributes attributes) {
+		attributes.addAttribute("num",num);
+		int result = signInService.insertDibsOn(num,id,title);
+		if(result == 1) {
+			attributes.addAttribute("dibsOnMsg","관심목록에 추가되었습니다.");
+			return "redirect:/product/selectOne";
+		}else {
+			attributes.addAttribute("dibsOnMsg","관심목록 추가에 실패했습니다.");
+			return "redirect:/product/selectOne";
+		}
 	}
 	
 	@GetMapping("/dibsOnList")

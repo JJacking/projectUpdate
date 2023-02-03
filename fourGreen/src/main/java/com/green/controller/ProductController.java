@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.ChargePointService;
 import com.green.service.ProductService;
-import com.green.service.SignInService;
 import com.green.vo.CustomerVO;
 import com.green.vo.MemberVO;
 import com.green.vo.ProductVO;
@@ -100,14 +99,15 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping("/selectOne")
-	public String selectOne(@RequestParam int num, Model model) {
+	@RequestMapping("/product/selectOne")
+	public String selectOne(@RequestParam int num, Model model, @RequestParam(required = false) String dibsOnMsg) {
 		productService.readCount(num);
 		ProductVO dto = productService.selectOne(num);
+		model.addAttribute("dibsOnMsg",dibsOnMsg);
 		model.addAttribute("list",productService.selectAllNumAuction());
 		model.addAttribute("product",dto);
 		if(System.currentTimeMillis()-dto.getRegdate().getTime()>0) {
-			return "endPage";  
+			return "product/endPage";  
 		}
 		return "product/productDetail";  
 	}

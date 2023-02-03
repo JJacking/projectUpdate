@@ -69,12 +69,13 @@ public class SignInService {
 	public void withdrawDeleteCharge(String id) {
 		memberDAO.withdrawDeleteCharge(id);
 	}
+	
+	public int insertDibsOn(int num, String id, String title) {
+		return memberDAO.insertDibsOn(num, id, title);
+	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {
 		return memberDAO.getDibsOnList(id);
 	}
 
-	public List<ChargeVO> json(String sort, String filter){
-		return memberDAO.json(sort, filter);
-	}
 }

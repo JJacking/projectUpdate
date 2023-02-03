@@ -136,14 +136,14 @@ public class MemberDAO {
 	public int getChargeTotalCount() {
 		return sqlSession.selectOne("mybatis.mapper.member.getTotalCount");
 	}
+	
+	public int insertDibsOn(int num, String id, String title) {
+		Object[] array = {num, id};
+		return sqlSession.insert("mybatis.mapper.member.insertDibsOn", array);
+	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {
 		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnList",id);
-	}
-	
-	public List<ChargeVO> json(String sort, String filter){
-		String[] array = {sort,filter};
-		return sqlSession.selectList("mybatis.mapper.member.json",array);
 	}
 	
 }

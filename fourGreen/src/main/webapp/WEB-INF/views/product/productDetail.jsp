@@ -10,46 +10,51 @@
 <body>
 <jsp:include page="../topBar.jsp" />
 <!-- 남은시간 표시 -->
-	<script type="text/javascript">
-		function getTime() {
-			let target = new Date('${product.regdate}');
-			let today = new Date();
-			gap = target - today;
-			let d = Math.floor(gap / (1000 * 60 * 60 * 24)); // 일
-			let h = Math.floor((gap / (1000 * 60 * 60)) % 24); // 시
-		 	let m = Math.floor((gap / (1000 * 60)) % 60); // 분
-		  	let s = Math.floor((gap / 1000) % 60); // 초
-		  	if (gap <= 0) {
-			    location.href='views/product/endPage';
-			    title.innerText = "경매가 마감되었습니다.";
-			    timer.innerText = "";
-			    document.getElementsByClassName('btn')[0].setAttribute('style','display:none');
-			    document.getElementsByClassName('btn')[1].setAttribute('style','display:none');
-			    document.getElementsByClassName('btn')[2].setAttribute('style','display:none');
-		  	} else {
-		    	title.innerText = "마감까지";
-		    	timer.innerText = d+"일 "+h+"시간 "+m+"분 "+s+"초 남았습니다.";
-		  	}
-		}
-		const body = document.querySelector("body");
-		const timer = document.createElement("h3");
-		const title = document.createElement("h3");
-		body.prepend(timer);
-		body.prepend(title);
-		let gap;
-		function gapT(){
-			
-		}
+<script type="text/javascript">
+	function getTime() {
+		let target = new Date('${product.regdate}');
+		let today = new Date();
+		gap = target - today;
+		let d = Math.floor(gap / (1000 * 60 * 60 * 24)); // 일
+		let h = Math.floor((gap / (1000 * 60 * 60)) % 24); // 시
+	 	let m = Math.floor((gap / (1000 * 60)) % 60); // 분
+	  	let s = Math.floor((gap / 1000) % 60); // 초
+	  	if (gap <= 0) {
+		    location.href='views/product/endPage';
+		    title.innerText = "경매가 마감되었습니다.";
+		    timer.innerText = "";
+		    document.getElementsByClassName('btn')[0].setAttribute('style','display:none');
+		    document.getElementsByClassName('btn')[1].setAttribute('style','display:none');
+		    document.getElementsByClassName('btn')[2].setAttribute('style','display:none');
+	  	} else {
+	    	title.innerText = "마감까지";
+	    	timer.innerText = d+"일 "+h+"시간 "+m+"분 "+s+"초 남았습니다.";
+	  	}
+	}
+	const body = document.querySelector("body");
+	const timer = document.createElement("h3");
+	const title = document.createElement("h3");
+	body.prepend(timer);
+	body.prepend(title);
+	let gap;
+	function gapT(){
+		
+	}
 
-		function init() {
-		  getTime();
-		  setInterval(getTime, 1000);
-		}
-		init();
+	function init() {
+	  getTime();
+	  setInterval(getTime, 1000);
+	}
+	init();
+</script>
+<c:if test="${not empty dibsOnMsg }">
+	<script type="text/javascript">
+		alert('${dibsOnMsg }');
 	</script>
+</c:if>
 
 <form action="biding" method="POST" onsubmit="return check()">
-<input type="hidden" name="id" value="test@gmail.com">
+<input type="hidden" name="id" value="${user.id }">
 <input type="hidden" name="num" value="${product.num }">
 	<div>
 		<div>
@@ -140,7 +145,7 @@
 	</div>
 	<div>		
 		<button type="submit" id="btn1" class="btn">입찰하기</button>
-		<button type="button" class="btn" onclick="location.href='??'">관심물품 등록하기</button>
+		<button type="button" class="btn" onclick="location.href='insertDibsOn?num=${product.num}&id=${user.id }&title=${product.title }'">관심물품 등록하기</button>
 		<button type="button" class="btn" onclick="location.href='??'">문의하기</button>
 	</div>
 	<input type="image">

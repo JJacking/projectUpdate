@@ -106,6 +106,10 @@
 		select count(*) from chargeTbl
 	</select>
 	
+	<insert id="insertDibsOn" parameterType="java.util.Arrays">
+		insert into dibsOn values(dibsOn_seq.nextval,#{array[0]},#{array[1]},#array[2])
+	</insert>
+	
 	<select id="getDibsOnById" parameterType="String" resultType="com.green.vo.DibsOnVO">
 		select * from dibsOn where id=#{id}
 	</select>
