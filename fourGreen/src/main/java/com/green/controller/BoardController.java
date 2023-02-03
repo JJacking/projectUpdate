@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.service.BoardService;
+import com.green.service.ChargePointService;
 import com.green.vo.BoardVO;
+import com.green.vo.ChargeVO;
 import com.green.vo.CommentVO;
+import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
 import com.green.vo.MemberVO;
 
@@ -28,10 +31,14 @@ public class BoardController {
 	
 	//전체게시판
 	@RequestMapping("/boardList")
-	public String list(Model model) {
-		List<BoardVO> list = boardService.selectAll();
-		model.addAttribute("list", list);
-		return "board/boardList";
+	public String list(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<BoardVO> list = boardService.selectAll();
+			model.addAttribute("list", list);
+			return "board/boardList"; 
+		}
+		return "redirect:/signInForm";
 	}
 	
 	//상세게시판(상세글+댓글불러오기)
@@ -119,10 +126,15 @@ public class BoardController {
 	
 	//관리자게시판(공지사항)
 	@RequestMapping("/managerBoardList")
-	public String manager(Model model) {
-		List<ManagerVO> manager = boardService.selectAllmanager();
-		model.addAttribute("manager", manager);
-		return "board/managerBoardList";
+	public String manager(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<ManagerVO> manager = boardService.selectAllmanager();
+			model.addAttribute("manager", manager);
+			return "board/managerBoardList"; 
+		}
+		return "redirect:/signInForm";
+		
 	}
 	
 	//관리자상세게시판(상세글)
@@ -146,7 +158,7 @@ public class BoardController {
 		return "redirect:/managerBoardList";
 	}
 	
-	//게시판수정
+	//공지사항수정
 	@GetMapping("/managerUpdate")
 	public String managerUpdate(Model model,@RequestParam int mgNum) {
 		ManagerVO mVo = boardService.selectByMgNum(mgNum);
@@ -154,7 +166,7 @@ public class BoardController {
 		return "board/managerUpdateForm";
 	}
 	
-	//게시판수정
+	//공지사항수정
 	@PostMapping("/managerUpdate")
 	public String ManagerUpdate(@ModelAttribute ManagerVO mVo,@RequestParam int mgNum,Model model) {
 		boardService.managerUpdate(mVo);
@@ -169,6 +181,50 @@ public class BoardController {
 		return "redirect:/managerBoardList";
 	}
 	
+	//고객센터메인보드
+	@RequestMapping("/customerBoard")
+	public String customer(Model model,HttpSession session) {
+		MemberVO m = (MemberVO)session.getAttribute("user");
+		if(m != null) {
+			List<ManagerVO> manager = boardService.selectAllmanager();
+			model.addAttribute("manager", manager);
+			return "board/customerBoard"; 
+		}
+		return "redirect:/signInForm";
+		
+	}
 	
-	//페이징 삭제시
+	//고객센터 문의접수현황판
+	@RequestMapping("/customerBoardList")
+	public String customerBoardList(Model model, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		List<CustomerBoardVO> customer = boardService.selectByName(user.getId());
+		System.out.println(customer.size()+ " / "+ customer.get(0).getTitle());
+		model.addAttribute("customer", customer);
+		return "board/customerBoardList";
+	}
+	
+	//고객센터 글보기(상세글)
+	@RequestMapping("/customerDetail")
+	public String customerDetail(@RequestParam int num,Model model) {
+		CustomerBoardVO cVo = boardService.selectByNumber(num);
+		model.addAttribute("cVo",cVo);
+		return "board/customerDetail";
+	}
+	
+	//고객센터글쓰기
+	@GetMapping("/customerWrite")
+	public String customerWrite() {
+		return "board/customerWrite";
+	}
+	
+	//고객센터 글쓰기
+	@PostMapping("/customerWrite")
+	public String customerWrite2(@ModelAttribute CustomerBoardVO cVo) {
+		boardService.customerWrite(cVo);
+		
+		return "redirect:/customerBoard";
+	}
+	
+	
 }

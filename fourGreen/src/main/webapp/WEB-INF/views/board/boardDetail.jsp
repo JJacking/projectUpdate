@@ -8,12 +8,16 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<<<<<<< HEAD
 <script src="./resources/js/board.js"></script>
+=======
+<script src=".resources/script/board.js"></script>
+>>>>>>> refs/heads/t0203
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
-	  margin: 10%;
-	  width: 70%;
+	  margin: 0 auto;
+	  width: 800px;
 	  border-collapse: collapse;
 	  font-size:15px;
 	}
@@ -74,7 +78,7 @@
      			<c:if test="${not empty user and user.id eq board.id}">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
 		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
+		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(num)">
 		         	게시글 삭제</button>
 		         </c:if>
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록 보기</button>
@@ -124,6 +128,7 @@
 		</div>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
+<<<<<<< HEAD
 <script type="text/javascript">
 	function check() {
 		if('${user.id}' == "") {
@@ -133,5 +138,8 @@
 		}
 	}
 </script>
+=======
+<script src="./resources/script/board.js"></script>
+>>>>>>> refs/heads/t0203
   </body>
   </html>
