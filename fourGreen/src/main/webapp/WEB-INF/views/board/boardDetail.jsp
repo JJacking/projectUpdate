@@ -19,26 +19,35 @@
 #boardTb{
 	margin: 10px;
 	border-collapse: collapse;
+	width: 1200px;
 	font-size:15px;
 	line-height: 30px;
 }
 
-#boardTb table{
+table{
   border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #CE6D39;
 }
 #boardTb th,td{
-  border: 1px solid #CE6D39;
   padding: 5px;
+  border: 1px solid #CE6D39;
 }
 
 #boardTb th{
-	border: 0px;
+	border: 1px solid #CE6D39;
 	background-color: #FFEEE4;
 	padding: 10px;
 }
 
 #boardTb td{
+border: 1px solid #CE6D39;
   line-height: 60px;
+}
+
+#boardTb tr{
+	border: 1px solid #CE6D39;
+	line-height: 60px;
 }
 
 #boardTb a{
@@ -70,21 +79,22 @@
 	margin: 5px
 }
 
-.commentDetail{
-	float: right;
-
+.commentCheck{
+	display: inline;
 }
 
+
 .commentButton{
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: bold;
 	position: relative;
     top: 5px;
-    margin: 5px;
     float: right;
     border: 0px;
 }
-
+.commentWrite{
+	margin: 5px;
+}
 
 
 #comment table{
@@ -109,6 +119,20 @@
 	margin-top: 0;
 	border: 1px solid orange;
 	text-align: center;
+}
+.BDB{
+	text-align: center;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+	border: 3px solid #6aafe6;
+    color: #6e6e6e;
+}
+
+#DBDB {
+	display :inline-block;
 }
 
 </style>
@@ -135,13 +159,15 @@
         </tr>
         <tr>
           	<td colspan="6">
-     			<c:if test="${not empty user and user.id eq board.id}">
-		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardUpdate?num=${board.num}'">
-		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(cno)">
-		         	게시글 삭제</button>
-		         </c:if>
-		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록 보기</button>
+          		<div id="DBDB">
+	     			<c:if test="${not empty user and user.id eq board.id}">
+			          <button type="button" class="BDB" onclick="location.href='boardUpdate?num=${board.num}'">
+			         	 게시글 수정</button>
+			          <button type="button" class="BDB" onclick="removeCheck(cno)">
+			         	게시글 삭제</button>
+			         </c:if>
+			          <button type="button" class="BDB" onclick="location.href='boardList'">목록 보기</button>
+          		</div>
         	</td>
         </tr>
       </table>
@@ -150,21 +176,19 @@
 	<div id="comment" class="commentRead">
      	<form action="commentUpdate" method="post">
 	     	<input type="hidden" name="cno" value="${board.num}">
-      			<c:forEach items="${lists}" var="comment">
-	      			<div id="commentList">
-	      				<b>${comment.nickName}</b>
-	      				${comment.reContent}
-	      				<div class="commentDetail">
-		      				<c:if test="${not empty user and user.id eq comment.userId }">
-					            <div class="commentBtn">
-					              <button type="button" class="commentButton" onclick="commentUpdate()">수정</button><br>
-					              <button type="button" class="commentButton" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
-					            </div>
-				            </c:if>
-		      				${comment.reWirteDate}
-	      				</div>
-	      			</div>
-      			</c:forEach>
+   			<c:forEach items="${lists}" var="comment">
+      			<div id="commentList">
+      				<p class="commentCheck"><b>${comment.nickName}</b></p>
+      				<p class="commentCheck">${comment.reContent}</p>
+      				<p class="commentCheck ">
+	      				<c:if test="${not empty user and user.id eq comment.userId }">
+			              <button type="button" class="commentButton" onclick="commentUpdate()">수정</button><br>
+			              <button type="button" class="commentButton" id ="commentDelete" onclick="removeComment('${comment.cno}','${comment.num}')">삭제</button>
+			            </c:if>
+		            </p>
+		            <p class="commentCheck">${comment.reWirteDate}</p>
+      			</div>
+     		</c:forEach>
       	</form>
    	</div>
     <div id="comment">
