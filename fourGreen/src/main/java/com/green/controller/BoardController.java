@@ -110,7 +110,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/commentUpdate")
-	public String commentUpdate(@RequestParam String nickname,@ModelAttribute CommentVO cVo,@RequestParam int num,Model model) {
+	public String commentUpdate(@ModelAttribute CommentVO cVo,@RequestParam int num,Model model) {
 		boardService.commentUpdate(cVo);
 		model.addAttribute("num",num);
 		return "redirect:/boardDetail";

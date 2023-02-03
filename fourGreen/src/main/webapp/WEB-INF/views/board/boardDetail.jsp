@@ -67,7 +67,7 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td colspan="5">${board.content}</td>
+      <td colspan="5" style="height: 300px;">${board.content}</td>
     </tr>
     <tr>
       	<td colspan="6" style="border: white; text-align:center">

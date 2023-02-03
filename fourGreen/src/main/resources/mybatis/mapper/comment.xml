@@ -27,10 +27,13 @@
 
 <!-- 댓글수정 -->
 	<update id="commentUpdate" parameterType="commentVO">
-		UPDATE boardComment(cno, num, nickName, userId, reContent) 
-		SET nickName=#{nickName},  userId=#{userId}, reContent=#{reContent}
-		WHERE cno=#{cno}
+		UPDATE boardComment SET reContent=#{reContent} WHERE cno=#{cno}
 	</update>
+
+<!-- 게시글 댓글삭제 -->
+	<delete id="commentDeleteByNum" parameterType="int">
+		DELETE FROM boardComment WHERE num=#{num}
+	</delete>
 
 <!-- 댓글삭제 -->
 	<delete id="commentDelete" parameterType="int">
