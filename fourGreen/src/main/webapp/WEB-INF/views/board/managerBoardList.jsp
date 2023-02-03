@@ -66,11 +66,11 @@ padding: 10px;
 		</tr>
 		</c:forEach>
 		</table>
-		<c:if test="${empty user}"> 
+		<c:if test="${not empty user and user.grade eq 0}"> 
 			<p><a href="managerWrite">게시글 등록</a></p>
 		</c:if>
-		<c:if test="${!empty user}"> 
-			
+		<c:if test="${not empty user and user.grade ne 0}"> 
+			sdfasdfsdaf
 		</c:if>
 	<hr>
 </div>

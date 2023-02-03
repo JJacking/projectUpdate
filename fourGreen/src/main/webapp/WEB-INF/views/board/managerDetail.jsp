@@ -31,7 +31,7 @@
           <th>내용</th>
           <td colspan="5">${mVo.content}</td>
         </tr>
-        <c:if test="${empty user}"> 
+        <c:if test="${not empty user and user.grade eq 0}"> 
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerUpdate?mgNum=${mVo.mgNum}'">
@@ -42,9 +42,8 @@
         	</td>
         </tr>
         </c:if>
-        <c:if test="${!empty user}"> 
+        <c:if test="${not empty user and user.grade ne 0}"> 
         <tr>
-        
           	<td colspan="6" style="border: white; text-align:center">
         	<button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록 보기</button>
         	</td>

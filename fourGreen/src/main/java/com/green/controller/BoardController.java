@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.green.service.BoardService;
 import com.green.service.ChargePointService;
 import com.green.vo.BoardVO;
+import com.green.vo.ChargeVO;
 import com.green.vo.CommentVO;
 import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
@@ -160,7 +161,7 @@ public class BoardController {
 		return "redirect:/managerBoardList";
 	}
 	
-	//게시판수정
+	//공지사항수정
 	@GetMapping("/managerUpdate")
 	public String managerUpdate(Model model,@RequestParam int mgNum) {
 		ManagerVO mVo = boardService.selectByMgNum(mgNum);
@@ -168,7 +169,7 @@ public class BoardController {
 		return "board/managerUpdateForm";
 	}
 	
-	//게시판수정
+	//공지사항수정
 	@PostMapping("/managerUpdate")
 	public String ManagerUpdate(@ModelAttribute ManagerVO mVo,@RequestParam int mgNum,Model model) {
 		boardService.managerUpdate(mVo);
