@@ -50,4 +50,6 @@
 		DELETE FROM managerBoard 
 		WHERE mgNum=#{mgNum}
 	</delete>
+	
+
 </mapper>

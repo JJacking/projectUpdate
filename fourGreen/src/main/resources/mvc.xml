@@ -29,4 +29,5 @@
 	<bean id="boardDAO" class="com.green.dao.BoardDAO"></bean>
 	<bean id="prodcutDAO" class="com.green.dao.ProductDAO"></bean>
 	<bean id="memberDAO" class="com.green.dao.MemberDAO"></bean>
+	
 </beans>

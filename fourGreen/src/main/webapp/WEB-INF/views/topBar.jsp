@@ -111,7 +111,7 @@
 		            <li><a href="boardList">자유게시판</a></li>
 		      </ul>
 	      </li>
-	      <li><a href="#">고객센터</a></li>
+	      <li><a href="customerBoard">고객센터</a></li>
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
@@ -119,7 +119,7 @@
             <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>
-   <c:if test="${not empty user }">
+   <c:if test="${not empty user}">
         <div class="mypage">
       	<ul>
       		<li><a href="signOut">로그아웃</a></li>
