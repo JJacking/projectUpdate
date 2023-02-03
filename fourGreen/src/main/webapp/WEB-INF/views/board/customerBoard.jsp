@@ -8,64 +8,68 @@
 <title>고객센터</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
-	.main{
-		width: 70%;
-		margin-top: 5%;
-		margin-left: 10%;
-	}
-	.menuBar{
-		box-sizing: border-box;
-		vertical-align: middle;
-		width: 80%;
-		margin-top: 5%;
-		margin-left: 30%;
-		margin-bottom: 20%;
-		color: black;
-	}
-	.menuBar li{
-		float: left;
-		list-style: none;
-		display: inline-block;
-		border-right:1px solid lightgray;
-		padding:20px;
-		background-color: rgba(231, 231, 231, 0.921);
-	}
-	
-	.menuBar li:hover{
-		background-color: rgb(176, 176, 240);
-	}
-	
-	.menuBar li a{
-		display:block;
-		text-decoration: none;
-		text-align:center;	
-		padding: 0;
-    color: black;
-	}
-  .clear{
-    clear:both;
-  }
+		.main{
+			width: 70%;
+			margin-top: 5%;
+			margin-left: 10%;
+		}
+		.menuBar{
+			box-sizing: border-box;
+			vertical-align: middle;
+			width: 80%;
+			margin-top: 5%;
+			margin-left: 30%;
+			margin-bottom: 20%;
+			color: black;
+		}
+		.menuBar li{
+			float: left;
+			list-style: none;
+			display: inline-block;
+			border-right:1px solid lightgray;
+			padding:20px;
+			background-color: rgba(231, 231, 231, 0.921);
+		}
+		
+		.menuBar li:hover{
+			background-color: rgb(176, 176, 240);
+		}
+		
+		.menuBar li a{
+			display:block;
+			text-decoration: none;
+			text-align:center;	
+			padding: 0;
+	    color: black;
+		}
+	  .clear{
+	     clear:both;
+	     margin-top: 50px;
+	     margin-bottom: 50px;
+	  }
 	
 	.top5{
-    float: left;
+    	float: left;
 		width: 40%;
 		border-bottom: 1px solid lightgray;
 		font-size:16px;
 		line-height: 40px;
 		text-align: left;
-	}
-  .top5 li{
-    list-style: none;
-  }
+		margin-top: 50px;
+		margin-bottom: 50px;
+		}
+	  .top5 li{
+	    list-style: none;
+	  }
+		
+		.top5 a{
+		  color: black;
+		  text-decoration: none;
+		}
 	
-	.top5 a{
-	  color: black;
-	  text-decoration: none;
-	}
-
-  .top5 a:hover{
-    color: rgb(138, 138, 248);
-  }
+	  .top5 a:hover{
+	    color: rgb(138, 138, 248);
+	  }
 	
 	.userBoard a:hover{
 	  text-decoration: underline;
@@ -76,6 +80,7 @@
     clear: both;
 	margin-top: 5%;
 	margin-bottom: 5%;
+	width: 40%;
   }
 
   .leftCenter li{
@@ -84,15 +89,15 @@
   }
 	.rightCenter{
     margin-left: 0;
-		width: 40%;
+	width: 40%;
   }
 
   .rightCenter{
     float: left;
-    width: 100%;
+    width: 80%;
     text-align: center;
     box-sizing: border-box;
-    
+   
   }
   .rightCenter ul{
     list-style: none;
@@ -105,6 +110,38 @@
     border-radius: 15px;
     color: rgba(108, 108, 108, 0.781);
   }
+  .managerBoard{
+float: left;
+margin-left: 10px;
+width: 40%;
+height: 600px;
+}
+
+.managerBoard table{
+	width: 100%;
+	border-collapse: collapse;
+	font-size:12px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.managerBoard td,th{
+	border: 1px solid #CE6D39;
+	padding: 5px;
+}
+.managerBoard th{
+	background-color: #FFEEE4;
+}
+
+.managerBoard a{
+  color: black;
+  text-decoration: none;
+}
+
+.managerBoard a:hover{
+  text-decoration: underline;
+  color: lightgreen;
+}
 	
 	
 </style>
@@ -119,6 +156,7 @@
 			<li><a href="#">자주묻는질문</a></li>
 			<li><a href="customerWrite">문의하기</a></li>
 			<li><a href="managerBoardList">공지사항</a></li>
+			<li><a href="customerBoardList">내 문의사항</a><li>
 		</ul>
 	</div>
 	<div class="leftCenter">

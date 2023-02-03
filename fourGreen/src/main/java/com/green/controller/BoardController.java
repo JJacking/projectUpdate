@@ -166,47 +166,41 @@ public class BoardController {
 		return "redirect:/managerBoardList";
 	}
 	
-	//고객센터
+	//고객센터메인보드
 	@RequestMapping("/customerBoard")
 	public String customer(Model model) {
-		List<CustomerBoardVO> customer = boardService.selectAllcustomer();
-		model.addAttribute("customer", customer);
+		List<ManagerVO> manager = boardService.selectAllmanager();
+		model.addAttribute("manager", manager);
 		return "board/customerBoard";
 	}
 	
-	//관리자상세게시판(상세글)
+	//고객센터 문의접수현황판
+	@RequestMapping("/customerBoardList")
+	public String customerBoardList(Model model, @RequestParam String name) {
+		List<CustomerBoardVO> customer = boardService.selectByName(name);
+		model.addAttribute("customer", customer);
+		return "board/customerBoardList";
+	}
+	
+	//고객센터 글쓰기(상세글)
 	@RequestMapping("/customerDetail")
 	public String customerDetail(@RequestParam int num) {
 		CustomerBoardVO cVo = boardService.selectByNumber(num);
 		return "board/customerDetail";
 	}
 	
-	//공지사항쓰기
+	//고객센터글쓰기
 	@GetMapping("/customerWrite")
 	public String customerWrite() {
 		return "board/customerWrite";
 	}
 	
-	//공지사항쓰기
+	//고객센터 글쓰기
 	@PostMapping("/customerWrite")
 	public String customerWrite2(@ModelAttribute CustomerBoardVO cVo) {
 		boardService.customerWrite(cVo);
 		return "redirect:/customerboard";
 	}
 	
-	//게시판수정
-	@GetMapping("/customerUpdate")
-	public String customerUpdate(Model model,@RequestParam int num) {
-		CustomerBoardVO cVo = boardService.selectByNumber(num);
-		model.addAttribute("cVo",cVo);
-		return "board/customerUpdateForm";
-	}
 	
-	//게시판수정
-	@PostMapping("/customerUpdate")
-	public String customerUpdate(@ModelAttribute CustomerBoardVO cVo,@RequestParam int num,Model model) {
-		boardService.customerUpdate(cVo);
-		model.addAttribute("num",num);
-		return "redirect:/customerDetail";
-	}
 }

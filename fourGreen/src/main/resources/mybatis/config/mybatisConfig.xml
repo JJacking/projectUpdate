@@ -12,5 +12,6 @@
 		<typeAlias type="com.green.vo.ChargeVO" alias="chargeVO"/>
 		<typeAlias type="com.green.vo.ProductVO" alias="productVO"/>
 		<typeAlias type="com.green.vo.CustomerVO" alias="customerVO"/>
+		<typeAlias type="com.green.vo.CustomerBoardVO" alias="CustomerBoardVO"/>
 	</typeAliases>
 </configuration>

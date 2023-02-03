@@ -104,23 +104,22 @@ public class BoardDAO {
 	}
 	
 	//고객센터상세게시판 전체
-	public List<CustomerBoardVO> selectAllcustomer(){
-		return sqlSession.selectList("mybatis.mapper.customer.selectAllcustomer");
+	public List<CustomerBoardVO> selectByName(String name){
+		return sqlSession.selectOne("mybatis.mapper.customerBoard.selectAllcustomer",name);
 	}
 	
 	//문의 상세게시판
 	public CustomerBoardVO selectByNumber(int num) {
-		return sqlSession.selectOne("mybatis.mapper.customer.selectByNum",num);
+		return sqlSession.selectOne("mybatis.mapper.customerBoard.selectByNumber",num);
 	}
 	
 	//문의게시판등록
 	public void customerWrite(CustomerBoardVO cVo) {
-		sqlSession.insert("mybatis.mapper.customer.customerWrite",cVo);
+		sqlSession.insert("mybatis.mapper.customerBoard.customerWrite",cVo);
 	}
+
+
 	
-	//문의게시판 수정
-	public void customerUpdate(CustomerBoardVO cVo) {
-		sqlSession.update("mybatis.mapper.customer.customerUpdate",cVo);
-	}
+	
 }
 

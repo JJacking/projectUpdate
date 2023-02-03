@@ -100,23 +100,20 @@ public class BoardService {
 		boardDao.managerDelete(mgNum);
 	}
 	
-	//공지사항읽어오기
-	public List<CustomerBoardVO> selectAllcustomer(){
-		return boardDao.selectAllcustomer(); 
+	//문의글읽어오기
+	public List<CustomerBoardVO> selectByName(String name){
+		return boardDao.selectByName(name); 
 	}
 	
-	//공지사항상세보기
+	//문의글상세보기
 	public CustomerBoardVO selectByNumber(int num) {
 		return boardDao.selectByNumber(num);
 	}
 	
-	//공지사항글쓰기
+	//문의글글쓰기
 	public void customerWrite(CustomerBoardVO cVo) {
 		boardDao.customerWrite(cVo);
 	}
 		
-	//공지사항글수정
-	public void customerUpdate(CustomerBoardVO cVo) {
-		boardDao.customerUpdate(cVo);
-	}
+	
 }

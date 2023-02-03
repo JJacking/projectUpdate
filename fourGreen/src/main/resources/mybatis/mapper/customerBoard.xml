@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.customer">
+<mapper namespace="mybatis.mapper.customerBoard">
 <!--데이터베이스 -->
 	<sql id="selectAllcustboard">
 		SELECT * FROM customerBoard
 	</sql>
 
 <!-- 전체조회 -->
-	<select id="selectAllcustomer" resultType="customerVo"> 
+	<select id="selectAllcustomer" resultType="customerBoardVO"> 
 		<include refid="selectAllcustboard"/>
-		 ORDER BY num DESC
+		 ORDER BY name DESC
 	</select>
 	
 <!-- 게시글 상세정보 -->
-	<select id="selectByNumber" resultType="customerVo" parameterType="int">
+	<select id="selectByName" resultType="customerBoardVO" parameterType="String">
 		<include refid="selectAllcustboard"/>
 		WHERE num=#{num}
 	</select>
@@ -26,15 +26,9 @@
 	</select>
 	
 <!-- 게시글 등록 -->
-	<insert id="customerWrite" parameterType="customerVo">
+	<insert id="customerWrite" parameterType="customerBoardVO">
 		INSERT INTO customerBoard(num, name, title, content)
 		VALUES(customerBoard_seq.nextval,#{name},#{title},#{content})
 	</insert>
 	
-<!-- 게시글수정 -->
-	<update id="customerUpdate" parameterType="customerVo">
-		UPDATE customerBoard 
-		SET name=#{name}, title=#{title}, content=#{content}
-		WHERE num=#{num}
-	</update>
 </mapper>

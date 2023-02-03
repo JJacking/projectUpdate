@@ -29,25 +29,12 @@
           <th>내용</th>
           <td colspan="5">${cVo.content}</td>
         </tr>
-        <c:if test="${empty user}"> 
         <tr>
           	<td colspan="6" style="border: white; text-align:center">
-		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerUpdate?mgNum=${mVo.mgNum}'">
-		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(MgNum)">
-		         	게시글 삭제</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록 보기</button>
+		       <button type="button" class="w-btn w-btn-blue" onclick="location.href='customerBoard'">돌아가기</button>
         	</td>
         </tr>
-        </c:if>
-        <c:if test="${!empty user}"> 
-        <tr>
         
-          	<td colspan="6" style="border: white; text-align:center">
-        	<button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록 보기</button>
-        	</td>
-        </tr>
-        </c:if>
       </table>
      </div>
      <hr>
