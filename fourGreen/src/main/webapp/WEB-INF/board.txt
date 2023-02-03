@@ -2,6 +2,8 @@ drop table boardTbl;
 drop sequence boardTbl_seq;
 drop table boardComment;
 drop sequence boardComment_seq;
+drop table reBoardComment;
+drop SEQUENCE reBoardComment_seq;
  
 CREATE table boardTbl(
     num number(20) PRIMARY KEY,
@@ -69,5 +71,21 @@ NOCACHE;
 
 insert into managerBoard(MgNum, MgName, title, content)
 VALUES(managerTbl_seq.NEXTVAL,'관리자','안녕하세요','공지사항 페이지 입니다.');
+
+commit;
+
+ CREATE table customerBoard(
+    num number(20) PRIMARY KEY,
+    id VARCHAR2(30),
+    title VARCHAR2(30),
+    content VARCHAR2(1000),
+    wirteDate DATE default sysdate
+);
+
+create SEQUENCE customerBoard_seq
+NOCACHE;
+
+insert into customerBoard(num, id, title, content)
+VALUES(managerTbl_seq.NEXTVAL,'관리자','어떤글을 써야 하나요?','문의사항 게시판입니다.');
 
 commit;
