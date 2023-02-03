@@ -228,26 +228,13 @@ text-align: center;
       <hr>
       <br>
       <ul>
-        <li>
-          <img src="resources/img/XL.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex01.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex02.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex03.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
+      	<c:forEach var="item" items="${hotList }">
+	   		<li>
+		        <img src="resources/img/XL.jpg">
+		        <h4>${item.title }</h4>
+		        <p>${item. }</p>
+	       	</li>
+      	</c:forEach>
       </ul>
     </div>
     <div class="new-board">
