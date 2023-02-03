@@ -8,11 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
-<<<<<<< HEAD
 <script src="./resources/js/board.js"></script>
-=======
-<script src=".resources/script/board.js"></script>
->>>>>>> refs/heads/t0203
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#comment{
@@ -128,18 +124,42 @@
 		</div>
 	<hr>
 <jsp:include page="../bottomBar.jsp"/>
-<<<<<<< HEAD
 <script type="text/javascript">
 	function check() {
-		if('${user.id}' == "") {
+		if('${user.id}' == '') {
 			alert('로그인 후 이용해주세요');
 			location.href="signInForm";
 			return false;
 		}
 	}
+	
+	function commentUpdateFunc(cno,idx,str) {
+		let reComm = document.getElementById('reComm'+idx); 
+		let commentUpdateF = document.getElementById('commentUpdateF'+idx); 
+		let commentUpdateBtn = document.getElementById('commentUpdateBtn'+idx); 
+		let reCommCno = document.getElementById('reCommCno'); 
+		reCommCno.setAttribute('value',cno);
+		reComm.innerHTML='';
+		
+		let input = document.createElement('input');
+		
+		input.setAttribute('type','text');
+		input.setAttribute('name','reContent');
+		input.setAttribute('value',str);
+		
+		reComm.appendChild(input);
+		commentUpdateF.setAttribute('style','display:none;');
+		commentUpdateBtn.setAttribute('style','');
+		
+	}
+	
+	function removeCheck(num){
+		 if (confirm("정말 삭제하시겠습니까??") == true){    
+		      location.href='boardDelete?num='+num;
+		  }else{   //취소
+		      return false;
+		  }
+	}
 </script>
-=======
-<script src="./resources/script/board.js"></script>
->>>>>>> refs/heads/t0203
   </body>
   </html>
