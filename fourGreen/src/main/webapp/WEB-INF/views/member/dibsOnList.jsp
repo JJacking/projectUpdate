@@ -9,12 +9,16 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <style type="text/css">
 #wrapper{
-	border-collapse: collapse;
 	border: 1px solid black;
 	width: 535px; 
 	height: 581px;
 }
+table{
+	width:100%;
+	border-collapse: collapse;
+}
 tr{
+	border-bottom:1px solid black;
 	text-align:center;
 	width: 100%;
 	height: 50px;
@@ -29,7 +33,7 @@ td{
 	<table>
 		<c:if test="${empty dibsOnList }">
 			<tr>
-				<td style="text-align: center;">
+				<td colspan="2" style="text-align: center;">
 					등록된 관심물품이 없습니다.
 				</td>
 			</tr>

@@ -18,7 +18,7 @@
 	  top: 50%;
 	  left: 50%;
       margin: 10% 30%;
-	  width: 40%;
+	  width: 1000px;
 	  background-color: white;
 	  border: 1px solid #CE6D39;
 	  border-radius: 10px;
@@ -64,11 +64,15 @@
 				</select>
 			</td>
 		</tr>
-		<tr id="addTr">
+		<tr>
 			<th>이미지 등록</th>
 			<td>
 				<button type="button" class="w-btn w-btn-blue" onclick="add()">추가</button>
-				<input type="file" name="productPic" multiple="multiple"  required><br>
+				<ul>
+					<li id="addTr">
+						<input type="file" name="productPic" multiple="multiple"  required><br>
+					</li>
+				</ul>
 			</td>
 		</tr>
 		<tr>
@@ -121,15 +125,11 @@
 	function add(){
 		if(cnt < 5){
 			cnt = cnt+1;
-			let trTag = document.createElement('tr');
-			let tdTag = document.createElement('td');
 			let inputTag = document.createElement('input');
 			inputTag.setAttribute('type','file');
 			inputTag.setAttribute('name','productPic');
 			inputTag.setAttribute('multiple','multiple');
-			tdTag.appendChild(inputTag);
-			trTag.appendChild(tdTag);
-			tr.append(trTag);
+			tr.append(inputTag);
 		}else{
 			alert('등록할 수 있는 사진은 최대 5장입니다');
 		}
