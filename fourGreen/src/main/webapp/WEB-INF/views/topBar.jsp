@@ -123,7 +123,7 @@
         <div class="mypage">
       	<ul>
       		<li><a href="signOut">로그아웃</a></li>
-	        <li><a href="myPage">내정보</a></li>
+	        <li><a href="/auction/myPage">내정보</a></li>
 	        <li><a href="charge">포인트충전/조회</a></li>
         </ul>
         </div>

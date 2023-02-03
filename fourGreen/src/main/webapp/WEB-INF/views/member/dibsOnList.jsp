@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <table>
-<jsp:include page="../topBar.jsp" />
 	<c:forEach var="dibsOn" items="${dibsOnList }" varStatus="d">
 		<tr id="dibsOn${d.index }">
 			<td>
@@ -25,7 +25,7 @@
 		</tr>		
 	</c:forEach>
 </table>
-<jsp:include page="../bottomBar.jsp"/>
+<button type="button" onclick="window.close()" style="position: relative; bottom: -550px; left: 250px;">닫기</button>
 <script type="text/javascript">
  function deleteDibsOn(num,idx){
 	 $.ajax({

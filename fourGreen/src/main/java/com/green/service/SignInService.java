@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.dao.MemberDAO;
-import com.green.vo.ChargeVO;
 import com.green.vo.DibsOnVO;
 import com.green.vo.MemberVO;
 
@@ -72,6 +71,10 @@ public class SignInService {
 	
 	public int insertDibsOn(int num, String id, String title) {
 		return memberDAO.insertDibsOn(num, id, title);
+	}
+	
+	public DibsOnVO getDibsOnByNum(int num) {
+		return memberDAO.getDibsOnByNum(num);
 	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {

@@ -156,7 +156,7 @@
 				</c:choose>
 				</a>
 			
-				<h4><a href="selectOne?num=${product.num }">${product.title }</a></h4>
+				<h4><a href="product/selectOne?num=${product.num }">${product.title }</a></h4>
 		
 		
 				<span>${product.productPic}</span> <br>

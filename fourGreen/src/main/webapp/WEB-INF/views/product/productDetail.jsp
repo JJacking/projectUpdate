@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기 - ${product.title}</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
@@ -47,11 +48,6 @@
 	}
 	init();
 </script>
-<c:if test="${not empty dibsOnMsg }">
-	<script type="text/javascript">
-		alert('${dibsOnMsg }');
-	</script>
-</c:if>
 
 <form action="biding" method="POST" onsubmit="return check()">
 <input type="hidden" name="id" value="${user.id }">
@@ -145,12 +141,36 @@
 	</div>
 	<div>		
 		<button type="submit" id="btn1" class="btn">입찰하기</button>
-		<button type="button" class="btn" onclick="location.href='insertDibsOn?num=${product.num}&id=${user.id }&title=${product.title }'">관심물품 등록하기</button>
+		<button type="button" class="btn" onclick="insertDibsOn('${product.num}','${user.id }','${product.title }')">관심물품 등록하기</button>
 		<button type="button" class="btn" onclick="location.href='??'">문의하기</button>
 	</div>
-	<input type="image">
+	<script type="text/javascript">
+		function insertDibsOn(num,id,title){
+			$.ajax({
+				type:"post",
+				url:"/auction/insertDibsOn",
+				datatype:"text",
+				data:{
+					num:num,
+					id:id,
+					title:title
+				},
+				success:function(data){
+					if(data == '1'){
+						alert('관심물품에 등록되었습니다.');
+					}else if(data == '2') {
+						alert('이미 등록된 상품입니다.');
+					}else{
+						alert('관심물품 등록에 실패했습니다. 다시 시도해주세요.');
+					}
+				}
+			});
+		}
+	</script>
+	<c:if test="${product.memberId eq user.id }">
+		<p><a href="deleteProduct?num=${product.num}">경매 삭제하기</a></p>
+	</c:if>
 	
-	<p><a href="deleteProduct?num=${product.num}">경매 삭제하기</a></p>
 	<button type="button" onclick="location.href='/auction/product'">목록보기</button>
 
 </form>

@@ -138,12 +138,16 @@ public class MemberDAO {
 	}
 	
 	public int insertDibsOn(int num, String id, String title) {
-		Object[] array = {num, id};
+		Object[] array = {num, id, title};
 		return sqlSession.insert("mybatis.mapper.member.insertDibsOn", array);
+	}
+	
+	public DibsOnVO getDibsOnByNum(int num) {
+		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnByNum",num);
 	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {
-		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnList",id);
+		return sqlSession.selectList("mybatis.mapper.member.getDibsOnById",id);
 	}
 	
 	public int deleteDibsOn(int idx) {

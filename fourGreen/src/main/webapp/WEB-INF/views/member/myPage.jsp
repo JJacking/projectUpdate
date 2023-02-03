@@ -52,7 +52,7 @@
 				관심 목록
 			</td>
 			<td>
-				<button type="button" class="w-btn w-btn-blue" onclick="location.href='dibsOnList'">관심 목록</button> 
+				<button type="button" class="w-btn w-btn-blue" onclick="newBox()">관심 목록</button> 
 			</td>
 		</tr>
 		<tr>
@@ -98,15 +98,21 @@
 	</table>
 </form>
 </div>
-	<script type="text/javascript">
-		function withdraw(){
-			let userId = $('#userId').text();
-			let flag = confirm('정말 탈퇴하시겠습니까?');
-			if(flag){
-				location.href='withdrawalPage';
-			}
+<script type="text/javascript">
+	function newBox(){
+		let url = "dibsOnList";
+		
+		window.open(url,'_blank_1','toolbar=no,menubar=no,scrollbars=yes,resizeable=no,width=550,height=600');
+	}
+
+	function withdraw(){
+		let userId = $('#userId').text();
+		let flag = confirm('정말 탈퇴하시겠습니까?');
+		if(flag){
+			location.href='withdrawalPage';
 		}
-	</script>
+	}
+</script>
 	
 <jsp:include page="../bottomBar.jsp"/>
 </body>

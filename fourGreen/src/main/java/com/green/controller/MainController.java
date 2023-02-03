@@ -27,13 +27,15 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(HttpSession session, Model model) {
 		MemberVO member = (MemberVO)session.getAttribute("user");
+		if(member != null) {
+			session.setAttribute("user", signInService.getMember(member.getId()));
+		}
+		
 		List<BoardVO> list = boardService.selectAll();
 		List<ManagerVO> manager = boardService.selectAllmanager();
 		model.addAttribute("manager", manager);
 		model.addAttribute("list",list);
-		if(member != null) {
-			session.setAttribute("user", signInService.getMember(member.getId()));
-		}
+		
 		return "index";
 	}
 

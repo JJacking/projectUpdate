@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.SHA256;
 import com.green.service.SignInService;
@@ -72,7 +71,7 @@ public class SignInController {
 	public String googleUserInfo2(@RequestParam String phone, @RequestParam String address, @RequestParam String id) {
 		int result = signInService.registerGoogleUserInfo(phone, address, id);
 		if(result == 1) {
-			return "redirect:/signIn";
+			return "redirect:/signInForm";
 		}
 		return "member/erorrPage";
 	}
@@ -82,7 +81,7 @@ public class SignInController {
 		MemberVO user = signInService.getUser(member);
 		if(user == null) {
 			model.addAttribute("msg","로그인에 실패했습니다.");
-			return "signIn";
+			return "member/signIn";
 		}
 		session.setAttribute("user", user);
 		
@@ -212,17 +211,21 @@ public class SignInController {
 		return "member/errorPage";
 	}
 	
-	@GetMapping("/insertDibsOn")
-	public String insertDibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title, RedirectAttributes attributes) {
-		attributes.addAttribute("num",num);
-		int result = signInService.insertDibsOn(num,id,title);
-		if(result == 1) {
-			attributes.addAttribute("dibsOnMsg","관심목록에 추가되었습니다.");
-			return "redirect:/product/selectOne";
-		}else {
-			attributes.addAttribute("dibsOnMsg","관심목록 추가에 실패했습니다.");
-			return "redirect:/product/selectOne";
+	@PostMapping("/insertDibsOn")
+	@ResponseBody
+	public String insertDibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title) {
+		String data = "";
+		if(signInService.getDibsOnByNum(num) != null) {
+			data = "2";
+			return data;
 		}
+		int result = signInService.insertDibsOn(num, id, title);
+		if(result == 1) {
+			data = "1";
+		}else {
+			data = "0";
+		}
+		return data;
 	}
 	
 	@GetMapping("/dibsOnList")
