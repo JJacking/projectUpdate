@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.customerBoard">
+<!--데이터베이스 -->
+	<sql id="selectAllcustboard">
+		SELECT * FROM customerBoard
+	</sql>
+
+<!-- 전체조회 -->
+	<select id="selectAllcustomer" parameterType="String" resultType="customerBoardVO"> 
+		<include refid="selectAllcustboard"/>
+		 WHERE id=#{id} 
+	</select>
+	
+<!-- 게시글 상세정보 -->
+	<select id="selectByNumber" resultType="customerBoardVO" parameterType="int">
+		<include refid="selectAllcustboard"/>
+		WHERE num=#{num}
+	</select>
+	
+<!-- 전체게시물 갯수 조회 -->
+	 <select id="selectCountMg" resultType="int"> 
+		SELECT count(*) FROM customerBoard
+	</select>
+	
+<!-- 게시글 등록 -->
+	<insert id="customerWrite" parameterType="customerBoardVO">
+		INSERT INTO customerBoard(num, id, title, content)
+		VALUES(customerBoard_seq.nextval,#{id},#{title},#{content})
+	</insert>
+	
+</mapper>
