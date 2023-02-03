@@ -19,6 +19,10 @@ public class ProductDAO {
 		return sqlSession.selectList("mybatis.mapper.product.selectAllAuction");	
 	}
 	
+	public List<ProductVO> selectAllAuctionByFilter(String filter){
+		return sqlSession.selectList("mybatis.mapper.product.selectAllAuctionByFilter",filter);	
+	}
+	
 	public List<CustomerVO> selectAllCustomer(){
 		return sqlSession.selectList("mybatis.mapper.product.selectAllCustomer");	
 	}

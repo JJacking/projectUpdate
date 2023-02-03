@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
-	 	
 	.nav{
 	display: flex;
 	justify-content: space-between;
@@ -24,7 +23,6 @@
 	margin-top: 0px;
 	margin-bottom: 0px;
 	}
-	
 	.nav .nav-menu ul{
 	list-style: none;
 	}
@@ -36,7 +34,6 @@
 		padding-top: 20px;
 		vertical-align: bottom;
 	}
-	
 	.nav-menu li:hover{
 		font-weight: bold;
 		background-color: white;

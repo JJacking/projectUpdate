@@ -18,6 +18,10 @@ public class ProductService {
 	public int selectAllNumAuction() {
 		return productDAO.selectAllNumAuction();
 	}
+	
+	public List<ProductVO> selectAllAuctionByFilter(String filter) {
+		return productDAO.selectAllAuctionByFilter(filter);
+	}
 
 	public int selectAllNumAuctionByEnd(String end) {
 		return productDAO.selectAllNumAuctionByEnd(end);
@@ -25,6 +29,10 @@ public class ProductService {
 	
 	public int selectAllNumAuctionByCategory(String category) {
 		return productDAO.selectAllNumAuctionByCategory(category);
+	}
+	
+	public List<ProductVO> selectAllAuction(){
+		return productDAO.selectAllAuction();
 	}
 
 	public List<ProductVO> selectTargetAuctionByPaging(String category, String filter, String sort, int startNum,

@@ -8,6 +8,10 @@
 	select * from product order by num desc
 </select>
 
+<select id="selectAllAuctionByFilter" parameterType="String" resultType="productVO">
+	select * from product order by ${filter} desc
+</select>
+
 <select id="selectOne" parameterType="int" resultType="productVO">
 	select * from product where num=#{num}
 </select>

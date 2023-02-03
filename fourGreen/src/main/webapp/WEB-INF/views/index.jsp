@@ -84,7 +84,7 @@ ul.imgs li{
 }
 
 .main{
-width: 1000px;
+width: 1050px;
 height: 1500px;
 margin-left: 20%;
 margin-right: 20%;
@@ -92,8 +92,8 @@ margin-right: 20%;
 
 .img-board{
 text-align: left;
-margin-top: 30px;
-margin-left: 30px;
+margin-top: 10px;
+margin-left: 10px;
 
 height: 800px;
 }
@@ -120,14 +120,14 @@ padding: auto;
 
 .popular-board{
 float: left;
-margin-left: 10px;
-width: 40%;
+margin-left: 5px;
+width: 500px;
 height: 600px;
 }
 .new-board{
 float: right;
-margin-right: 20px;
-width: 40%;
+margin-right: 5px;
+width: 500px;
 height: 600px;
 }
 .managerBoard{
@@ -228,11 +228,13 @@ text-align: center;
       <hr>
       <br>
       <ul>
-      	<c:forEach var="item" items="${hotList }">
+      	<c:forEach var="item" items="${hotProductArr }">
 	   		<li>
-		        <img src="resources/img/XL.jpg">
-		        <h4>${item.title }</h4>
-		        <p>${item. }</p>
+	   			<a href="/auction/product/selectOne?num=${item.num}">
+			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
+	   			</a>
+	        	<h4>${item.title }</h4>
+		        <p>${item.strPrice }</p>
 	       	</li>
       	</c:forEach>
       </ul>
@@ -242,26 +244,15 @@ text-align: center;
       <hr>
       <br>
       <ul>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
+        <c:forEach var="item" items="${newProductArr }">
+	   		<li>
+	   			<a href="/auction/product/selectOne?num=${item.num}">
+			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
+	   			</a>
+		        <h4>${item.title }</h4>
+		        <p>${item.strPrice }</p>
+	       	</li>
+      	</c:forEach>
       </ul>
     </div>
   </div>
