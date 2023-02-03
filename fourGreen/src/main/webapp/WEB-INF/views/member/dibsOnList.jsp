@@ -20,16 +20,11 @@
 				${dibsOn.title }
 			</td>
 			<td>
-				<button type="button" onclick="delete(${d.index})">삭제</button>
+				<button type="button" onclick="delete('${d.index}','${dibsOn.idx }')">삭제</button>
 			</td>
 		</tr>		
 	</c:forEach>
 </table>
-<script type="text/javascript">
-	function deleteD(){
-		asd
-	}
-</script>
 <jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>
