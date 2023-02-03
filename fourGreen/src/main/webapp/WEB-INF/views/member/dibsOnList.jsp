@@ -25,7 +25,7 @@
 		</tr>		
 	</c:forEach>
 </table>
-<button type="button" onclick="window.close()" style="position: relative; bottom: -550px; left: 250px;">닫기</button>
+<button type="button" onclick="window.close()" style="position:absolute; top: 560px; left: 250px;">닫기</button>
 <script type="text/javascript">
  function deleteDibsOn(num,idx){
 	 $.ajax({
