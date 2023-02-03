@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
+import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
 
 public class BoardDAO {
@@ -84,22 +85,41 @@ public class BoardDAO {
 	
 	//게시판등록(관리자페이지)
 	public void managerWrite(ManagerVO mVo) {
-		sqlSession.insert("mybatis.mapper.board.boardWrite",mVo);
+		sqlSession.insert("mybatis.mapper.manager.boardWrite",mVo);
 	}
 	
 	//게시판 수정(관리자페이지)
 	public void managerUpdate(ManagerVO mVo) {
-		sqlSession.update("mybatis.mapper.board.boardUpdate",mVo);
+		sqlSession.update("mybatis.mapper.manager.boardUpdate",mVo);
 	}
 	
 	//게시판 삭제(관리자페이지)
 	public void managerDelete(int mgNum) {
-		sqlSession.delete("mybatis.mapper.board.boardDelete",mgNum);
+		sqlSession.delete("mybatis.mapper.manager.boardDelete",mgNum);
 	}
 	
 	//페이징
 	public void paging(int num) {
 		sqlSession.selectList("mybatis.mapper.board.selectTargetBoards",num);
 	}
+	
+	//고객센터상세게시판 전체
+	public List<CustomerBoardVO> selectByName(String id){
+		return sqlSession.selectList("mybatis.mapper.customerBoard.selectAllcustomer",id);
+	}
+	
+	//문의 상세게시판
+	public CustomerBoardVO selectByNumber(int num) {
+		return sqlSession.selectOne("mybatis.mapper.customerBoard.selectByNumber",num);
+	}
+	
+	//문의게시판등록
+	public void customerWrite(CustomerBoardVO cVo) {
+		sqlSession.insert("mybatis.mapper.customerBoard.customerWrite",cVo);
+	}
+
+
+	
+	
 }
 
