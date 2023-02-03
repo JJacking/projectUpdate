@@ -33,6 +33,7 @@
 <c:if test="${not empty user }">
 	<form action="requestCharge" method="post" onsubmit="return check()">
 		<h2>포인트충전 페이지입니다</h2>	
+		<h2>보유 포인트는 <span style="color: blue;">${user.point }</span>포인트입니다</h2>	
 		<input type="hidden" id="id" name="id" value="${user.id }">
 		<input type="number" id="charge" name="charge">
 		<button type="submit" class="w-btn w-btn-blue">충전하기</button>

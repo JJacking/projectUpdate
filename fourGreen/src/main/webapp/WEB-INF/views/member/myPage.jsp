@@ -49,6 +49,15 @@
 		</c:if>
 		<tr>
 			<td>
+				보유 포인트
+			</td>
+			<td>
+				${user.point }
+				<button type="button" class="w-btn w-btn-blue" onclick="location.href='charge'" style="position: relative; right: -60px;">충전하기</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
 				닉네임				
 			</td>
 			<td>
@@ -73,13 +82,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button type="submit" class="w-btn w-btn-blue">변경</button>
-				<button type="button" class="w-btn w-btn-blue" onclick="history.back()">돌아가기</button>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
 				<button type="button" class="w-btn w-btn-blue" onclick="withdraw()">탈퇴하기</button>
+				<button type="button" class="w-btn w-btn-blue" onclick="history.back()">돌아가기</button>
+				<button type="submit" class="w-btn w-btn-blue">변경</button>
 			</td>
 		</tr>
 	</table>
