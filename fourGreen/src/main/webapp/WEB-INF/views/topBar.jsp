@@ -42,7 +42,6 @@
 	.nav-menu li:hover{
 		font-weight: bold;
 		padding: 10px 20px;
-		background-color: gray;
 	}
 	
 	.nav .nav-menu li ul{
