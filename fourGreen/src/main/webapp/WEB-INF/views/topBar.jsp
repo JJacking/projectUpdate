@@ -112,6 +112,16 @@
         </ul>
         </div>
     </c:if>
+   <c:if test="${not empty user}">
+        <div class="mypage">
+      	<ul>
+      		<li><a href="/auction/signOut">로그아웃</a></li>
+	        <li><a href="/auction/myPage">내정보</a></li>
+	        <li><a href="/auction/charge">포인트충전/조회</a></li>
+        </ul>
+        </div>
+    </c:if>
+    
 </div>
 </body>
 </html>
