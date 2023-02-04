@@ -36,7 +36,7 @@
           	<td colspan="6" style="border: white; text-align:center">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerUpdate?mgNum=${mVo.mgNum}'">
 		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="removeCheck(MgNum)">
+		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerDelete?mgNum=${mVo.mgNum}')">
 		         	게시글 삭제</button>
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록 보기</button>
         	</td>
