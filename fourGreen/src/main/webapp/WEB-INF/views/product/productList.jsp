@@ -8,9 +8,8 @@
 <title>경매품목 리스트</title>
 <style>
 	.imgBoardpage{
-		margin-top: 80px;
-		margin-bottom: 80px;
-	}
+		margin: 80px auto;
+	} 
 	.link{
 		margin: 0 auto;
 		font-size:25px;

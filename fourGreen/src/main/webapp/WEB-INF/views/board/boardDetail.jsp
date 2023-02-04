@@ -44,6 +44,19 @@
       border: 1px solid orange;
       text-align: center;
     }
+    .textareaStyle{
+		width: 80%;
+		padding: 0 5px;
+		height: 100px;
+		font-size: 16px;
+		border: 1px solide black
+	}
+	textarea{
+		resize: none;
+	}
+	textarea:focus {
+    	outline: none;
+	}
   
 </style>
 </head>
@@ -67,7 +80,11 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td colspan="5" style="height: 300px;">${board.content}</td>
+      <td colspan="5" style="height: 300px;">
+      <textarea rows="10" cols="100" readonly="readonly" style="resize: none; border: none">
+      	${board.content}
+      </textarea>
+      </td>
     </tr>
     <tr>
       	<td colspan="6" style="border: white; text-align:center">
@@ -85,10 +102,10 @@
      	<form action="commentUpdate" method="post" id="commentUpdate">
 	     	<input type="hidden" name="num" value="${board.num}">
     		
-      		<table>
+      		<table style="border-collapse: collapse;">
       			<c:forEach items="${lists}" var="comment" varStatus="c">
 			     	<input type="hidden" name="cno" id="reCommCno">
-	      			<tr>
+	      			<tr style="border: 8px solid white; border-radius: 15px">
 	      				<td><b>${comment.nickName}</b></td>
 			            <td id="reComm${c.index }" style="width: 60%;">${comment.reContent}</td>
 			            <td>${comment.reWirteDate}</td>
@@ -112,9 +129,9 @@
 	      		<table id="commentTb" class="commentWrite">
 	      			<tr>
 	      				<td>내용</td>
-	      				<td colspan="3"><textarea rows="3" cols="100" name="reContent" style="vertical-align: middle;"></textarea></td>
+	      				<td colspan="3"><textarea rows="4" cols="130" name="reContent" style="vertical-align: middle;"></textarea></td>
 	      				<td rowspan="2" class="commentBtn">
-	                		<button type="submit">댓글달기</button>
+	                		<button type="submit" class="w-btn w-btn-blue">댓글달기</button>
 	            		</td>
 	      			</tr>
 	      		</table>
@@ -139,13 +156,14 @@
 		reCommCno.setAttribute('value',cno);
 		reComm.innerHTML='';
 		
-		let input = document.createElement('input');
+		let textarea = document.createElement('textarea');
 		
-		input.setAttribute('type','text');
-		input.setAttribute('name','reContent');
-		input.setAttribute('value',str);
+		textarea.setAttribute('name','reContent');
+		textarea.setAttribute('rows','3');
+		textarea.setAttribute('cols','100');
+		textarea.innerHTML=str;
 		
-		reComm.appendChild(input);
+		reComm.appendChild(textarea);
 		commentUpdateF.setAttribute('style','display:none;');
 		commentUpdateBtn.setAttribute('style','');
 		

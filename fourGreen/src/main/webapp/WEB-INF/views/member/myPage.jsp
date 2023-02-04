@@ -13,7 +13,7 @@
 	padding: 0;
 } 
 #outter{
-	width: 1200px; 
+	width: 100%; 
 }  
 .infoTb{
   	width: 750px;
