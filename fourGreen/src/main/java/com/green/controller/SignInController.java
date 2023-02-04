@@ -211,7 +211,7 @@ public class SignInController {
 		}
 		return "member/errorPage";
 	}
-	
+	//auction/insertDibsOn
 	@PostMapping("/insertDibsOn")
 	@ResponseBody
 	public String insertDibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title) {

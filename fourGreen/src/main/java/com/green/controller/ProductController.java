@@ -105,6 +105,8 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	
+	
 	@RequestMapping("/product/selectOne")
 	public String selectOne(@RequestParam int num, Model model, @RequestParam(required = false) String dibsOnMsg) {
 		productService.readCount(num);
@@ -179,15 +181,14 @@ public class ProductController {
 		return "redirect:/product";
 	}
 
-	@PostMapping("/biding")
+	@PostMapping("/product/biding")
 	public String biding(int strPrice, CustomerVO cdto, @RequestParam int num, RedirectAttributes attributes) {
 		cdto.setNum(num);
 		cdto.setBidMoney(strPrice+"");
-		cdto.setMemberId("test");
 		productService.insertCustomer(cdto);
 		attributes.addAttribute("num",num);
 		
-		return "redirect:/selectOne";
+		return "redirect:/product/selectOne";
 	}
 	
 	@GetMapping("/one")

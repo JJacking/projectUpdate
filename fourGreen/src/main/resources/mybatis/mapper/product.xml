@@ -37,7 +37,7 @@
 </update>
 
 <insert id="insertCustomer" parameterType="customerVO">
-	insert into customer values(customer_seq.nextval,#{num},#{memberId},#{bidMoney},sysdate)
+	insert into customer values(customer_seq.nextval,#{num},#{memberId},sysdate,#{bidMoney})
 </insert>
 
 <select id="selectAllNumAuction" resultType="int">

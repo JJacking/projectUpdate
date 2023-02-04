@@ -263,7 +263,7 @@ h6{
 </script>
 
 <form action="biding" method="POST" onsubmit="return check()">
-<input type="hidden" name="id" value="${user.id }">
+<input type="hidden" name="memberId" value="${user.id }">
 <input type="hidden" name="num" value="${product.num }">
 <div id="container">
 	<div id="simpleMenu">
