@@ -56,7 +56,7 @@ padding: 10px;
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
-		<c:if test="${empty manager }">
+		<c:if test="${not empty manager }">
 			<c:forEach items="${manager}" var="manager">
 			<tr>
 				<td>${manager.mgNum}</td>

@@ -99,8 +99,8 @@
 	<div class="nav">
   		<div class="logo"><a href="${pageContext.request.contextPath}"><img src="./resources/img/logo3.png"></a></div>
      <ul class="nav-menu">
-	      <li><a href="product">물품보기</a></li>
-	      <li><a href="newAuction">물품등록</a></li>
+	      <li><a href="/auction/product">물품보기</a></li>
+	      <li><a href="/auction/newAuction">물품등록</a></li>
 	      <li>
 	        <a href="#">게시판</a>
 		      <ul id="sub-menu">
