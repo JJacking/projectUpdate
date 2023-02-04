@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.ChargePointService;
 import com.green.service.ProductService;
+import com.green.service.SignInService;
 import com.green.vo.CustomerVO;
 import com.green.vo.MemberVO;
 import com.green.vo.ProductVO;
@@ -29,14 +30,20 @@ import com.green.vo.ProductVO;
 public class ProductController {
 	
 	@Autowired
+	private SignInService signInService;
+	@Autowired
 	private ProductService productService;
 	@Autowired
 	private ChargePointService chargePointService;
 	
 	@RequestMapping("/product")
-	public String main(Model model, @RequestParam(required = false) String category, @RequestParam(required = false) String filter, @RequestParam(required = false) String sort,
+	public String main(HttpSession session, Model model, @RequestParam(required = false) String category, @RequestParam(required = false) String filter, @RequestParam(required = false) String sort,
 						@RequestParam(required = false) String searchCate, @RequestParam(required = false) String searchText, @RequestParam(required = false) String end,
 						@RequestParam(required = false) String pageNum) {
+		MemberVO member = (MemberVO)session.getAttribute("user");
+		if(member != null) {
+			session.setAttribute("user", signInService.getMember(member.getId()));
+		}
 		String category2 = "";
 		String filter2 = "";
 		String sort2 = "";

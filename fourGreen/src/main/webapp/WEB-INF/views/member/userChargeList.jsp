@@ -24,7 +24,7 @@
   	margin: 0 auto;
   	font-size: 20px;
   	border-collapse: collapse;
-  	line-height: 20px;
+  	line-height: 50px;
 } 
 .infoTb th{
 	width: 150px;
@@ -32,7 +32,7 @@
 	border: 1px solid #CE6D39; 
 	background-color: #FFEEE4;
 }
-.infoTb{
+.infoTb td{
 	height: 30px;
 }
 .w-btn{ 
