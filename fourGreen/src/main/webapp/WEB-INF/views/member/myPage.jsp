@@ -30,9 +30,6 @@
 	margin-left: 10px;
 	text-alin:center;
 }
-td{
-	text-align: center;
-}
 </style>
 </head>
 <body>
@@ -40,7 +37,7 @@ td{
 <div id="outter">
 	<div class="infoTb">
 	<form action="updateMember" method="post">
-		<table border="1" style="width: 100%; border-collapse: collapse;">
+		<table style="border-radius:10px; width: 100%; border-collapse: collapse;">
 			<tr>
 				<td>
 					아이디				
