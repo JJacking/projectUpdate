@@ -7,9 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<style type="text/css">
+	.main{
+		margin: 100px 100px;
+	}
+</style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
+<div class="main">
 	<h2>휴대폰 번호를 입력해주세요</h2>
 <table>
 	<tr>
@@ -22,7 +28,7 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <script type="text/javascript">
 	function test(){
 		let phoneNum = $('#phone').val();
