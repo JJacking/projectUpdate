@@ -43,6 +43,7 @@ input{
 <jsp:include page="../topBar.jsp" />
 <div id="outter">
 	<div class="infoTb">
+	<h2>마이페이지</h2>
 	<form action="updateMember" method="post">
 		<table style="width: 100%; border-collapse: collapse;">
 			<tr>

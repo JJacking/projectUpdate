@@ -90,7 +90,7 @@ public class BoardDAO {
 	
 	//게시판 수정(관리자페이지)
 	public void managerUpdate(ManagerVO mVo) {
-		sqlSession.update("mybatis.mapper.manager.boardUpdate",mVo);
+		sqlSession.update("mybatis.mapper.manager.managerUpdate",mVo);
 	}
 	
 	//게시판 삭제(관리자페이지)

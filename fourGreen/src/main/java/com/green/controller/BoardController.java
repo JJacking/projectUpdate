@@ -168,9 +168,9 @@ public class BoardController {
 	
 	//공지사항수정
 	@PostMapping("/managerUpdate")
-	public String ManagerUpdate(@ModelAttribute ManagerVO mVo,@RequestParam int mgNum,Model model) {
+	public String ManagerUpdate(@ModelAttribute ManagerVO mVo, Model model) {
 		boardService.managerUpdate(mVo);
-		model.addAttribute("MgNum",mgNum);
+		model.addAttribute("MgNum",mVo.getMgNum());
 		return "redirect:/managerDetail";
 	}
 	
