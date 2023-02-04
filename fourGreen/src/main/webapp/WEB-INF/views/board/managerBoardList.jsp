@@ -65,7 +65,7 @@ padding: 10px;
 			<tr>
 				<td>${manager.mgNum}</td>
 				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
-				<td>${manager.mgName}</td>
+				<td>관리자</td>
 				<td> <fmt:formatDate value="${manager.wirteDate}"/> </td>
 				<td>${manager.readCount}</td>
 			</tr>

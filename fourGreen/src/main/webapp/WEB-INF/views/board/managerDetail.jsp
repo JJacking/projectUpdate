@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <th>닉네임</th>
-          <td>${mVo.mgName}</td>
+          <td>관리자</td>
           <th>작성일</th>
           <td>${mVo.wirteDate}</td>
           <th>조회수</th>
@@ -36,7 +36,7 @@
           	<td colspan="6" style="border: white; text-align:center">
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerUpdate?mgNum=${mVo.mgNum}'">
 		         	 게시글 수정</button>
-		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerDelete?mgNum=${mVo.mgNum}')">
+		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerDelete?mgNum=${mVo.mgNum}'">
 		         	게시글 삭제</button>
 		          <button type="button" class="w-btn w-btn-blue" onclick="location.href='managerBoardList'">목록 보기</button>
         	</td>

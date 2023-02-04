@@ -24,10 +24,6 @@
     <div id="boardTb">
     <table>
       <tr>
-        <th>닉네임</th>
-        <td><input type="text" name="MgName" placeholder="필수" required></td>
-      </tr>
-      <tr>
         <th>글제목</th>
         <td><input type="text" name="title" placeholder="필수" required></td>
       </tr>

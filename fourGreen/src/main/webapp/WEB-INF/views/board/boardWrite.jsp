@@ -32,7 +32,7 @@
 				<td><textarea rows="15" style="width: 100%;" name="content"></textarea></td>
 			</tr>
 		</table>
-      <div class="writeBtn">
+      
           <button type="submit" class="w-btn w-btn-blue">글작성</button>
           <button type="reset" class="w-btn w-btn-blue">다시 작성</button>
           <button type="button" class="w-btn w-btn-blue" onclick="location.href='boardList'">목록으로</button>

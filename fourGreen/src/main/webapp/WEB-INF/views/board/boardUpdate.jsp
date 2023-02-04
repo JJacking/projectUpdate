@@ -6,15 +6,24 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style type="text/css">
+#boardTb input{
+    width: 100%;
+    height: 23px;
+  }
+  .writeBtn{
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-<div id="boardTb" align="center">
+
 	<h2>게시글 수정</h2>
 	<form action="boardUpdate" method="post">
 		<input type="hidden" name="id" value="${user.id}">
 		<input type="hidden" name="num" value="${board.num }">
-		
+		<div id="boardTb">
 		<table>
 			<tr>
 				<th>제목</th>
@@ -22,18 +31,17 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="70" name="content" value="${board.content}"></textarea></td>
+				<td><textarea rows="15" style="width: 100%;" name="content" value="${board.content}"></textarea></td>
 			</tr>
-			<tr>
-				<td colspan="2">
+			</table>
+			<div class="writeBtn">
 					<button class="w-btn w-btn-blue" type="submit">수정하기</button>
 					<button class="w-btn w-btn-blue" type="button" onclick="location.href='boardDetail'">취소하기</button>
-				</td>
-			</tr>
-		</table>
+			</div>
+		</div>
 	</form>
 	<hr>
-</div>
+
 <jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

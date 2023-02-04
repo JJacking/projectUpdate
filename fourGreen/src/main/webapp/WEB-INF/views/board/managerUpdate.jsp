@@ -7,15 +7,24 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style type="text/css">
+#boardTb input{
+    width: 100%;
+    height: 23px;
+  }
+  .writeBtn{
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 <jsp:include page="../topBar.jsp" />
-<div id="boardTb" align="center">
+
 	<h2>공지글 수정</h2>
 	<form action="managerUpdate" method="post">
 		<input type="hidden" name="command" value="managerUpdate">
 		<input type="hidden" name="mgNum" value="${mVo.mgNum }">
-		
+		<div id="boardTb">
 		<table>
 			<tr>
 				<th>닉네임</th>
@@ -23,19 +32,18 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" value="${mVo.title}" required>*필수</td>
+				<td><input type="text" name="title" value="${mVo.title}" required></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="70" name="content" value="${mVo.content}"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<button class="w-btn w-btn-blue" type="submit">수정하기</button>
-					<button class="w-btn w-btn-blue" type="button" onclick="location.href='managerDetail'">취소하기</button>
-				</td>
+				<td><textarea rows="15" style="width: 100%;" name="content" value="${mVo.content}"></textarea></td>
 			</tr>
 		</table>
+			<div class="writeBtn">
+				<button class="w-btn w-btn-blue" type="submit">수정하기</button>
+				<button class="w-btn w-btn-blue" type="button" onclick="location.href='managerDetail'">취소하기</button>
+			</div>
+		</div>	
 	</form>
 <hr>
 <jsp:include page="../bottomBar.jsp"/>

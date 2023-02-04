@@ -34,7 +34,7 @@
 	
 	<!-- 게시글 등록 -->
 	<insert id="managerWrite" parameterType="managerVo">
-		INSERT INTO managerBoard(mgNum title, content)
+		INSERT INTO managerBoard(mgNum, title, content)
 		VALUES(managerTbl_seq.nextval,#{title},#{content})
 	</insert>
 	

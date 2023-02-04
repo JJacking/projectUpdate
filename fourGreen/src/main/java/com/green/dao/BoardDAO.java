@@ -85,7 +85,7 @@ public class BoardDAO {
 	
 	//게시판등록(관리자페이지)
 	public void managerWrite(ManagerVO mVo) {
-		sqlSession.insert("mybatis.mapper.manager.boardWrite",mVo);
+		sqlSession.insert("mybatis.mapper.manager.managerWrite",mVo);
 	}
 	
 	//게시판 수정(관리자페이지)
@@ -95,7 +95,7 @@ public class BoardDAO {
 	
 	//게시판 삭제(관리자페이지)
 	public void managerDelete(int mgNum) {
-		sqlSession.delete("mybatis.mapper.manager.boardDelete",mgNum);
+		sqlSession.delete("mybatis.mapper.manager.managerDelete",mgNum);
 	}
 	
 	//페이징
