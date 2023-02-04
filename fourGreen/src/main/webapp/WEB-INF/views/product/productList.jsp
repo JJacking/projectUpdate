@@ -72,11 +72,6 @@
 <body>
 <jsp:include page="../topBar.jsp" />
 <div class="imgBoardpage">
-	<c:if test="${not empty newAuctionMsg }">
-		<script type="text/javascript">
-			alert('${newAuctionMsg}');
-		</script>
-	</c:if>
 		<div class="link">
 			<h6><a href="auction/">홈</a> > <a href="product"><b>메뉴 1</b></a></h6>
 		</div>
