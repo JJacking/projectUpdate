@@ -27,6 +27,10 @@ width: 10%;
 .col5{
   width: 10%;
 }
+#boardTb{
+	height: 500px;
+}
+
 #boardTb th{
 
 border: 0px;

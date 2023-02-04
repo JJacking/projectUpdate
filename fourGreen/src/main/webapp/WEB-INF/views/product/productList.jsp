@@ -77,7 +77,6 @@
 			alert('${newAuctionMsg}');
 		</script>
 	</c:if>
-	<form action="" method="GET">
 		<div class="link">
 			<h6><a href="auction/">홈</a> > <a href="product"><b>메뉴 1</b></a></h6>
 		</div>
@@ -169,7 +168,7 @@
 				<div id="imgSession">
 					<div class="imgCard" style="text-align: center;">
 						<!-- 대표사진  -->
-						<a href="/auction/product/selectOne?num=${product.num}">
+						<a href="product/selectOne?num=${product.num}">
 				 		<c:choose>
 							<c:when test="${empty product.productPic}">
 									<img src="/img/noimage.jpg" onclick="/auction/product/selectOne?num=${product.num}">
@@ -195,24 +194,20 @@
 				</div>
 				</c:forEach>
 			</div>
-					<div class="newProduct">
-						<p><a href="newAuction">새 상품 등록</a></p>
-						<c:if test="${totalCnt!=null}">
-							<c:if test="${startPage != 1 }">
-								<a href="pageNum=${startPage-10 }"><</a>
-							</c:if>
-							<c:forEach begin="${startPage }" end="${endPage }" varStatus="cnt">
-								<a href="?${url }pageNum=${cnt.index }">${cnt.index }</a>
-							</c:forEach>
-							<c:if test="${endPage < totalPage }">
-								<a href="pageNum=${startPage+10 }">></a>
-							</c:if>
-						</c:if>
-					</div>
+			<div class="newProduct">
+				<p><a href="newAuction">새 상품 등록</a></p>
+				<c:if test="${totalCnt!=null}">
+					<c:if test="${startPage != 1 }">
+						<a href="pageNum=${startPage-10 }"><</a>
+					</c:if>
+					<c:forEach begin="${startPage }" end="${endPage }" varStatus="cnt">
+						<a href="?${url }pageNum=${cnt.index }">${cnt.index }</a>
+					</c:forEach>
+					<c:if test="${endPage < totalPage }">
+						<a href="pageNum=${startPage+10 }">></a>
+					</c:if>
+				</c:if>
 			</div>
-		</div>
-	</form>
-</div>
 <jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function searchCate() {

@@ -38,32 +38,25 @@
 		font-weight: bold;
 		background-color: white;
 	}
-	
 	.nav .nav-menu li ul{
 	display: none;
 	}
-	
 	.nav .nav-menu li:hover ul{
 	display: block;
 	width: 130px;
 	height: 60px;
 	background-color: white;
 	}
-	
-	
 	.nav #sub-menu{
 	position: absolute;
 	z-index: 2;
 	line-height: 30px;
 	background-color: white;
 	}
-
 	.nav #sub-menu li{
 	list-style: none;
 	background-color: white;
 	}
-	
-	
 	.nav #sub-menu a{
 	background-color: white;
 	text-decoration: none;
@@ -71,28 +64,22 @@
 	padding-bottom: 0px;
 	color: gray;
 	}
-	
 	.nav #sub-menu a:hover{
 		color: black;
 		font-weight: bold;
 	}
-	
-	
 	.logo img{
 		width: 60px;
 		height: 50px;
 	}
-	
 	.mypage{
 		float: right;
 	}
-	
 	.mypage li{
 		
 		list-style: none;
 		display: inline-block;
 	}
-
 </style>
 </head>
 <body>
