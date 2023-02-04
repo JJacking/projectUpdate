@@ -41,7 +41,6 @@ public class ProductController {
 		String filter2 = "";
 		String sort2 = "";
 		String end2 = "";
-		
 		if(category != null) {
 			category2 = "category="+category+"&";
 		}
@@ -123,13 +122,14 @@ public class ProductController {
 	}
 	
 	@PostMapping("/newAuction")
-	public String newProduct(HttpSession session, RedirectAttributes attribute, @RequestParam String title,@RequestParam int strPrice,
+	public String newProduct(HttpSession session, @RequestParam String title,@RequestParam int strPrice,
 			@RequestParam String memberId,
 			@RequestParam String content,@RequestParam String regdate, @RequestParam String category,
 		    @RequestParam MultipartFile[] productPic) throws IllegalStateException, IOException {
-		System.out.println("newAuction1");
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		System.out.println("newAuction1");
 		if(user != null && user.getPoint() >= 1000) {
+			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 			
 			ProductVO dto = new ProductVO();
@@ -140,6 +140,7 @@ public class ProductController {
 			dto.setRegdate(regdate);
 			dto.setCategory(category);
 			String str = "";
+			System.out.println("newAuction2");
 			for(int i =0; i<productPic.length;i++) {
 				Calendar dateTime = Calendar.getInstance();
 				String uniqueId = sdf.format(dateTime.getTime())+RandomStringUtils.randomAlphanumeric(10);
@@ -151,15 +152,14 @@ public class ProductController {
 				File file = new File("C:\\UploadImage\\AuctionList",fileName);
 				productPic[i].transferTo(file);
 			}
+			System.out.println("newAuction3");
 			dto.setProductPic(str);
 			
 			productService.insertProduct(dto);
 			chargePointService.updatePointByUserId(user.getId(), 1000);
-			System.out.println("newAuction2");
 			
 			return "redirect:/product";
 		}else {
-			attribute.addAttribute("newAuctionMsg","잔액이 부족합니다.");
 			return "redirect:/product";
 		}
         
