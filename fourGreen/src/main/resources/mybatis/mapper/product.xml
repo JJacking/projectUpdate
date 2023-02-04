@@ -71,6 +71,9 @@ SELECT * FROM
 		<if test="array[1] != null">
 			ORDER BY ${array[1]} ${array[2]}
 		</if>
+		<if test="array[1] == null">
+			ORDER BY num desc
+		</if>
 	)) 
 	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +8
 </select>

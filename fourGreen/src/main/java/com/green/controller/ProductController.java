@@ -113,7 +113,7 @@ public class ProductController {
 	}
 	
 
-	@RequestMapping("/newAuction")
+	@GetMapping("/newAuction")
 	public String newAuction(HttpSession session) {
 		MemberVO m = (MemberVO)session.getAttribute("user");
 		if(m != null) {
@@ -127,6 +127,7 @@ public class ProductController {
 			@RequestParam String memberId,
 			@RequestParam String content,@RequestParam String regdate, @RequestParam String category,
 		    @RequestParam MultipartFile[] productPic) throws IllegalStateException, IOException {
+		System.out.println("newAuction1");
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user != null && user.getPoint() >= 1000) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
@@ -154,6 +155,7 @@ public class ProductController {
 			
 			productService.insertProduct(dto);
 			chargePointService.updatePointByUserId(user.getId(), 1000);
+			System.out.println("newAuction2");
 			
 			return "redirect:/product";
 		}else {

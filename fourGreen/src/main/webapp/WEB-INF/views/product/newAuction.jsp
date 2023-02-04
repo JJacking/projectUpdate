@@ -90,7 +90,7 @@
 			<td>				
 				<ul>
 					<li id="addTr">
-						<input type="file" name="productPic" multiple="multiple"  required><br>
+						<input type="file" name="productPic" required><br>
 					</li>
 				</ul>
 					<button type="button" class="w-btn w-btn-blue" onclick="add()">추가</button>

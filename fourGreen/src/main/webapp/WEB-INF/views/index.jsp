@@ -20,7 +20,7 @@ h2{
 
 .slider{
   width: 100%;
-  height: 500px;
+  height: 600px;
   position: relative;
   margin: 0 auto;
   overflow: hidden;
