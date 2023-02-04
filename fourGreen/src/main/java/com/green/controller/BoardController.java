@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.service.BoardService;
 import com.green.service.ChargePointService;
@@ -168,9 +169,10 @@ public class BoardController {
 	
 	//공지사항수정
 	@PostMapping("/managerUpdate")
-	public String ManagerUpdate(@ModelAttribute ManagerVO mVo, Model model) {
+	public String ManagerUpdate(@ModelAttribute ManagerVO mVo,RedirectAttributes attributes,@RequestParam int MgNum, Model model) {
+		System.out.println(MgNum);
 		boardService.managerUpdate(mVo);
-		model.addAttribute("MgNum",mVo.getMgNum());
+		attributes.addAttribute("mgNum",MgNum);
 		return "redirect:/managerDetail";
 	}
 	

@@ -14,7 +14,7 @@
 	<h2>공지글 수정</h2>
 	<form action="managerUpdate" method="post">
 		<input type="hidden" name="command" value="managerUpdate">
-		<input type="hidden" name="MgNum" value="${mVo.mgNum }">
+		<input type="hidden" name="mgNum" value="${mVo.mgNum }">
 		
 		<table>
 			<tr>
