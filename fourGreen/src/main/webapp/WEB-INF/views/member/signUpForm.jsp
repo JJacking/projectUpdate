@@ -24,7 +24,6 @@
 	    color: black;
 	}
 	
-	
 	.mainSession{
 	  top: 50%;
 	  left: 50%;
@@ -41,7 +40,6 @@
 	.mainSession table{
 		width:100%
 	}
-	
 	
 	.mainSession input{
 	  width: 80%;
@@ -140,7 +138,6 @@
     	    new daum.Postcode({
     	        oncomplete: function(data) {
     	        	document.getElementById('address1').value=data.roadAddress;
-    	            alert(data.zonecode+' / '+data.roadAddress);
     	        }
     	    }).open();
     	}

@@ -117,6 +117,7 @@ public class SignInController {
 	
 	@PostMapping("/updateMember")
 	public String updateMember(MemberVO member, HttpSession session) {
+		System.out.println(member.getAddress()+"");
 		signInService.updateMember(member);
 		session.setAttribute("user", signInService.getMember(member.getId()));
 		return "redirect:/myPage";

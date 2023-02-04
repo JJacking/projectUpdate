@@ -12,7 +12,7 @@
 	border: 1px solid black;
 	width: 535px; 
 	height: 581px;
-}
+} 
 table{
 	width:100%;
 	border-collapse: collapse;
@@ -22,9 +22,22 @@ tr{
 	text-align:center;
 	width: 100%;
 	height: 50px;
+} 
+.w-btn{ 
+	width:50px;
+	height:35px;
+	border: none;
+	border-radius:5px;
+	text-alin:center;
 }
-td{
-	width:500px;
+.w-btn:hover{ 
+	cursor: pointer;
+	background-color: #6aafe6;
+    color: #d4dfe6;
+}
+.w-btn-blue {
+    background-color: #6aafe6;
+    color: #d4dfe6;
 }
 </style>
 </head>
@@ -40,17 +53,16 @@ td{
 		</c:if>
 		<c:forEach var="dibsOn" items="${dibsOnList }" varStatus="d">
 			<tr id="dibsOn${d.index }">
-				<td style="width: 50px;">
+				<td style="width: 60px;">
 					${d.count }
-					<input type="hidden" id="" value="">
 				</td>
 				<td>
 					<a href="/auction/product/selectOne?num=${dibsOn.num}" target="_blank">
 						${dibsOn.title }
 					</a>
 				</td>
-				<td>
-					<button type="button" onclick="deleteDibsOn('${d.index }','${dibsOn.idx }')">삭제</button>
+				<td style="width: 60px;">
+					<button class="w-btn w-btn-blue" type="button" onclick="deleteDibsOn('${d.index }','${dibsOn.idx }')">삭제</button>
 				</td>
 			</tr>		
 		</c:forEach>

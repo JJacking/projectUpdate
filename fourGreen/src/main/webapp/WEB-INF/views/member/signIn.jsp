@@ -10,7 +10,6 @@
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-
   <style>
     *{
       margin: auto;

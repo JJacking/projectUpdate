@@ -8,10 +8,23 @@
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
-	.changePw{
-		margin: 10% 20%;
-		 line-height: 30px;
-	}
+.changePw{
+	margin: 150px auto;
+	line-height: 30px;
+}
+.w-btn{ 
+	width:160px;
+	padding: 20px;
+	margin-left: 10px;
+	text-alin:center;
+}
+input{
+	width: 80%;
+	padding: 0 5px;
+	height: 40px;
+	font-size: 16px;
+	border: 1px solide black
+}
 </style>
 </head>
 <body>

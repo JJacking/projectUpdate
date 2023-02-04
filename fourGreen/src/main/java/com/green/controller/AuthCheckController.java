@@ -19,7 +19,7 @@ public class AuthCheckController {
 	public String authCheck(@RequestParam("key") String key) {
 		int cnt = signUpService.authCheck(key);
 		if(cnt == 1) {
-			return "authSuccess";
+			return "member/authSuccess";
 		}
 		return "member/errorPage";
 	}
