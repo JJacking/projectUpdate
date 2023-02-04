@@ -128,13 +128,16 @@
 	</div>
 </form>
 </div>
+
 <jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function submit2() {
-		
+		if('${user.point}'<1000){
+			alert('포인트가 부족해 상품을 등록할 수 없습니다.');
+			return false;
+		} 
 		let flag = confirm('한번 등록한 상품은 수정/삭제가 불가능 합니다. 정말 등록하시겠습니까?');
 		if(flag) {
-			
 			return true;
 		}
 		return false;
@@ -153,8 +156,6 @@
 			alert('등록할 수 있는 사진은 최대 5장입니다');
 		}
 	}
-	
-	
 </script>
 </body>
 </html>
