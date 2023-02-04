@@ -233,8 +233,6 @@ text-align: center;
 	   			<a href="/auction/product/selectOne?num=${item.num}">
 			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
 	   			</a>
-	        	<h4>${item.title }</h4>
-		        <p>${item.strPrice }</p>
 	       	</li>
       	</c:forEach>
       </ul>
@@ -249,8 +247,6 @@ text-align: center;
 	   			<a href="/auction/product/selectOne?num=${item.num}">
 			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
 	   			</a>
-		        <h4>${item.title }</h4>
-		        <p>${item.strPrice }</p>
 	       	</li>
       	</c:forEach>
       </ul>
