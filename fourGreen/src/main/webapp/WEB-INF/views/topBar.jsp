@@ -103,7 +103,15 @@
             <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
         </div>
     </c:if>
-   <c:if test="${not empty user}">
+    <c:if test="${not empty user and user.grade eq 0}">
+    <div class="mypage">
+      	<ul>
+      		<li><a href="/auction/signOut">로그아웃</a></li>
+	        <li><a href="/auction/userChargeList">고객 포인트 승인</a></li>
+        </ul>
+    </div>
+    </c:if>
+   <c:if test="${not empty user and user.grade ne 0}">
         <div class="mypage">
       	<ul>
       		<li><a href="/auction/signOut">로그아웃</a></li>
