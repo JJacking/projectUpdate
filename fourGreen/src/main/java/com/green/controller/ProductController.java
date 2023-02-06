@@ -172,7 +172,7 @@ public class ProductController {
 		return "redirect:/product";
 	}
 
-	@PostMapping("/biding")
+	@PostMapping("/product/biding")
 	public String biding(int strPrice, CustomerVO cdto, @RequestParam int num, RedirectAttributes attributes) {
 		cdto.setNum(num);
 		cdto.setBidMoney(strPrice+"");
