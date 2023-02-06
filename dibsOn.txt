@@ -1,0 +1,30 @@
+
+
+create table dibsOn(
+    idx number primary key,
+    num number not null,
+    id varchar2(100) not null,
+    title varchar2(1000) not null
+);
+drop table dibsOn;
+
+create SEQUENCE dibsOn_seq nocache;
+
+
+select * from member;
+
+CREATE table customerBoard(
+    num number(20) PRIMARY KEY,
+    id VARCHAR2(30),
+    title VARCHAR2(30),
+    content VARCHAR2(1000),
+    wirteDate DATE default sysdate
+);
+
+create SEQUENCE customerBoard_seq
+NOCACHE;
+
+insert into customerBoard(num, id, title, content)
+VALUES(managerTbl_seq.NEXTVAL,'관리자','어떤글을 써야 하나요?','문의사항 게시판입니다.');
+
+commit;
