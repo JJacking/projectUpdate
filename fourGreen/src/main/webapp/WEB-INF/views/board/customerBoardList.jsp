@@ -38,7 +38,7 @@ padding: 10px;
 <body>
 <jsp:include page="../topBar.jsp" />
 <div id="boardTb">
-	<h2>공지사항</h2>
+	<h2>내 문의사항</h2>
 	<hr>
 	<br>
 	<table>
