@@ -99,17 +99,17 @@
 			</tr>
 			<tr>
 				<th>
-					<input type="password" name="password" placeholder="비밀번호" required="required">
+					<input type="password" id="password" name="password" placeholder="비밀번호" required="required">
 				</th>
 			</tr>
 			<tr>
 				<th>
-					<input type="password" name="password_chk" placeholder="비밀번호 재확인" required="required">
+					<input type="password" id="password_chk" name="password_chk" placeholder="비밀번호 재확인" required="required">
 				</th>
 			</tr>
 			<tr>
 				<th>
-					<input type="text" name="phone" placeholder="핸드폰" required="required">
+					<input type="text" id="phone" name="phone" placeholder="핸드폰" required="required">
 				</th>
 			</tr>
 			<tr>
