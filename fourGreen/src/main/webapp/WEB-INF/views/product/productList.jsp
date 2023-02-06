@@ -152,17 +152,18 @@
 						</th>
 					</tr>
 				</table>
-			
-				<div class="search">
-					<select name="searchCate" id="searchCate">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="writer">작성자</option>
-					</select>
-			
-					<input type="text" name="searchText" id="searchText">
-					<input type="submit" value="검색하기">
-				</div>
+				<form action="product" method="get">
+					<div class="search">
+						<select name="searchCate" id="searchCate">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="writer">작성자</option>
+						</select>
+				
+						<input type="text" name="searchText" id="searchText">
+						<input type="submit" value="검색하기">
+					</div>
+				</form>
 				
 				<c:forEach var="product" items="${list}">
 				<div id="imgSession">
