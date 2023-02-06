@@ -4,11 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.service.SignInService;
+import com.green.vo.MemberVO;
+
 public class AuthCheckInterceptor implements HandlerInterceptor{
 	
+	@Autowired
+	private SignInService signInService;
 				//어댑터 패턴 / 디폴트 메서드
 	//인터셉터를 적용하기 위해서 
 	//1. 어떤 컨트롤러에 적용할지
@@ -21,13 +27,14 @@ public class AuthCheckInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		if(session != null) {
-			Object obj = session.getAttribute("authInfo");
-			if(obj != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			if(user != null) {
+				session.setAttribute("user", signInService.getMember(user.getId()));
 				return true;
 			}
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/login");
+		response.sendRedirect(request.getContextPath()+"/signInForm");
 		
 		return false;
 	}
