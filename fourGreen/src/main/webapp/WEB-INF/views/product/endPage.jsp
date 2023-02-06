@@ -56,7 +56,7 @@ td{
 }
 .btn{
 	float: right;
-	margin-right: 90px;
+	margin-right: 10px;
 	width: 115px;
 	height: 30px;
 	border: 0px;
@@ -92,9 +92,115 @@ h6{
 #water{
 }
 </style>
+<style>
+	.nav{
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	margin-bottom: 0px;
+	background-color: white;
+	}
+	.nav a{
+	text-decoration: none;
+	color: black;
+	}
+	hr{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	}
+	.nav .nav-menu ul{
+	list-style: none;
+	}
+	.nav .nav-menu li{
+	display: inline-block;
+	margin-right: 20px;
+	}
+	.nav-menu{
+		padding-top: 20px;
+		vertical-align: bottom;
+	}
+	.nav-menu li:hover{
+		font-weight: bold;
+		background-color: white;
+	}
+	.nav .nav-menu li ul{
+	display: none;
+	}
+	.nav .nav-menu li:hover ul{
+	display: block;
+	width: 130px;
+	height: 60px;
+	background-color: white;
+	}
+	.nav #sub-menu{
+	position: absolute;
+	z-index: 2;
+	line-height: 30px;
+	background-color: white;
+	}
+	.nav #sub-menu li{
+	list-style: none;
+	background-color: white;
+	}
+	.nav #sub-menu a{
+	background-color: white;
+	text-decoration: none;
+	padding: 10px;
+	padding-bottom: 0px;
+	color: gray;
+	}
+	.nav #sub-menu a:hover{
+		color: black;
+		font-weight: bold;
+	}
+	.logo img{
+		width: 60px;
+		height: 50px;
+	}
+	.mypage{
+		float: right;
+	}
+	.mypage li{
+		
+		list-style: none;
+		display: inline-block;
+	}
+	.divBtn{
+		margin-right: 100px;
+	}
+</style>
 </head>
 <body>
-<jsp:include page="../topBar.jsp" />
+<div class="nav">
+  		<div class="logo"><a href="${pageContext.request.contextPath}"><img src="../resources/img/logo3.png"></a></div>
+     <ul class="nav-menu">
+	      <li><a href="/auction/product">물품보기</a></li>
+	      <li><a href="/auction/newAuction">물품등록</a></li>
+	      <li>
+	        <a href="#">게시판</a>
+		      <ul id="sub-menu">
+		            <li><a href="/auction/managerBoardList">공지사항</a></li>
+		            <li><a href="/auction/boardList">자유게시판</a></li>
+		      </ul>
+	      </li>
+	      <li><a href="/auction/customerBoard">고객센터</a></li>
+     </ul>
+   	<c:if test="${empty user}"> 
+        <div class="loginBtn">
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signInForm'">로그인</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
+        </div>
+    </c:if>
+   <c:if test="${not empty user}">
+        <div class="mypage">
+      	<ul>
+      		<li><a href="/auction/signOut">로그아웃</a></li>
+	        <li><a href="/auction/myPage">내정보</a></li>
+	        <li><a href="/auction/charge">포인트충전/조회</a></li>
+        </ul>
+        </div>
+    </c:if>
+</div>
 	<form action="biding" method="POST" onsubmit="return check()">
 <input type="hidden" name="id" value="test@gmail.com">
 <input type="hidden" name="num" value="${product.num }">
@@ -160,7 +266,12 @@ h6{
 				</table>
 			</li>
 		</ul>
-		<button type="button" class="btn" onclick="location.href='/auction/product'">목록보기</button>
+		<div class="divBtn">
+			<c:if test="${not empty user and product.memberId eq user.id or not empty user and user.grade eq '0'}">
+				<button  type="button" class="btn"  onclick="location.href='deleteProduct?num=${product.num}'">경매 삭제하기</button>
+			</c:if>
+			<button type="button" class="btn" onclick="location.href='/auction/product'">목록보기</button>
+		</div>
 	</div>
 		<div id="mainContent">
 		<p>${product.content}</p>

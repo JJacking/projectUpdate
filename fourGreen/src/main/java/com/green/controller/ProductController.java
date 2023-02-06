@@ -165,7 +165,7 @@ public class ProductController {
         
 	}
 	
-	@RequestMapping("/deleteProduct")
+	@RequestMapping("/product/deleteProduct")
 	public String deleteProduct(int num) {
 		productService.deleteProduct(num);
 		
@@ -174,6 +174,7 @@ public class ProductController {
 
 	@PostMapping("/product/biding")
 	public String biding(@RequestParam String id, int strPrice, CustomerVO cdto, @RequestParam int num, RedirectAttributes attributes) {
+		System.out.println("biding**"+strPrice);
 		cdto.setNum(num);
 		cdto.setBidMoney(strPrice+"");
 		productService.insertCustomer(cdto);

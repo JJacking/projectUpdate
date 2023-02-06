@@ -205,9 +205,16 @@ public class SignInController {
 	
 	@PostMapping("/searchPassChangePass")
 	public String searchPassChangePass(@RequestParam(value = "id") String id,@RequestParam(value = "newPass") String password, HttpSession session) {
-		int result = signInService.searchPassChange(id, password);
+		SHA256 sha = new SHA256();
+		String encrypt = "";
+		try {
+			encrypt = sha.encrypt(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		int result = signInService.searchPassChange(id, encrypt);
 		if(result == 1) {
-			return "redirect:/signIn";
+			return "redirect:/signInForm";
 		}
 		return "member/errorPage";
 	}

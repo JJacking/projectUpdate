@@ -30,9 +30,10 @@
       border-radius: 10px;
 	  line-height: 30px;
 	}
-  	.commentBtn{
-      border: 1px solid orange;
+  	.commentBtn > .w-btn{
+      border: 1px solid #9bcffa;
       text-align: center;
+      margin: 5px;
     }
     .commentRead{
       border: 1px solid white;
@@ -88,7 +89,7 @@
     </tr>
     <tr>
       	<td colspan="6" style="border: white; text-align:center">
-      	<c:if test="${not empty user and user.id eq board.id}">
+      	<c:if test="${not empty user and user.id eq board.id or not empty user and user.grade eq '0'}">
 	        <button type="button" class="w-btn w-btn-blue"  onclick="location.href='boardUpdate?num=${board.num}'">게시글 수정</button>
 	        <button type="button" class="w-btn w-btn-blue"  onclick="removeCheck('${board.num }')">게시글 삭제</button>
 	      	</c:if>
@@ -109,7 +110,7 @@
 	      				<td><b>${comment.nickName}</b></td>
 			            <td id="reComm${c.index }" style="width: 60%;">${comment.reContent}</td>
 			            <td>${comment.reWirteDate}</td>
-			            <c:if test="${not empty user and user.id eq comment.userId }">
+			            <c:if test="${not empty user and user.id eq comment.userId or not empty user and user.grade eq '0'}">
 				            <td class="commentBtn">
 				              <button type="button" class="w-btn w-btn-blue"  id="commentUpdateF${c.index}" onclick="commentUpdateFunc('${comment.cno }','${c.index}','${comment.reContent}')">수정</button> 
 				              <button type="submit" class="w-btn w-btn-blue"  id="commentUpdateBtn${c.index}" style="display: none;">수정</button> 

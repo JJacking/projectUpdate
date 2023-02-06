@@ -57,6 +57,7 @@ public class ProductDAO {
 		System.out.println(dto.getBidMoney()+" / "+dto.getNum());
 		biding(Integer.parseInt(dto.getBidMoney()), dto.getNum());
 		sqlSession.insert("mybatis.mapper.product.insertCustomer",dto);
+		pointBack(dto.getNum());
 	}
 
 	public void newAuction() {
@@ -94,6 +95,20 @@ public class ProductDAO {
 	public void updateUserPoint(int price ,String id) {//updateUserPoint
 		Object[] array = {price,id};
 		sqlSession.update("mybatis.mapper.product.updateUserPoint",array);
+	}
+	
+	public CustomerVO selectOneCustomerById(int num) {
+		List<CustomerVO> customer = sqlSession.selectList("mybatis.mapper.product.selectOneCustomerById",num);
+		return customer != null && (customer.size() > 1) ? customer.get(1) : null;
+	}
+	
+	public void pointBack(int num) {
+		CustomerVO vo = selectOneCustomerById(num);
+		if(vo != null) {
+			Object[] array = {vo.getBidMoney(), vo.getMemberId()};
+			System.out.println(vo.getBidMoney()+" / "+ vo.getMemberId());
+			sqlSession.update("mybatis.mapper.product.pointBack",array);
+		}
 	}
 
 	

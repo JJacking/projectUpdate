@@ -90,4 +90,12 @@ SELECT * FROM
 	update member set point = point - #{array[0]} where id=#{array[1]}
 </update>
 
+<select id="selectOneCustomerById" parameterType="int" resultType="customerVO">
+	select * from customer where num=#{num} order by buyNum desc
+</select>
+
+<update id="pointBack" parameterType="java.util.Arrays">
+	update member set point = point + #{array[0]} where id=#{array[1]}
+</update>
+
 </mapper>

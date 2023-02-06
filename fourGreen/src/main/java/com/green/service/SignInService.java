@@ -1,5 +1,6 @@
 package com.green.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,16 @@ public class SignInService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	public MemberVO getUser(MemberVO m) {
+	public MemberVO getUser(MemberVO m){
 		MemberVO member = memberDAO.getUser(m);
-		if(member!=null&&member.getPassword().equals(m.getPassword())) {
+		SHA256 sha = new SHA256();
+		String encryptStr = "";
+		try {
+			encryptStr = sha.encrypt(m.getPassword());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(member != null&&member.getPassword().equals(encryptStr)) {
 			return member;
 		}
 		return null;

@@ -152,7 +152,7 @@
 				}else if(data == 'googleUserInfo'){
 					window.location.replace("googleUserInfo");
 				}else if(data == 'signIn'){
-					window.location.replace("signIn");
+					window.location.replace("signInForm");
 				}
 			}
 		});

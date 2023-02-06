@@ -346,6 +346,9 @@ h6{
 		<div id="productBtn">
 			<button type="submit" id="btn1" class="btn"><Strong>입찰하기</Strong></button>
 			<button type="button" class="btn" onclick="insertDibsOn('${product.num}','${user.id }','${product.title }')">찜하기</button>
+			<c:if test="${not empty user and user.grade eq '0'}">
+				<button  type="button" class="btn"  onclick="location.href='deleteProduct?num=${product.num}'">경매 삭제하기</button>
+			</c:if>
 			<script type="text/javascript">
 				function insertDibsOn(num,id,title){
 					$.ajax({
@@ -369,10 +372,6 @@ h6{
 					});
 				}
 			</script>
-			<c:if test="${product.memberId eq user.id }">
-				<p><a href="deleteProduct?num=${product.num}">경매 삭제하기</a></p>
-			</c:if>
-			<button type="button" class="btn" onclick="location.href='??'">문의하기</button>
 			<button type="button" class="btn" onclick="location.href='/auction/product'">목록보기</button>
 		</div>
 	</div>
@@ -451,10 +450,11 @@ h6{
 			alert('보유 포인트가 부족합니다.')
 			return false;
 		}
-		let flag = confirm(strPrice+'원에 정말 입찰하시겠습니까?');
+		let strPrice2 = document.getElementById('strPrice');
+		let flag = confirm(price+'원에 정말 입찰하시겠습니까?');
 		if(flag){
-			strPrice.setAttribute('value',strPrice+bidUnit);
-			alert(strPrice.value);
+			strPrice2.setAttribute('value',strPrice+bidUnit);
+			alert(strPrice2.value);
 			return true;
 		}
 		return false;

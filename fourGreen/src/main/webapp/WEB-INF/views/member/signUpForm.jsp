@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>signUp</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
 	
 	.w-btn{
@@ -132,7 +132,6 @@
 </div>
 	 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-    
     	function addressPop(){
     		//zonecode
     	    new daum.Postcode({
@@ -247,8 +246,8 @@
 				datatype:"text",
 				success:function(data){
 					$('#message').attr('value',data);
-					//sendEmail2();
-					read();
+					sendEmail2();
+					//read();
 					$('#message').attr('value','');
 				}
 			});
@@ -257,7 +256,7 @@
     	function sendEmail2(){
  		   emailjs.init('vr09l4bTjRJcS48gc');
  	        let templateParams  = {
-	        		userId : document.getElementById('userId').value,
+	        	userId : document.getElementById('userId').value,
  	            message : document.getElementById('message').value
  	        }
  	        console.log(templateParams);

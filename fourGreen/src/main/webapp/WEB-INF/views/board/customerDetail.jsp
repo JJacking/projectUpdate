@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="../topBar.jsp" />
     <div id="boardTb">
-      <h2>공지사항</h2>
+      <h2>내 문의사항</h2>
       <table>
         <tr>
           <th>제목</th>
