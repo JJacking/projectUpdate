@@ -33,10 +33,9 @@ public class AuthCheckInterceptor implements HandlerInterceptor{
 				return true;
 			}
 		}
+		//response.sendRedirect(request.getContextPath()+"/signInForm");
+		return true;
 		
-		response.sendRedirect(request.getContextPath()+"/signInForm");
-		System.out.println("실핸야허ㅑㅎㄴㅇㅁ");
-		return false;
 	}
 
 	@Override

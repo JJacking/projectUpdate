@@ -132,7 +132,14 @@ public class SignInController {
 	@PostMapping("/withdraw")
 	public String withdraw(@RequestParam(value="userId") String userId,@RequestParam(value="password") String password, HttpSession session, Model model) {
 		MemberVO member = signInService.getMember(userId);
-		if(member.getPassword().equals(password)&& member.getType().equals("auction") && !password.equals("0")) {
+		SHA256 sha = new SHA256();
+		String encryptStr = "";
+		try {
+			encryptStr = sha.encrypt(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(member.getPassword().equals(encryptStr)&& member.getType().equals("auction") && !password.equals("0")) {
 			signInService.withdrawDeleteCharge(member.getId());
 			signInService.deleteMember(userId);
 			session.invalidate();

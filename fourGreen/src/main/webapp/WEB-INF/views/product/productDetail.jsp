@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>상품 상세보기 - ${product.title}</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style type="text/css">
 #container{
 	width: 1200px;
@@ -209,8 +210,8 @@ h6{
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
-            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signInForm'">로그인</button>
-            <button type="button" class="w-btn w-btn-blue" onclick="location.href='signUp'">회원가입</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='/auction/signInForm'">로그인</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='/auction/signUp'">회원가입</button>
         </div>
     </c:if>
    <c:if test="${not empty user}">
@@ -344,8 +345,19 @@ h6{
 			</li>
 		</ul>
 		<div id="productBtn">
-			<button type="submit" id="btn1" class="btn"><Strong>입찰하기</Strong></button>
-			<button type="button" class="btn" onclick="insertDibsOn('${product.num}','${user.id }','${product.title }')">찜하기</button>
+			<c:if test="${not empty user}"> 
+				<button type="submit" id="btn1" class="btn"><Strong>입찰하기</Strong></button>
+   			 </c:if>
+			<c:if test="${empty user}"> 
+				<button type="button" id="btn1" class="btn" onclick="location.href='/auction/signInForm'"><Strong>입찰하기</Strong></button>
+   			 </c:if>
+			<c:if test="${not empty user}"> 
+				<button type="button" class="btn" onclick="insertDibsOn('${product.num}','${user.id }','${product.title }')">찜하기</button>
+   			 </c:if>
+			<c:if test="${empty user}"> 
+				<button type="button" id="btn3" class="btn" onclick="location.href='/auction/signInForm'"><Strong>찜하기</Strong></button>
+   			 </c:if>
+			
 			<c:if test="${not empty user and user.grade eq '0'}">
 				<button  type="button" class="btn"  onclick="location.href='deleteProduct?num=${product.num}'">경매 삭제하기</button>
 			</c:if>

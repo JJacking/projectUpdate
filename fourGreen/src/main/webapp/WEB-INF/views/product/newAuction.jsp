@@ -65,7 +65,7 @@
 <jsp:include page="../topBar.jsp" />
 <div class="board">
 <form action="newAuction" method="post" onsubmit="return submit2()" enctype="multipart/form-data">
-<input type="hidden" name="memberId" value="teste">
+<input type="hidden" name="memberId" value="${user.id }">
 	<h2>물품 정보</h2>
 	<table id="tb">
 		<tr>

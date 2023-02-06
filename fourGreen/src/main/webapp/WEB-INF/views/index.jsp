@@ -269,7 +269,7 @@ text-align: center;
 		<c:forEach items="${manager}" var="manager">
 			<tr>
 				<td>${manager.mgNum}</td>
-				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
+				<td>${manager.title}</td>
 				<td>${manager.mgName}</td>
 				<td>${manager.wirteDate}</td>
 			</tr>
@@ -289,7 +289,7 @@ text-align: center;
         <c:forEach items="${list}" var="board">
           <tr>
             <td>${board.num}</td>
-            <td colspan="3"><a href="boardDetail?num=${board.num}">${board.title}</a></td>
+            <td colspan="3">${board.title}</td>
             <td>${board.nickName}</td>
           </tr>
         </c:forEach>
