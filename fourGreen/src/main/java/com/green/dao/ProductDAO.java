@@ -91,7 +91,10 @@ public class ProductDAO {
 		return sqlSession.selectList("mybatis.mapper.product.search",array);
 	}
 
-
+	public void updateUserPoint(int price ,String id) {//updateUserPoint
+		Object[] array = {price,id};
+		sqlSession.update("mybatis.mapper.product.updateUserPoint",array);
+	}
 
 	
 }

@@ -264,6 +264,7 @@ h6{
 
 <form action="biding" method="POST" onsubmit="return check()">
 <input type="hidden" name="id" value="${user.id }">
+<input type="hidden" name="memberId" value="${user.id }">
 <input type="hidden" name="num" value="${product.num }">
 <div id="container">
 	<div id="simpleMenu">
@@ -442,13 +443,18 @@ h6{
 	}
 	
 	function check(){
-		strPrice = parseInt(document.getElementById('strPrice').value);
 		let bidUnit = 0;
 		bidUnit = parseInt(document.getElementById('bidUnit').textContent);
 		alert('입찰하시면 취소 할 수 없습니다.');
-		let flag = confirm(strPrice+bidUnit+'원에 정말 입찰하시겠습니까?');
+		let price = strPrice+bidUnit;
+		if('${user.point }' < price){
+			alert('보유 포인트가 부족합니다.')
+			return false;
+		}
+		let flag = confirm(strPrice+'원에 정말 입찰하시겠습니까?');
 		if(flag){
-			document.getElementById('strPrice').setAttribute('value',strPrice+bidUnit);
+			strPrice.setAttribute('value',strPrice+bidUnit);
+			alert(strPrice.value);
 			return true;
 		}
 		return false;

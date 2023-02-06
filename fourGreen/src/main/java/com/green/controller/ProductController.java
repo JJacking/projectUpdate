@@ -173,22 +173,14 @@ public class ProductController {
 	}
 
 	@PostMapping("/product/biding")
-	public String biding(int strPrice, CustomerVO cdto, @RequestParam int num, RedirectAttributes attributes) {
+	public String biding(@RequestParam String id, int strPrice, CustomerVO cdto, @RequestParam int num, RedirectAttributes attributes) {
 		cdto.setNum(num);
 		cdto.setBidMoney(strPrice+"");
-		cdto.setMemberId("test");
 		productService.insertCustomer(cdto);
 		attributes.addAttribute("num",num);
+		productService.updateUserPoint(strPrice, id);
 		
-		return "redirect:/selectOne";
-	}
-	
-	@GetMapping("/one")
-	public String direct(@RequestParam int num, RedirectAttributes attributes) {
-		productService.direct(num);
-		attributes.addAttribute("num",num);
-		
-		return "redirect:/selectOne";
+		return "redirect:/product/selectOne";
 	}
 	
 	@GetMapping("/endPage")

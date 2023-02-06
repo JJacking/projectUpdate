@@ -68,5 +68,9 @@ public class ProductService {
 		productDAO.direct(num);
 	}
 	
+	public void updateUserPoint(int price, String id) {
+		productDAO.updateUserPoint(price, id);
+	}
+	
 	
 }
