@@ -7,6 +7,7 @@ drop SEQUENCE reBoardComment_seq;
  
 CREATE table boardTbl(
     num number(20) PRIMARY KEY,
+    id VARCHAR2(50),
     nickName VARCHAR2(30),
     title VARCHAR2(30),
     content VARCHAR2(1000),
@@ -17,27 +18,15 @@ CREATE table boardTbl(
 create SEQUENCE boardTbl_seq
 NOCACHE;
 
-
-insert into boardTbl(num, nickName,  title, content)
-VALUES(boardTbl_seq.NEXTVAL,'황티모', '부쉬속','티모는 은신');
-insert into boardTbl(num, nickName, title, content)
-VALUES(boardTbl_seq.NEXTVAL,'워윅', '개','조심');
-
-
 SELECT * FROM boardTbl ORDER BY num DESC;
 
 commit;
 
-
---SELECT * FROM
---    (SELECT ROWNUM AS NICK, NUM, NICKNAME, TITLE, CONTENT, READCOUNT, wirteDate
---    FROM (SELECT * FROM BOARDTBL ORDER BY NUM DESC))
---WHERE nick BETWEEN (3-1)*100+(8-1)*10+1 AND (3-1)*100+(8*10);
-
 CREATE TABLE boardComment(
     cno number PRIMARY KEY,
     num number REFERENCES boardTbl(num) on DELETE CASCADE,  
-    userName varchar2(20) not null,
+    nickName varchar2(20) not null,
+    userId VARCHAR2(50),
     reContent varchar2(500) not null,
     reWirteDate DATE default sysdate
     );
@@ -46,8 +35,6 @@ SELECT * FROM boardComment bc INNER JOIN boardTbl btl ON bc.num = btl.num;
 
 create SEQUENCE boardComment_seq;
 
-INSERT INTO boardComment(cno, num, userName, reContent)
-VALUES(boardComment_seq.NEXTVAL, 2,'딸기','딸기셋');
 
     select * from boardComment;
     
@@ -59,7 +46,6 @@ commit;
  
  CREATE table managerBoard(
     MgNum number(20) PRIMARY KEY,
-    MgName VARCHAR2(30),
     title VARCHAR2(30),
     content VARCHAR2(1000),
     readCount number(20) default 0,
@@ -68,9 +54,6 @@ commit;
 
 create SEQUENCE managerTbl_seq
 NOCACHE;
-
-insert into managerBoard(MgNum, MgName, title, content)
-VALUES(managerTbl_seq.NEXTVAL,'관리자','안녕하세요','공지사항 페이지 입니다.');
 
 commit;
 
@@ -85,7 +68,10 @@ commit;
 create SEQUENCE customerBoard_seq
 NOCACHE;
 
-insert into customerBoard(num, id, title, content)
-VALUES(managerTbl_seq.NEXTVAL,'관리자','어떤글을 써야 하나요?','문의사항 게시판입니다.');
-
 commit;
+
+--SELECT * FROM
+--    (SELECT ROWNUM AS NICK, NUM, NICKNAME, TITLE, CONTENT, READCOUNT, wirteDate
+--    FROM (SELECT * FROM BOARDTBL ORDER BY NUM DESC))
+--WHERE nick BETWEEN (3-1)*100+(8-1)*10+1 AND (3-1)*100+(8*10);
+
