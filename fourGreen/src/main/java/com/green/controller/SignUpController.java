@@ -1,5 +1,7 @@
 package com.green.controller;
 
+import java.security.NoSuchAlgorithmException;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,10 +47,18 @@ public class SignUpController {
 	
 	@PostMapping("/signUpCheck")
 	public String register(MemberVO member) {
+		SHA256 sha = new SHA256();
+		String encryptStr = "";
 		MemberVO mem = signUpService.getMember(member.getId());
 		if(mem != null) {
 			return "member/signUp";
 		}else {
+			try {
+				encryptStr = sha.encrypt(member.getPassword());
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+			member.setPassword(encryptStr);
 			int cnt = signUpService.register(member);
 			if(cnt == 1) {
 				return "member/welcomePage";

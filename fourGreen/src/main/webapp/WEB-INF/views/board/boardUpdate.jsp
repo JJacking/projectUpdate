@@ -6,75 +6,42 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style type="text/css">
+#boardTb input{
+    width: 100%;
+    height: 23px;
+  }
+  .writeBtn{
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-   <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
-<div id="boardTb" align="center">
+<jsp:include page="../topBar.jsp" />
+
 	<h2>게시글 수정</h2>
 	<form action="boardUpdate" method="post">
-		<input type="hidden" name="command" value="boardUpdate">
+		<input type="hidden" name="id" value="${user.id}">
 		<input type="hidden" name="num" value="${board.num }">
-		
+		<div id="boardTb">
 		<table>
-			<tr>
-				<th>닉네임</th>
-				<td><input type="text" name="nickName" value="${board.nickName}"  readonly></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><input type="email" name="email" value="${board.email}" readonly></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="pass" required>*필수</td>
-			</tr>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" value="${board.title}" required>*필수</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="15" cols="70" name="content" value="${board.content}"></textarea></td>
+				<td><textarea rows="15" style="width: 100%;" name="content" value="${board.content}"></textarea></td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<button type="submit">수정하기</button>
-					<button type="button" onclick="location.href='boardDetail'">취소하기</button>
-				</td>
-			</tr>
-		</table>
+			</table>
+			<div class="writeBtn">
+					<button class="w-btn w-btn-blue" type="submit">수정하기</button>
+					<button class="w-btn w-btn-blue" type="button" onclick="location.href='boardDetail'">취소하기</button>
+			</div>
+		</div>
 	</form>
 	<hr>
-<footer>
-  <div class="footer">
-    <a href="https://github.com/JJacking/lastPj.git" style="text-decoration: none; list-style: none; color: white;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
+
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

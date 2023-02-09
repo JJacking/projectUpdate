@@ -14,9 +14,13 @@
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
+h2{
+	text-align: left;
+}
+
 .slider{
   width: 100%;
-  height: 500px;
+  height: 600px;
   position: relative;
   margin: 0 auto;
   overflow: hidden;
@@ -80,7 +84,7 @@ ul.imgs li{
 }
 
 .main{
-width: 1000px;
+width: 1050px;
 height: 1500px;
 margin-left: 20%;
 margin-right: 20%;
@@ -88,8 +92,8 @@ margin-right: 20%;
 
 .img-board{
 text-align: left;
-margin-top: 30px;
-margin-left: 30px;
+margin-top: 10px;
+margin-left: 10px;
 
 height: 800px;
 }
@@ -116,14 +120,14 @@ padding: auto;
 
 .popular-board{
 float: left;
-margin-left: 10px;
-width: 40%;
+margin-left: 5px;
+width: 500px;
 height: 600px;
 }
 .new-board{
 float: right;
-margin-right: 20px;
-width: 40%;
+margin-right: 5px;
+width: 500px;
 height: 600px;
 }
 .managerBoard{
@@ -168,7 +172,7 @@ height: 600px;
 text-align: center;
 }
 
-.userBoard table{
+.userBoard > table{
 	width: 100%;
 	border-collapse: collapse;
 	font-size:12px;
@@ -197,34 +201,7 @@ text-align: center;
 </head>
 
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signInForm'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-   <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
-  
+	<jsp:include page="topBar.jsp" />
   <hr>
 <header>
   <div class="slider">
@@ -251,26 +228,13 @@ text-align: center;
       <hr>
       <br>
       <ul>
-        <li>
-          <img src="resources/img/XL.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex01.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex02.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex03.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
+      	<c:forEach var="item" items="${hotProductArr }">
+	   		<li>
+	   			<a href="/auction/product/selectOne?num=${item.num}">
+			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
+	   			</a>
+	       	</li>
+      	</c:forEach>
       </ul>
     </div>
     <div class="new-board">
@@ -278,26 +242,13 @@ text-align: center;
       <hr>
       <br>
       <ul>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex04.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
-        <li>
-          <img src="resources/img/ex05.jpg">
-          <h4>상품명</h4>
-          <p>가격</p>
-        </li>
+        <c:forEach var="item" items="${newProductArr }">
+	   		<li>
+	   			<a href="/auction/product/selectOne?num=${item.num}">
+			        <img src="/img/${item.productPic }" style="width: 200px; height: 250px;">
+	   			</a>
+	       	</li>
+      	</c:forEach>
       </ul>
     </div>
   </div>
@@ -318,7 +269,7 @@ text-align: center;
 		<c:forEach items="${manager}" var="manager">
 			<tr>
 				<td>${manager.mgNum}</td>
-				<td><a href="managerDetail?mgNum=${manager.mgNum}">${manager.title}</a></td>
+				<td>${manager.title}</td>
 				<td>${manager.mgName}</td>
 				<td>${manager.wirteDate}</td>
 			</tr>
@@ -338,7 +289,7 @@ text-align: center;
         <c:forEach items="${list}" var="board">
           <tr>
             <td>${board.num}</td>
-            <td colspan="3"><a href="boardDetail?num=${board.num}">${board.title}</a></td>
+            <td colspan="3">${board.title}</td>
             <td>${board.nickName}</td>
           </tr>
         </c:forEach>
@@ -346,11 +297,7 @@ text-align: center;
   </div>
 </div>
 <hr>
-<footer>
-  <div class="footer">
-    <a href="https://github.com/JJacking/lastPj.git" style="text-decoration: none; list-style: none; color: white;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
+	<jsp:include page="bottomBar.jsp"/>
 </body>
 
 </html>

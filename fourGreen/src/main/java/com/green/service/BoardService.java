@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.green.dao.BoardDAO;
 import com.green.vo.BoardVO;
 import com.green.vo.CommentVO;
+import com.green.vo.CustomerBoardVO;
 import com.green.vo.ManagerVO;
 
 public class BoardService {
@@ -23,6 +24,10 @@ public class BoardService {
 	//조회수
 	public void readCount(int num) {
 		boardDao.readCount(num);
+	}
+	
+	public void selectCount() {
+		boardDao.selectAll();
 	}
 	
 	//상세보기
@@ -94,4 +99,21 @@ public class BoardService {
 	public void managerDelete(int mgNum) {
 		boardDao.managerDelete(mgNum);
 	}
+	
+	//문의글읽어오기
+	public List<CustomerBoardVO> selectByName(String id){
+		return boardDao.selectByName(id); 
+	}
+	
+	//문의글상세보기
+	public CustomerBoardVO selectByNumber(int num) {
+		return boardDao.selectByNumber(num);
+	}
+	
+	//문의글글쓰기
+	public void customerWrite(CustomerBoardVO cVo) {
+		boardDao.customerWrite(cVo);
+	}
+		
+	
 }

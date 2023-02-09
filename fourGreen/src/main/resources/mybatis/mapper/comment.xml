@@ -16,26 +16,28 @@
 <!-- 댓글 -->
 <!-- 댓글불러오기 -->
 	<select id="selectTargetComment" resultType="commentVO" parameterType="int">
-		SELECT * FROM boardComment WHERE num=#{num}
+		SELECT * FROM boardComment WHERE num=#{num} order by cno desc
 	</select>
 		
 <!-- 댓글등록 -->
 	<insert id="commentWrite" parameterType="commentVO">
-		INSERT INTO boardComment(cno, num, userName, userPass, reContent) 
-		VALUES(boardComment_seq.nextval,#{num},#{userName},#{userPass},#{reContent})
+		INSERT INTO boardComment(cno, num, nickName, userId, reContent) 
+		VALUES(boardComment_seq.nextval,#{num},#{nickName}, #{userId}, #{reContent})
 	</insert>
 
 <!-- 댓글수정 -->
 	<update id="commentUpdate" parameterType="commentVO">
-		UPDATE boardComment(cno, num, userName, reContent) 
-		SET userName=#{userName},  reContent=#{reContent}
-		WHERE cno=#{cno}
+		UPDATE boardComment SET reContent=#{reContent} WHERE cno=#{cno}
 	</update>
+
+<!-- 게시글 댓글삭제 -->
+	<delete id="commentDeleteByNum" parameterType="int">
+		DELETE FROM boardComment WHERE num=#{num}
+	</delete>
 
 <!-- 댓글삭제 -->
 	<delete id="commentDelete" parameterType="int">
-		DELETE FROM boardComment 
-		WHERE cno=#{cno}
+		DELETE FROM boardComment WHERE cno=#{cno}
 	</delete>
 
 </mapper>

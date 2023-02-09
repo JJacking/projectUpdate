@@ -6,41 +6,231 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기 - ${product.title}</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style type="text/css">
+#container{
+	width: 1200px;
+	margin: 0px auto;
+	border: 1px black;
+}
+hr{
+	margin: 5px;
+}
+a {
+	text-decoration: none;
+}
+ul{
+	list-style:none;
+}
+table {
+	border-collapse: collapse;
+}
+th{
+	border-bottom: 1px solid gray;
+	line-height: 40px;
+	width: 200px;
+}
+
+td{
+	border-bottom: 1px solid gray;
+	width: 250px;
+}
+#image{
+border: 1px solid black;
+}
+#simpleMenu{
+	margin-bottom: 5px; 
+}
+#productImg{
+	text-decoration: none;
+	float: left;
+	margin: 10px;
+	margin-right: 50px;
+}
+
+#productInfo{
+	margin-left: 30px;
+	margin-right: 70px;
+	margin-bottom: 20px;
+	float: left;
+}
+#productBtn{
+	float: right;
+	margin-right: 100px;
+}
+h6{
+	float: left;
+	margin: 5px;
+	margin-bottom: 10px;
+}
+#mainContent{
+	width: 1200px;
+	float: left;
+}
+#timeTbl{
+	background-color: darkgreen;
+	color: white;
+	height: 50px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remaingtime{
+	line-height: 0;
+}
+
+.btn{
+	width: 115px;
+	height: 30px;
+	border: 0px;
+	background-color: whitegray;
+}
+
+#btn1{
+	border: 0px;
+	background-color: darkgreen;
+	color: white;
+}
+
+#water{
+	background-color: darkgreen;
+	color: white;
+}
+#delivery{
+	border-collapse: collapse;
+}
+
+#deliveryTh{
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	line-height: 40px;
+	width: 400px;
+}
+
+#deliveryTd{
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	width: 800px;
+}
+.clear{
+	clear:both;
+}
+</style>
 <style>
-	
+	.nav{
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	margin-bottom: 0px;
+	background-color: white;
+	}
+	.nav a{
+	text-decoration: none;
+	color: black;
+	}
+	hr{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	}
+	.nav .nav-menu ul{
+	list-style: none;
+	}
+	.nav .nav-menu li{
+	display: inline-block;
+	margin-right: 20px;
+	}
+	.nav-menu{
+		padding-top: 20px;
+		vertical-align: bottom;
+	}
+	.nav-menu li:hover{
+		font-weight: bold;
+		background-color: white;
+	}
+	.nav .nav-menu li ul{
+	display: none;
+	}
+	.nav .nav-menu li:hover ul{
+	display: block;
+	width: 130px;
+	height: 60px;
+	background-color: white;
+	}
+	.nav #sub-menu{
+	position: absolute;
+	z-index: 2;
+	line-height: 30px;
+	background-color: white;
+	}
+	.nav #sub-menu li{
+	list-style: none;
+	background-color: white;
+	}
+	.nav #sub-menu a{
+	background-color: white;
+	text-decoration: none;
+	padding: 10px;
+	padding-bottom: 0px;
+	color: gray;
+	}
+	.nav #sub-menu a:hover{
+		color: black;
+		font-weight: bold;
+	}
+	.logo img{
+		width: 60px;
+		height: 50px;
+	}
+	.mypage{
+		float: right;
+	}
+	.mypage li{
+		
+		list-style: none;
+		display: inline-block;
+	}
 </style>
 </head>
 <body>
 <div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
+  		<div class="logo"><a href="${pageContext.request.contextPath}"><img src="../resources/img/logo3.png"></a></div>
      <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
+	      <li><a href="/auction/product">물품보기</a></li>
+	      <li><a href="/auction/newAuction">물품등록</a></li>
+	      <li>
+	        <a href="#">게시판</a>
+		      <ul id="sub-menu">
+		            <li><a href="/auction/managerBoardList">공지사항</a></li>
+		            <li><a href="/auction/boardList">자유게시판</a></li>
+		      </ul>
+	      </li>
+	      <li><a href="/auction/customerBoard">고객센터</a></li>
      </ul>
    	<c:if test="${empty user}"> 
         <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='/auction/signInForm'">로그인</button>
+            <button type="button" class="w-btn w-btn-blue" onclick="location.href='/auction/signUp'">회원가입</button>
         </div>
     </c:if>
-    <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
+   <c:if test="${not empty user}">
+        <div class="mypage">
+      	<ul>
+      		<li><a href="/auction/signOut">로그아웃</a></li>
+	        <li><a href="/auction/myPage">내정보</a></li>
+	        <li><a href="/auction/charge">포인트충전/조회</a></li>
+        </ul>
+        </div>
     </c:if>
 </div>
 <!-- 남은시간 표시 -->
-	<script type="text/javascript">
+<script type="text/javascript">
+	
+	window.onload=function(){
+		let timeTbl = document.getElementById('timeTbl');
+		let title = document.createElement("h4");
+		let time = document.createElement("h5");
 		function getTime() {
 			let target = new Date('${product.regdate}');
 			let today = new Date();
@@ -50,136 +240,194 @@
 		 	let m = Math.floor((gap / (1000 * 60)) % 60); // 분
 		  	let s = Math.floor((gap / 1000) % 60); // 초
 		  	if (gap <= 0) {
-			    location.href='endPage';
+			    location.href='views/product/endPage';
 			    title.innerText = "경매가 마감되었습니다.";
-			    timer.innerText = "";
+			    time.innerText = "";
 			    document.getElementsByClassName('btn')[0].setAttribute('style','display:none');
 			    document.getElementsByClassName('btn')[1].setAttribute('style','display:none');
 			    document.getElementsByClassName('btn')[2].setAttribute('style','display:none');
 		  	} else {
-		    	title.innerText = "마감까지";
-		    	timer.innerText = d+"일 "+h+"시간 "+m+"분 "+s+"초 남았습니다.";
+		    	title.innerText = "";
+		    	time.innerText = d+"일 "+h+"시간 "+m+"분 "+s+"초 남았습니다.";
 		  	}
 		}
-		const body = document.querySelector("body");
-		const timer = document.createElement("h3");
-		const title = document.createElement("h3");
-		body.prepend(timer);
-		body.prepend(title);
+		timeTbl.appendChild(time);
+		timeTbl.appendChild(title);
 		let gap;
-		function gapT(){
-			
-		}
 
 		function init() {
 		  getTime();
 		  setInterval(getTime, 1000);
 		}
 		init();
-	</script>
+	}
+</script>
 
 <form action="biding" method="POST" onsubmit="return check()">
-<input type="hidden" name="id" value="test@gmail.com">
+<input type="hidden" name="id" value="${user.id }">
+<input type="hidden" name="memberId" value="${user.id }">
 <input type="hidden" name="num" value="${product.num }">
-	<div>
-		<div>
-			<h6><a href="/index.html">홈</a></h6>
-			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }">메뉴 1</a></h6>
-			<h6> > </h6>
-			<h6><a href="${pageContext.request.contextPath }/?category=${product.category}">${product.category}</a></h6>
-		</div>
-		<h4>${product.title }</h4>
+<div id="container">
+	<div id="simpleMenu">
+		<h6><a href="${pageContext.request.contextPath }">홈</a></h6>
+		<h6> > </h6>
+		<h6><a href="${pageContext.request.contextPath }/product">메뉴 1</a></h6>
+		<h6> > </h6>
+		<h6><a href="${pageContext.request.contextPath }/product?category=${product.category}">${product.category}</a></h6>
 	</div>
-	<hr>
-	<div>
-	
-	<div id="image">
-		<!-- 대표사진  -->
-		 <c:choose>
-			<c:when test="${empty product.productPic}">
-				<img src="/auction/noimage.jpg">
-			</c:when>
-			<c:otherwise>
-				<script type="text/javascript">
-					let image = document.getElementById('image');
-					let arr = '${product.productPic}'.split(',');
-					
-					for(let s = 0 ;s< arr.length;s++){
-						if(arr[s] != ''){
-							let img = (document.createElement('img'));
-							img.setAttribute('src','/auction/'+arr[s]);
-							img.setAttribute('style','width:100px; height:100px;');
-							image.appendChild(img);
+	<br>
+	<div id="productDescription">
+		<ul>
+			<li id="productImg">
+				<div id="image">
+					<!-- 대표사진  -->
+					 <c:choose>
+						<c:when test="${empty product.productPic}">
+							<img src="/img/noimage.jpg">
+						</c:when>
+						<c:otherwise>
+							<script type="text/javascript">
+								let image = document.getElementById('image');
+								let arr = '${product.productPic}'.split(',');
+								
+								if(arr[0] != ''){
+									let img = (document.createElement('img'));
+									img.setAttribute('src','/img/'+arr[0]);
+									img.setAttribute('style','width:500px; height:500px;');
+									image.appendChild(img);
+								}
+							</script>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</li>
+			<li id="productInfo">
+				<table>
+					<tr>
+						<td colspan="2">
+							<h2>${product.title }</h2>
+							<h3 id="timeTbl"></h3>
+            			</td>
+					</tr>
+					<tr>
+						<th>경매기간</th>
+						<td>
+							<p class="remaingtime">${product.writeDate}</p>
+							<p class="remaingtime" id="water">~</p>
+							<p class="remaingtime">${product.regdate}</p>
+						</td>
+					</tr>
+					<tr>
+						<th>현재가</th>
+						<td>${product.strPrice}
+							<input type="hidden" name="strPrice" id="strPrice" value="${product.strPrice}">
+						</td>
+					</tr>
+					<tr>
+						<th>입찰 단위</th>
+							<td id="bidUnit">
+							<input type="hidden" name="bidUnit" id="bidUnit">
+						</td>
+					</tr>
+					<tr>
+						<th>판매자 ID</th>
+						<td>${product.memberId}</td>
+					</tr>
+					<tr>
+						<th>입찰 수</th>
+						<td>${product.bidCount}</td>
+					</tr>
+					<tr>
+						<th>조회 수</th>
+						<td>${product.readCount}</td>
+					</tr>
+				</table>
+			</li>
+		</ul>
+		<div id="productBtn">
+			<c:if test="${not empty user}"> 
+				<button type="submit" id="btn1" class="btn"><Strong>입찰하기</Strong></button>
+   			 </c:if>
+			<c:if test="${empty user}"> 
+				<button type="button" id="btn1" class="btn" onclick="location.href='/auction/signInForm'"><Strong>입찰하기</Strong></button>
+   			 </c:if>
+			<c:if test="${not empty user}"> 
+				<button type="button" class="btn" onclick="insertDibsOn('${product.num}','${user.id }','${product.title }')">찜하기</button>
+   			 </c:if>
+			<c:if test="${empty user}"> 
+				<button type="button" id="btn3" class="btn" onclick="location.href='/auction/signInForm'"><Strong>찜하기</Strong></button>
+   			 </c:if>
+			
+			<c:if test="${not empty user and user.grade eq '0'}">
+				<button  type="button" class="btn"  onclick="location.href='deleteProduct?num=${product.num}'">경매 삭제하기</button>
+			</c:if>
+			<script type="text/javascript">
+				function insertDibsOn(num,id,title){
+					$.ajax({
+						type:"post",
+						url:"/auction/insertDibsOn",
+						datatype:"text",
+						data:{
+							num:num,
+							id:id,
+							title:title
+						},
+						success:function(data){
+							if(data == '1'){
+								alert('찜한 상품목록에 등록되었습니다.');
+							}else if(data == '2') {
+								alert('이미 등록된 상품입니다.');
+							}else{
+								alert('찜하기에 실패했습니다. 다시 시도해주세요.');
+							}
 						}
-					}
-				</script>
-			</c:otherwise>
-		</c:choose>
+					});
+				}
+			</script>
+			<button type="button" class="btn" onclick="location.href='/auction/product'">목록보기</button>
+		</div>
 	</div>
-		<hr>
-		
-		<table>
-			<tr>
-				<th>경매기간</th>
-				<td>
-					${product.writeDate}
-					<p>~</p>
-					${product.regdate}
-				</td>
+	<div id="mainContent">
+		<p>${product.content}</p>
+		<div id="image2" style="margin: 0 auto;">
+			<script type="text/javascript">
+				let image2 = document.getElementById('image2');
+				let arr2 = '${product.productPic}'.split(',');
+				for(let i=0;i<arr2.length;i++){
+					if(arr2[i] != ''){
+						let img = document.createElement('img');
+						img.setAttribute('src','/img/'+arr[i]);
+						img.setAttribute('style','width:500px; height:500px;');
+						image2.appendChild(img);
+					}
+				}
+			</script>
+		</div>
+		<table id="delivery">
+			<tr id="deliveryTr">
+				<th id="deliveryTh">배송지</th>
+				<td id="deliveryTd">전국 ※제주 및 도서산간 지역은 배송비가 추가될 수 있습니다.</td>
 			</tr>
-			<tr>
-				<th>연장경매</th>
-				<td></td>
+			<tr id="deliveryTr">
+				<th id="deliveryTh">배송방법</th>
+				<td id="deliveryTd">택배 선,착불 6,000원</td>
 			</tr>
-			<tr>
-				<th>현재 경매가</th>
-				<td>${product.strPrice}
-					<input type="hidden" name="strPrice" id="strPrice" value="${product.strPrice}">
-				</td>
-			</tr>
-			<tr>
-				<th>입찰 단위</th>
-					<td id="bidUnit">
-					<input type="hidden" name="bidUnit" id="bidUnit">
-				</td>
-			</tr>
-			<tr>
-				<th>판매자 ID</th>
-				<td>${product.memberId}</td>
-			</tr>
-			<tr>
-				<th>입찰 수</th>
-				<td>${product.bidCount}</td>
-			</tr>
-			<tr>
-				<th>조회 수</th>
-				<td>${product.readCount}</td>
+			<tr id="deliveryTr">
+				<th id="deliveryTh">반품기간</th>
+				<td id="deliveryTd">수령일로 부터 7일 이내에 반품을 신청하실 수 있습니다.</td>
+			</tr >
+			<tr id="deliveryTr">
+				<th id="deliveryTh">반품비용</th>
+				<td id="deliveryTd" >원인 제공자 부담을 원칙으로 합니다.</td>
 			</tr>
 		</table>
-		
-		<tbody>
-			<tr>
-				<th>배송방법</th>
-				<td>직접수령 / 택배(등기)</td>
-			</tr>
-			<tr>
-				<th>배송비용</th>
-				<td>선불 : 4000원 / 착불 : 5000원</td>
-			</tr>
-		</tbody>
 	</div>
-	<div>		
-		<button type="submit" id="btn1" class="btn">입찰하기</button>
-		<button type="button" class="btn" onclick="location.href='??'">관심물품 등록하기</button>
-		<button type="button" class="btn" onclick="location.href='??'">문의하기</button>
-	</div>
-	<input type="image">
-	
-	<p><a href="deleteProduct?num=${product.num}">경매 삭제하기</a></p>
-	<button type="button" onclick="location.href='/TeamProject'">목록보기</button>
-
+</div>
 </form>
+<div class="clear">
+<br>
+</div>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	let strPrice = parseInt(document.getElementById('strPrice').value);
 	let bidUnit = document.getElementById('bidUnit');
@@ -206,25 +454,24 @@
 	}
 	
 	function check(){
-		strPrice = parseInt(document.getElementById('strPrice').value);
 		let bidUnit = 0;
 		bidUnit = parseInt(document.getElementById('bidUnit').textContent);
 		alert('입찰하시면 취소 할 수 없습니다.');
-		let flag = confirm(strPrice+bidUnit+'원에 정말 입찰하시겠습니까?');
+		let price = strPrice+bidUnit;
+		if('${user.point }' < price){
+			alert('보유 포인트가 부족합니다.')
+			return false;
+		}
+		let strPrice2 = document.getElementById('strPrice');
+		let flag = confirm(price+'원에 정말 입찰하시겠습니까?');
 		if(flag){
-			document.getElementById('strPrice').setAttribute('value',strPrice+bidUnit);
+			strPrice2.setAttribute('value',strPrice+bidUnit);
+			alert(strPrice2.value);
 			return true;
 		}
 		return false;
 	}
-	<footer>
-	  <div class="footer">
-	    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-	  </div>
-	</footer>
-	<script type="text/javascript">
 	
 </script>
-
 </body>
 </html>

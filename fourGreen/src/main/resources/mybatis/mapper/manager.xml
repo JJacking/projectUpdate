@@ -34,14 +34,14 @@
 	
 	<!-- 게시글 등록 -->
 	<insert id="managerWrite" parameterType="managerVo">
-		INSERT INTO managerBoard(mgNum, mgName, title, content)
-		VALUES(managerTbl_seq.nextval,#{mgName},#{title},#{content})
+		INSERT INTO managerBoard(mgNum, title, content)
+		VALUES(managerTbl_seq.nextval,#{title},#{content})
 	</insert>
 	
 	<!-- 게시글수정 -->
 	<update id="managerUpdate" parameterType="managerVo">
 		UPDATE managerBoard 
-		SET nickName=#{mgName}, title=#{title}, content=#{content}
+		SET title=#{title}, content=#{content}
 		WHERE mgNum=#{mgNum}
 	</update>
 	
@@ -50,4 +50,6 @@
 		DELETE FROM managerBoard 
 		WHERE mgNum=#{mgNum}
 	</delete>
+	
+
 </mapper>

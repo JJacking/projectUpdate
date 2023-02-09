@@ -18,9 +18,21 @@ public class ProductService {
 	public int selectAllNumAuction() {
 		return productDAO.selectAllNumAuction();
 	}
+	
+	public List<ProductVO> selectAllAuctionByFilter(String filter) {
+		return productDAO.selectAllAuctionByFilter(filter);
+	}
 
+	public int selectAllNumAuctionByEnd(String end) {
+		return productDAO.selectAllNumAuctionByEnd(end);
+	}
+	
 	public int selectAllNumAuctionByCategory(String category) {
 		return productDAO.selectAllNumAuctionByCategory(category);
+	}
+	
+	public List<ProductVO> selectAllAuction(){
+		return productDAO.selectAllAuction();
 	}
 
 	public List<ProductVO> selectTargetAuctionByPaging(String category, String filter, String sort, int startNum,
@@ -44,8 +56,8 @@ public class ProductService {
 		productDAO.insertProduct(dto);
 	}
 
-	public void deleteProduct(ProductVO dto) {
-		productDAO.deleteProduct(dto);
+	public void deleteProduct(int num) {
+		productDAO.deleteProduct(num);
 	}
 
 	public void insertCustomer(CustomerVO cdto) {
@@ -54,6 +66,10 @@ public class ProductService {
 
 	public void direct(int num) {
 		productDAO.direct(num);
+	}
+	
+	public void updateUserPoint(int price, String id) {
+		productDAO.updateUserPoint(price, id);
 	}
 	
 	

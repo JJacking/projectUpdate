@@ -19,6 +19,10 @@ public class ProductDAO {
 		return sqlSession.selectList("mybatis.mapper.product.selectAllAuction");	
 	}
 	
+	public List<ProductVO> selectAllAuctionByFilter(String filter){
+		return sqlSession.selectList("mybatis.mapper.product.selectAllAuctionByFilter",filter);	
+	}
+	
 	public List<CustomerVO> selectAllCustomer(){
 		return sqlSession.selectList("mybatis.mapper.product.selectAllCustomer");	
 	}
@@ -39,8 +43,8 @@ public class ProductDAO {
 		sqlSession.insert("mybatis.mapper.product.insertProduct",dto);
 	}
 	
-	public void deleteProduct(ProductVO dto) {
-		sqlSession.delete("mybatis.mapper.product.deleteProduct", dto);
+	public void deleteProduct(int num) {
+		sqlSession.delete("mybatis.mapper.product.deleteProduct", num);
 	}
 	
 	
@@ -53,6 +57,7 @@ public class ProductDAO {
 		System.out.println(dto.getBidMoney()+" / "+dto.getNum());
 		biding(Integer.parseInt(dto.getBidMoney()), dto.getNum());
 		sqlSession.insert("mybatis.mapper.product.insertCustomer",dto);
+		pointBack(dto.getNum());
 	}
 
 	public void newAuction() {
@@ -71,6 +76,13 @@ public class ProductDAO {
 		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuction");
 	}
 	
+	public int selectAllNumAuctionByEnd(String end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+		String date = sdf.format(new Date());
+		Object[] array = {end,date};
+		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuctionByEnd",array);
+	}
+	
 	public int selectAllNumAuctionByCategory(String category) {
 		return sqlSession.selectOne("mybatis.mapper.product.selectAllNumAuctionByCategory", category);
 	}
@@ -80,7 +92,24 @@ public class ProductDAO {
 		return sqlSession.selectList("mybatis.mapper.product.search",array);
 	}
 
-
+	public void updateUserPoint(int price ,String id) {//updateUserPoint
+		Object[] array = {price,id};
+		sqlSession.update("mybatis.mapper.product.updateUserPoint",array);
+	}
+	
+	public CustomerVO selectOneCustomerById(int num) {
+		List<CustomerVO> customer = sqlSession.selectList("mybatis.mapper.product.selectOneCustomerById",num);
+		return customer != null && (customer.size() > 1) ? customer.get(1) : null;
+	}
+	
+	public void pointBack(int num) {
+		CustomerVO vo = selectOneCustomerById(num);
+		if(vo != null) {
+			Object[] array = {vo.getBidMoney(), vo.getMemberId()};
+			System.out.println(vo.getBidMoney()+" / "+ vo.getMemberId());
+			sqlSession.update("mybatis.mapper.product.pointBack",array);
+		}
+	}
 
 	
 }

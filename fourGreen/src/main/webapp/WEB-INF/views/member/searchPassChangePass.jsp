@@ -5,62 +5,88 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
+<style>
+	
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
+	}
+	
+	
+	.mainSession{
+	  top: 50%;
+	  left: 50%;
+      margin: 5% 20%;
+	  width: 60%;
+	  height: 600px;
+	  background-color: white;
+	 
+	  
+	  padding-left: 50px;
+	  padding-right: 0;
+	  line-height: 80px;
+	}
+	
+	.mainSession table{
+		width:100%;
+	 	border: 1px solid #CE6D39;
+	 	border-radius: 10px;
+	}
+	
+	.mainSession input{
+	  width: 80%;
+	  padding-top: 0px;
+	  padding-left: 15px;
+	  height: 40px;
+	  font-size: 16px;
+	  border: none;
+	}
+	.mainSession th{
+	  position: relative;
+	  border-bottom: 2px solid lightgray;
+	  width: 80%;
+	  font-weight: nomal;
+	}
+	.mainSession td{
+		border: 1px solid white;
+	}
+	.mainSession a{
+	  text-decoration: none;
+	  color: black;
+	}
+	#overCheckBtn{
+		width: 150px;
+	}
+	
+</style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-    <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
+<jsp:include page="../topBar.jsp" />
 <form action="searchPassChangePass" method="post" onsubmit="return check()">
 	<input type="hidden" name="id" value="${userid }">
+	<div class="mainSession">
 	<table>
 		<tr>
-			<td>
-				새 비밀번호
-			</td>
 		 	<td>
-		 		<input type="password" name="newPass" id="newPass">
-		 	</td>
-		</tr>
-		<tr>
-			<td>
-				비밀번호 확인
-			</td>
-		 	<td>
-		 		<input type="password" name="newPassChk" id="newPassChk">
+		 		<input placeholder="새 비밀번호" type="password" name="newPass" id="newPass">
 		 	</td>
 		</tr>
 		<tr>
 		 	<td>
-		 		<button type="submit">비밀번호 변경</button>
+		 		<input placeholder="비밀번호 확인" type="password" name="newPassChk" id="newPassChk">
 		 	</td>
 		</tr>
-	</table>
+		<tr>
+		 	<td>
+		 		<button class="w-btn w-btn-blue" type="submit">비밀번호 변경</button>
+		 	</td>
+		</tr>
 	
+	</table>
+	</div>
 </form>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function check(){
 		let newPass = document.getElementById('newPass').value;

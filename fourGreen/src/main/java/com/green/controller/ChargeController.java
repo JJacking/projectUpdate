@@ -28,7 +28,7 @@ public class ChargeController {
 	@PostMapping("/requestCharge")
 	public String requestCharge(@RequestParam String id,@RequestParam long charge) {
 		chargePointService.requestChargePoint(id,charge);
-		return "member/index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/userChargeList")

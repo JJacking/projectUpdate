@@ -9,116 +9,148 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
-	.infoTb{
-	  	width: 100%;
-	  	margin: 10% 30% 10% 30%;
-	  	font-size: 20px;
-	  	border-collapse: collapse;
-	}
-	
+*{
+	padding: 0;
+} 
+#outter{
+	width: 100%; 
+}  
+.infoTb{
+  	width: 750px;
+  	height: 650px;
+  	padding-top: 50px; 
+  	margin: 0 auto;
+  	font-size: 20px;
+  	border-collapse: collapse;
+  	line-height: 50px;
+}
+.w-btn{ 
+	width:160px;
+	padding: 20px;
+	margin-left: 10px;
+	text-alin:center;
+}
+input{
+	width: 80%;
+	padding: 0 5px;
+	height: 40px;
+	font-size: 16px;
+	border: 1px solide black
+}
 </style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-   <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
-
-<div class="infoTb">
-<form action="updateMember" method="post">
-	<table border="1" style="width: 200px;">
-		<tr>
-			<td>
-				아이디				
-			</td>
-			<td>
-				<input type="hidden" name="id" value="${user.id }"/>
-				<p id="userId">${user.id }</p>
-			</td>
-		</tr>
-		<c:if test="${user.type == 'auction' }">
+<jsp:include page="../topBar.jsp" />
+<div id="outter">
+	<div class="infoTb">
+	<h2>마이페이지</h2>
+	<form action="updateMember" method="post">
+		<table style="width: 100%; border-collapse: collapse;">
 			<tr>
-				<td colspan="2" style="text-align: center;">
-					<button type="button" onclick="location.href='changePassword'">비밀번호 변경</button>			
+				<td>
+					아이디				
+				</td>
+				<td>
+					<input type="hidden" name="id" value="${user.id }"/>
+					<p id="userId">${user.id }</p>
+				</td >
+				<td rowspan="8" style="width: 180px; text-align: center;">
+					<c:if test="${user.type == 'auction' }"> 
+						<button type="button" class="w-btn w-btn-blue" onclick="location.href='changePassword'">비밀번호 변경</button>
+					</c:if>
+					<button type="button" class="w-btn w-btn-blue" onclick="newBox()">관심 목록</button> 
+					<button type="button" class="w-btn w-btn-blue" onclick="location.href='charge'">충전하기</button> 
+					<button type="button" class="w-btn w-btn-blue" onclick="withdraw()">탈퇴하기</button>
+				</td> 
+			</tr>
+			<tr>
+				<td>
+					보유 포인트
+				</td>
+				<td>
+					${user.point }
 				</td>
 			</tr>
-		</c:if>
-		<tr>
-			<td>
-				닉네임				
-			</td>
-			<td>
-				<input type="text" name="nickname" value="${user.nickname }"> 
-			</td>
-		</tr>
-		<tr>
-			<td>
-				전화번호				
-			</td>
-			<td>
-				<input type="text" name="phone" value="${user.phone }"> 
-			</td>
-		</tr>
-		<tr>
-			<td>
-				주소				
-			</td>
-			<td>
-				<input type="text" name="address" value="${user.address }"> 
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<button type="submit">변경</button>
-				<button type="button" onclick="history.back()">돌아가기</button>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<button type="button" onclick="withdraw()">탈퇴하기</button>
-			</td>
-		</tr>
-	</table>
-</form>
+			<tr>
+				<td>
+					닉네임				
+				</td>
+				<td>
+					<input type="text" name="nickname" value="${user.nickname }"> 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					전화번호				
+				</td>
+				<td>
+					<input type="text" name="phone" value="${user.phone }"> 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					주소				
+				</td>
+				<td>
+					<input type="text" id="address1" name="address" onclick="addressPop()" > 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="text" id="address2" name="address" required="required" placeholder="상세주소" style="width: 98%">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<button type="button" class="w-btn w-btn-blue" onclick="history.back()">돌아가기</button>
+					<button type="submit" class="w-btn w-btn-blue" onclick="check()">변경</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</div>
 </div>
-	<script type="text/javascript">
-		function withdraw(){
-			let userId = $('#userId').text();
-			let flag = confirm('정말 탈퇴하시겠습니까?');
-			if(flag){
-				location.href='withdrawalPage';
-			}
+<script type="text/javascript">
+	let address = '${user.address}'.split(',');
+	let addr1 = document.getElementById('address1');
+	let addr2 = document.getElementById('address2');
+	addr1.setAttribute('value',address[0]);
+	addr2.setAttribute('value',address[1]);
+	
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+	function check(){
+		let addr1 = $('#address1').val();
+		let addr2 = $('#address2').val();
+		let addr = $('#address').val();
+		addr = addr1+addr2;
+	}
+
+	function addressPop(){
+		//zonecode
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	document.getElementById('address1').value=data.roadAddress;
+	        }
+	    }).open();
+	}
+	
+	function newBox(){
+		let url = "dibsOnList";
+		
+		window.open(url,'_blank_1','toolbar=no,menubar=no,scrollbars=yes,resizeable=no,width=550,height=600');
+	}
+
+	function withdraw(){
+		let userId = $('#userId').text();
+		let flag = confirm('정말 탈퇴하시겠습니까?');
+		if(flag){
+			location.href='withdrawalPage';
 		}
-	</script>
+	}
+</script>
 	
-	<footer>
-<div class="footer">
-    <a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
-	
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

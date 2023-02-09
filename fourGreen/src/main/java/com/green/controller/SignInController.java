@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,13 +24,8 @@ public class SignInController {
 	
 	@Autowired
 	private SignInService signInService;
-	
-	@RequestMapping("/signInForm")
-	public String signInForm() {
-		return "member/signInForm";
-	}
-	
-	@GetMapping("/signIn")
+	 
+	@GetMapping("/signInForm")
 	public String signIn(HttpSession session) {
 		MemberVO member = (MemberVO) session.getAttribute("user");
 		System.out.println(member);
@@ -77,7 +71,7 @@ public class SignInController {
 	public String googleUserInfo2(@RequestParam String phone, @RequestParam String address, @RequestParam String id) {
 		int result = signInService.registerGoogleUserInfo(phone, address, id);
 		if(result == 1) {
-			return "redirect:/signIn";
+			return "redirect:/signInForm";
 		}
 		return "member/erorrPage";
 	}
@@ -87,7 +81,7 @@ public class SignInController {
 		MemberVO user = signInService.getUser(member);
 		if(user == null) {
 			model.addAttribute("msg","로그인에 실패했습니다.");
-			return "signIn";
+			return "member/signIn";
 		}
 		session.setAttribute("user", user);
 		
@@ -123,6 +117,7 @@ public class SignInController {
 	
 	@PostMapping("/updateMember")
 	public String updateMember(MemberVO member, HttpSession session) {
+		System.out.println(member.getAddress()+"");
 		signInService.updateMember(member);
 		session.setAttribute("user", signInService.getMember(member.getId()));
 		return "redirect:/myPage";
@@ -137,7 +132,14 @@ public class SignInController {
 	@PostMapping("/withdraw")
 	public String withdraw(@RequestParam(value="userId") String userId,@RequestParam(value="password") String password, HttpSession session, Model model) {
 		MemberVO member = signInService.getMember(userId);
-		if(member.getPassword().equals(password)&& member.getType().equals("auction") && !password.equals("0")) {
+		SHA256 sha = new SHA256();
+		String encryptStr = "";
+		try {
+			encryptStr = sha.encrypt(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(member.getPassword().equals(encryptStr)&& member.getType().equals("auction") && !password.equals("0")) {
 			signInService.withdrawDeleteCharge(member.getId());
 			signInService.deleteMember(userId);
 			session.invalidate();
@@ -210,11 +212,35 @@ public class SignInController {
 	
 	@PostMapping("/searchPassChangePass")
 	public String searchPassChangePass(@RequestParam(value = "id") String id,@RequestParam(value = "newPass") String password, HttpSession session) {
-		int result = signInService.searchPassChange(id, password);
+		SHA256 sha = new SHA256();
+		String encrypt = "";
+		try {
+			encrypt = sha.encrypt(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		int result = signInService.searchPassChange(id, encrypt);
 		if(result == 1) {
-			return "redirect:/signIn";
+			return "redirect:/signInForm";
 		}
 		return "member/errorPage";
+	}
+	
+	@PostMapping("/insertDibsOn")
+	@ResponseBody
+	public String insertDibsOn(@RequestParam int num, @RequestParam String id, @RequestParam String title) {
+		String data = "";
+		if(signInService.getDibsOnByNum(num) != null) {
+			data = "2";
+			return data;
+		}
+		int result = signInService.insertDibsOn(num, id, title);
+		if(result == 1) {
+			data = "1";
+		}else {
+			data = "0";
+		}
+		return data;
 	}
 	
 	@GetMapping("/dibsOnList")
@@ -222,6 +248,19 @@ public class SignInController {
 		MemberVO member = (MemberVO)session.getAttribute("user");
 		model.addAttribute("dibsOnList",signInService.getDibsOnList(member.getId()));
 		return "member/dibsOnList";
+	}
+	
+	@PostMapping("/deleteDibsOn")
+	@ResponseBody
+	public String deleteDibsOn(@RequestParam int idx) {
+		int result = signInService.deleteDibsOn(idx);
+		String data = "";
+		if(result == 1) {
+			data = "1";
+		}else {
+			data = "0";
+		}
+		return data;
 	}
 	
 }

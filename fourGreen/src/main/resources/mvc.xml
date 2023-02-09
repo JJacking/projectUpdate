@@ -16,6 +16,8 @@
 	
 	<mvc:view-controller path="/" view-name="index"/>	
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
 	<context:component-scan base-package="com.green.controller"/>
 	
 	<bean id="boardService" class="com.green.service.BoardService"></bean>
@@ -27,4 +29,17 @@
 	<bean id="boardDAO" class="com.green.dao.BoardDAO"></bean>
 	<bean id="prodcutDAO" class="com.green.dao.ProductDAO"></bean>
 	<bean id="memberDAO" class="com.green.dao.MemberDAO"></bean>
+	
+	<!-- 인터셉터를 설정 --><!-- 특정 페이지 get 접속시 로그인 여부 확인 -->
+	<mvc:interceptors>
+		<mvc:interceptor> 
+			<!-- 1.인터셉터를 어디에 적용할 것인가? -->
+			<mvc:mapping path="/board/**"/>
+			<mvc:mapping path="/member/**"/>
+			<mvc:mapping path="/product/**"/>
+			<!-- 2.어떤 인터셉터를 사용할 것인가? -->
+			<bean class="com.green.intercepter.AuthCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>

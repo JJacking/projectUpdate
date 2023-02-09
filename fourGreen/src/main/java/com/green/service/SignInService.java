@@ -1,12 +1,12 @@
 package com.green.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.dao.MemberDAO;
-import com.green.vo.ChargeVO;
 import com.green.vo.DibsOnVO;
 import com.green.vo.MemberVO;
 
@@ -16,9 +16,16 @@ public class SignInService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	public MemberVO getUser(MemberVO m) {
+	public MemberVO getUser(MemberVO m){
 		MemberVO member = memberDAO.getUser(m);
-		if(member!=null&&member.getPassword().equals(m.getPassword())) {
+		SHA256 sha = new SHA256();
+		String encryptStr = "";
+		try {
+			encryptStr = sha.encrypt(m.getPassword());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(member != null&&member.getPassword().equals(encryptStr)) {
 			return member;
 		}
 		return null;
@@ -69,12 +76,20 @@ public class SignInService {
 	public void withdrawDeleteCharge(String id) {
 		memberDAO.withdrawDeleteCharge(id);
 	}
+	
+	public int insertDibsOn(int num, String id, String title) {
+		return memberDAO.insertDibsOn(num, id, title);
+	}
+	
+	public DibsOnVO getDibsOnByNum(int num) {
+		return memberDAO.getDibsOnByNum(num);
+	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {
 		return memberDAO.getDibsOnList(id);
 	}
 
-	public List<ChargeVO> json(String sort, String filter){
-		return memberDAO.json(sort, filter);
+	public int deleteDibsOn(int idx) {
+		return memberDAO.deleteDibsOn(idx);
 	}
 }

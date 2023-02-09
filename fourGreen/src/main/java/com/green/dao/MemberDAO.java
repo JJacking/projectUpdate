@@ -110,6 +110,10 @@ public class MemberDAO {
 		return sqlSession.update("mybatis.mapper.member.chargePointByUserId",new Object[]{point, id});
 	}
 	
+	public int updatePointByUserId(String id, long point) {
+		return sqlSession.update("mybatis.mapper.member.updatePointByUserId",new Object[]{point, id});
+	}
+	
 	public int chargeSuccess(int idx) {
 		return sqlSession.update("mybatis.mapper.member.chargeSuccess",idx);
 	}
@@ -132,16 +136,23 @@ public class MemberDAO {
 	public int getChargeTotalCount() {
 		return sqlSession.selectOne("mybatis.mapper.member.getTotalCount");
 	}
+	
+	public int insertDibsOn(int num, String id, String title) {
+		Object[] array = {num, id, title};
+		return sqlSession.insert("mybatis.mapper.member.insertDibsOn", array);
+	}
+	
+	public DibsOnVO getDibsOnByNum(int num) {
+		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnByNum",num);
+	}
 
 	public List<DibsOnVO> getDibsOnList(String id) {
-		return sqlSession.selectOne("mybatis.mapper.member.getDibsOnList",id);
+		return sqlSession.selectList("mybatis.mapper.member.getDibsOnById",id);
 	}
 	
-	public List<ChargeVO> json(String sort, String filter){
-		String[] array = {sort,filter};
-		return sqlSession.selectList("mybatis.mapper.member.json",array);
+	public int deleteDibsOn(int idx) {
+		return sqlSession.insert("mybatis.mapper.member.deleteDibsOn", idx);
 	}
-	
 }
 
 

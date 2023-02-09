@@ -21,6 +21,11 @@ public class ChargePointService {
 	public int chargePointByUserId(String id, long point) {
 		int result = memberDAO.chargePointByUserId(id,point);
 		return result;
+
+	}
+	public int updatePointByUserId(String id, long point) {
+		int result = memberDAO.updatePointByUserId(id,point);
+		return result;
 	}
 	
 	public ChargeVO getChargeInfoByIdx(int idx) {

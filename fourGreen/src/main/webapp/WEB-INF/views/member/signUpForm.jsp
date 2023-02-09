@@ -6,129 +6,125 @@
 <head>
 <meta charset="UTF-8">
 <title>signUp</title>
-<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style>
-	.mainSession{
-		margin:5% 10%;
-		width: 70%;
-		line-height: 40px;
+	
+	.w-btn{
+	  padding: 20px;
+	  margin-left: 10px;
 	}
+	
+	.head{
+		text-align: left;
+	    width: 80%;
+	    margin-top: 5%;
+	    margin-left: 10%;
+	    color: black;
+	}
+	
+	.mainSession{
+	  top: 50%;
+	  left: 50%;
+      margin: 5% 20%;
+	  width: 60%;
+	  background-color: white;
+	  border: 1px solid #CE6D39;
+	  border-radius: 10px;
+	  padding-left: 50px;
+	  padding-right: 0;
+	  line-height: 80px;
+	}
+	
 	.mainSession table{
 		width:100%
 	}
+	
 	.mainSession input{
-		width: 80%;
-		height: 30px;
+	  width: 80%;
+	  padding-top: 0px;
+	  padding-left: 15px;
+	  height: 40px;
+	  font-size: 16px;
+	  border: none;
+	}
+	.mainSession th{
+	  position: relative;
+	  border-bottom: 2px solid lightgray;
+	  width: 80%;
+	  font-weight: nomal;
+	}
+	.mainSession td{
+		border: 1px solid white;
+	}
+	.mainSession a{
+	  text-decoration: none;
+	  color: black;
+	}
+	#overCheckBtn{
+		width: 150px;
 	}
 	
 </style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-   <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
+<jsp:include page="../topBar.jsp" />
+<div class="head">
+	<h2>회원가입</h2>
+	<hr>
 </div>
 <div class="mainSession">
-	<h2>회원가입</h2>
 	<form action="signUpCheck" method="post" onsubmit="return checkList()">
 		<table >
 			<tr>
-				<td>
-					아이디(이메일)
-				</td>
-				<td>
+				<th>
 					<input type="email" id="userId" name="id" placeholder="이메일 형식으로 입력해주세요" required="required">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align: center;">
+					<p id="emailCheckForm" style="color:red; display: none; text-align: left">이메일 인증이 완료되었습니다.</p>
+				</th>
+			
+				<td >
 					<input type="hidden" id="message">
 					<input type="hidden" id="hiddenId">
 					<input type="hidden" id="sendChk">
-					<input type="button" id="overCheckBtn" onclick="overlappingCheck()" value="아이디 중복 체크"/>
-					<input type="hidden" id="sendEmailBtn" onclick="sendEmail()" value="이메일 다시 보내기"/>
-					<input type="hidden" id="emailCheckBtn" onclick="emailChk()" value="인증 확인"/>
-					<p id="emailCheckForm" style="color:red; display: none;">이메일 인증이 완료되었습니다.</p>
+					<input type="button" class="w-btn w-btn-blue" id="overCheckBtn" onclick="overlappingCheck()" value="아이디 중복 체크"/>
+					<input type="hidden" class="w-btn w-btn-blue" id="sendEmailBtn" onclick="sendEmail()" value="이메일 다시 보내기"/>
+					<input type="hidden" class="w-btn w-btn-blue" id="emailCheckBtn" onclick="emailChk()" value="인증 확인"/>
 				</td>
+		
+			<tr>
+				<th>
+					<input type="text" id="nickname" name="nickname" placeholder="닉네임" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					닉네임
-				</td>
-				<td>
-					<input type="text" id="nickname" name="nickname" required="required">
-				</td>
+				<th>
+					<input type="password" id="password" name="password" placeholder="비밀번호" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					비밀번호 
-				</td>
-				<td>
-					<input type="password" name="password" required="required">
-				</td>
+				<th>
+					<input type="password" id="password_chk" name="password_chk" placeholder="비밀번호 재확인" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					비밀번호 확인 
-				</td>
-				<td>
-					<input type="password" name="password_chk" required="required">
-				</td>
+				<th>
+					<input type="text" id="phone" name="phone" placeholder="핸드폰" required="required">
+				</th>
 			</tr>
 			<tr>
-				<td>
-					휴대폰 
-				</td>
-				<td>
-					<input type="text" name="phone" required="required">
-				</td>
+				<th>
+					<input type="text" onclick="addressPop()" id="address1" name="address" placeholder="주소 검색" readonly="readonly" style="border : none;">
+				</th>
 			</tr>
 			<tr>
-				<td rowspan="3">
-					주소 
-				</td>
-				<td>
-					<a href="#" onclick="addressPop()">주소 검색</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="text" id="address1" name="address" readonly="readonly" style="border : none;">
-				</td>
-			</tr>
-			<tr>
-				<td>
+				<th>
 					<input type="text" id="address2" name="address" required="required" placeholder="상세주소" style="width: 98%">
-				</td>
+				</th>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: center;">
-					<button type="submit">회원가입</button>
+					<button type="submit" class="w-btn w-btn-blue">회원가입</button>
 				</td>
 			</tr>
 		</table>
@@ -136,13 +132,11 @@
 </div>
 	 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-    
     	function addressPop(){
     		//zonecode
     	    new daum.Postcode({
     	        oncomplete: function(data) {
     	        	document.getElementById('address1').value=data.roadAddress;
-    	            alert(data.zonecode+' / '+data.roadAddress);
     	        }
     	    }).open();
     	}
@@ -252,8 +246,8 @@
 				datatype:"text",
 				success:function(data){
 					$('#message').attr('value',data);
-					//sendEmail2();
-					read();
+					sendEmail2();
+					//read();
 					$('#message').attr('value','');
 				}
 			});
@@ -262,7 +256,7 @@
     	function sendEmail2(){
  		   emailjs.init('vr09l4bTjRJcS48gc');
  	        let templateParams  = {
-	        		userId : document.getElementById('userId').value,
+	        	userId : document.getElementById('userId').value,
  	            message : document.getElementById('message').value
  	        }
  	        console.log(templateParams);
@@ -279,10 +273,6 @@
     	}
     
     </script>
- <footer>
-  <div class="footer">
-  	<a href="https://github.com/JJacking/fourGreen.git" style="text-decoration: none; list-style: none; color: white; width:100%;" >@github 저장소 바로가기</a>
-  </div>
-</footer>
+<jsp:include page="../bottomBar.jsp"/>
 </body>
 </html>

@@ -1,48 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<link type="text/css" rel="stylesheet" href="./resources/style/board.css">
 <style type="text/css">
-td, th{
-	width: 200px;
-	height: 50px;
+*{
+	padding: 0;
+} 
+#outter{
+	width: 100%;
+	margin-top:50px; 
+}  
+.infoTb{
+  	width: 800px;
+  	height: 100%;
+  	padding-top: 50px; 
+  	margin: 0 auto;
+  	font-size: 20px;
+  	border-collapse: collapse;
+  	line-height: 50px;
+}
+.infoTb th{
+	width: 150px;
+	border: 1px solid #CE6D39; 
+	background-color: #FFEEE4;
+}
+.w-btn{ 
+	width:160px;
+	padding: 20px;
+	margin-left: 10px;
+	text-alin:center;
 }
 </style>
 </head>
 <body>
-<div class="nav">
-  <div><h2><a href="/">logo</a></h2></div>
-     <ul class="nav-menu">
-      <li><a href="product">물품보기</a></li>
-      <li><a href="newAuction">물품등록</a></li>
-      <li>
-        <a href="#">게시판</a>
-          <ul id="sub-menu">
-            <li><a href="managerBoardList">공지사항</a></li>
-            <li><a href="boardList">자유게시판</a></li>
-          </ul>
-      </li>
-      <li><a href="#">고객센터</a></li>
-     </ul>
-   	<c:if test="${empty user}"> 
-        <div class="loginBtn">
-            <button type="button" onclick="location.href='signIn'">로그인</button>
-            <button type="button" onclick="location.href='signUp'">회원가입</button>
-        </div>
-    </c:if>
-   <c:if test="${not empty user }">
-        <p>${user.nickname}님 환영합니다</p>
-        <p><a href="signOut">로그아웃</a></p>
-        <p><a href="myPage">내정보</a></p>
-        <p><a href="charge">포인트충전/조회</a></p>
-    </c:if>
-</div>
-<table border="1">
+<jsp:include page="../topBar.jsp" />
+<div id="outter">
+	<div class="infoTb">
+	<h2>관리자 페이지</h2>
+	<hr style="margin-bottom: 50px;">
+	<table style="border-collapse: collapse;">
 		<tr>
 			<th>
 				번호
@@ -60,49 +63,52 @@ td, th{
 				결과
 			</th>
 		</tr>
-	<c:forEach var="l" items="${list }" varStatus="num">
+		<c:forEach var="l" items="${list }" varStatus="num">
+			<tr>
+				<td>
+					${l.idx }
+					<input type="hidden" id="idx${num.index}" value="${l.idx }">
+				</td>
+				<td>
+					${l.id }
+					<input type="hidden" id="id${num.index}" value="${l.id }">
+				</td>
+				<td>
+					${l.point }
+					<input type="hidden" id="point${num.index}" value="${l.point }">
+				</td>
+				<td>
+					<fmt:formatDate value="${l.regdate }" pattern="yy/MM/dd HH:mm"/>
+				</td>
+				<td>
+					<c:if test="${l.result == 0 }">
+						<button type="button" class="w-btn w-btn-blue" onclick="chargePoint('${num.index}')">충전 승인</button>
+					</c:if>
+					<c:if test="${l.result == 1 }">
+						<p style="color: red;">충전 완료</p>
+					</c:if>
+				</td>
+			</tr>
+		</c:forEach>
 		<tr>
-			<td>
-				${l.idx }
-				<input type="hidden" id="idx${num.index}" value="${l.idx }">
-			</td>
-			<td>
-				${l.id }
-				<input type="hidden" id="id${num.index}" value="${l.id }">
-			</td>
-			<td>
-				${l.point }
-				<input type="hidden" id="point${num.index}" value="${l.point }">
-			</td>
-			<td>
-				${l.regdate }
-			</td>
-			<td>
-				<c:if test="${l.result == 0 }">
-					<button type="button" onclick="chargePoint('${num.index}')">충전 승인</button>
+			<td colspan="5" style="text-align: center;">
+				<c:if test="${startPage != 1 }">
+					<a href="userChargeList?num=${startPage-5 }">
+					<<
+					</a>
 				</c:if>
-				<c:if test="${l.result == 1 }">
-					<p style="color: red;">충전 완료</p>
+				<c:forEach begin="${startPage }" end="${endPage }" varStatus="page">
+					<a href="userChargeList?num=${page.index }">${page.index }</a>
+				</c:forEach>
+				<c:if test="${endPage < totalPage }">
+					<a href="userChargeList?num=${startPage+5 }">>></a>
 				</c:if>
 			</td>
 		</tr>
-	</c:forEach>
-	<tr>
-		<td colspan="5" style="text-align: center;">
-			<c:if test="${startPage != 1 }">
-				<a href="userChargeList?num=${startPage-5 }">
-				<<
-				</a>
-			</c:if>
-			<c:forEach begin="${startPage }" end="${endPage }" varStatus="page">
-				<a href="userChargeList?num=${page.index }">${page.index }</a>
-			</c:forEach>
-			<c:if test="${endPage < totalPage }">
-				<a href="userChargeList?num=${startPage+5 }">>></a>
-			</c:if>
-		</td>
-	</tr>
-</table>
+	</table>
+	</div>
+</div>
+<jsp:include page="../bottomBar.jsp"/>
 <script type="text/javascript">
 	function chargePoint(num){
 		alert(num);

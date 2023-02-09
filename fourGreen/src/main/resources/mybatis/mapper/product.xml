@@ -8,6 +8,10 @@
 	select * from product order by num desc
 </select>
 
+<select id="selectAllAuctionByFilter" parameterType="String" resultType="productVO">
+	select * from product order by ${filter} desc
+</select>
+
 <select id="selectOne" parameterType="int" resultType="productVO">
 	select * from product where num=#{num}
 </select>
@@ -33,11 +37,15 @@
 </update>
 
 <insert id="insertCustomer" parameterType="customerVO">
-	insert into customer values(customer_seq.nextval,#{num},#{memberId},#{bidMoney},sysdate)
+	insert into customer values(customer_seq.nextval,#{num},#{memberId},sysdate,#{bidMoney})
 </insert>
 
 <select id="selectAllNumAuction" resultType="int">
 	select count(*) from product
+</select>
+
+<select id="selectAllNumAuctionByEnd" parameterType="java.util.Arrays" resultType="int">
+	select count(*) from product where regdate ${array[0]} #{array[1]}
 </select>
 
 <select id="selectAllNumAuctionByCategory" parameterType="String" resultType="int">
@@ -63,8 +71,11 @@ SELECT * FROM
 		<if test="array[1] != null">
 			ORDER BY ${array[1]} ${array[2]}
 		</if>
+		<if test="array[1] == null">
+			ORDER BY num desc
+		</if>
 	)) 
-	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +9
+	WHERE nick BETWEEN #{array[3]} AND #{array[3]} +8
 </select>
 
 <select id="search" parameterType="java.util.Arrays" resultType="productVO">
@@ -74,5 +85,17 @@ SELECT * FROM
 	 </if>
 	  LIKE #{array[1]} 
 </select>
+
+<update id="updateUserPoint" parameterType="java.util.Arrays">
+	update member set point = point - #{array[0]} where id=#{array[1]}
+</update>
+
+<select id="selectOneCustomerById" parameterType="int" resultType="customerVO">
+	select * from customer where num=#{num} order by buyNum desc
+</select>
+
+<update id="pointBack" parameterType="java.util.Arrays">
+	update member set point = point + #{array[0]} where id=#{array[1]}
+</update>
 
 </mapper>
